@@ -726,4 +726,8 @@ class Templates
 
     #include "Templates\KOR\templates.hpp"
 
+    // ***************************** Custom Mix Factions *****************************
+
+    #include "Templates\custom_mixed\templates.hpp"
+
 };

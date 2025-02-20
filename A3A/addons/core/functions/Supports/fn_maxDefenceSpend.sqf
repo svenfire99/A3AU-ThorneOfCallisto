@@ -163,6 +163,7 @@ private _targPosSpend = 0;
     _x params ["_spSide", "_spCallPos", "_spTargPos", "_spRes", "_spTime"];
     if (_spSide != _side) then { continue };
     if !(_spTargPos isEqualType []) then { continue };                // anti-air spend
+    if (_spRes isEqualType objNull) then { _spRes = 0 };
 
     // Falloff resource spend over one hour
     private _res = linearConversion [_spTime, (_spTime)+3600, time, _spRes, 0, true];

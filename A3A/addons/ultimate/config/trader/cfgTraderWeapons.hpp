@@ -218,3 +218,15 @@
         {
             prefix = "mpp_stock";
         };
+        class weapons_ef : weapons_base
+        {
+            prefix = "ef";
+        };
+        class weapons_Tier1 : weapons_base
+        {
+            prefix = "Tier1_stock"
+        };
+        class weapons_SIGXM7 : weapons_base
+        {
+            prefix = "SIGXM7_stock"
+        };

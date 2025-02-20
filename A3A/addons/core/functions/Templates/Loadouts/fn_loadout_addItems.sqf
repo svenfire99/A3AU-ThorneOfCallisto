@@ -57,6 +57,7 @@ private _itemBatches = [];
 /*
  Calculate how much free load we have in each uniform/vest/backpack
 */
+// diag_log format ["DEBUG_DIAGLOG: Trying to calculate max load of loadout %1", _loadout];
 
 private _uniform = _loadout select 3;
 private _vest = _loadout select 4;
@@ -70,6 +71,7 @@ private _backpackMaxLoad = 0;
 private _backpackCurrentLoad = 0;
 
 if (count _uniform > 0) then {
+	// diag_log format ["DEBUG_DIAGLOG: Trying to get max load of uniform %1", _uniform];
 	_uniformMaxLoad = getContainerMaxLoad (_uniform select 0);
 	{
 		_uniformCurrentLoad = _uniformCurrentLoad + ([_x] call A3A_fnc_loadout_itemLoad);
@@ -77,6 +79,7 @@ if (count _uniform > 0) then {
 };
 
 if (count _vest > 0) then {
+	// diag_log format ["DEBUG_DIAGLOG: Trying to get max load of vest %1", _vest];
 	_vestMaxLoad = getContainerMaxLoad (_vest select 0);
 	{
 		_vestCurrentLoad = _vestCurrentLoad + ([_x] call A3A_fnc_loadout_itemLoad);
@@ -84,6 +87,7 @@ if (count _vest > 0) then {
 };
 
 if (count _backpack > 0) then {
+	// diag_log format ["DEBUG_DIAGLOG: Trying to get max load of backpack %1", _backpack];
 	_backpackMaxLoad = getContainerMaxLoad (_backpack select 0);
 	{
 		_backpackCurrentLoad = _backpackCurrentLoad + ([_x] call A3A_fnc_loadout_itemLoad);
