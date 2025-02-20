@@ -659,4 +659,8 @@ class Templates
 
     #include "Templates\CWR\templates.hpp"
 
+    // ***************************** Custom Mix Factions *****************************
+
+    #include "Templates\custom_mixed\templates.hpp"
+
 };

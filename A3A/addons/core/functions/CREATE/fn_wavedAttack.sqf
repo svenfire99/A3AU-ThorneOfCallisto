@@ -161,7 +161,7 @@ while {_wave <= _maxWaves and !_victory} do
 
         private _curSoldiers = { !fleeing _x and _x call A3A_fnc_canFight } count _soldiers;
         Debug_2("%1 soldiers remaining out of %2", _curSoldiers, count _soldiers);
-        if (_curSoldiers < count _soldiers * 0.25) exitWith {
+        if (_curSoldiers < count _soldiers * 0.25 || count _soldiers < 1 || _curSoldiers < 1) exitWith {
             ServerInfo_2("Wave %1 against %2 has been defeated", _wave, _mrkDest);
         };
         if(_timeout < time) exitWith {

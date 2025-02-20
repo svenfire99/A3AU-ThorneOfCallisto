@@ -80,6 +80,8 @@ class cfgHALsStore
 		#include "config\ProjInfAD.hpp"
 		#include "config\JCAArsenal.hpp"
 		#include "config\hafm.hpp"
+		#include "config\SIGXM7.hpp"
+		#include "config\Tier1.hpp"
 	};
 
 	class stores 
@@ -927,6 +929,28 @@ class cfgHALsStore
 				"muzzlesJCA",
 				"opticsJCA",
 				"magazinesJCA"
+			};
+		};
+		class SIGXM7_stock
+		{
+			displayName = $STR_ARMS_DEALER_STORE;
+			categories[] = {
+				"riflesSIGXM7",
+				"magazinesSIGXM7"
+			};
+		};
+		class Tier1_stock
+		{
+			displayName = $STR_ARMS_DEALER_STORE;
+			categories[] = {
+				"riflesTier1",
+				"sniperRiflesTier1",
+				"mgTier1",
+				"underbarrelTier1",
+				"pointersTier1",
+				"muzzlesTier1",
+				"opticsTier1",
+				"magazinesTier1"
 			};
 		};
 	};

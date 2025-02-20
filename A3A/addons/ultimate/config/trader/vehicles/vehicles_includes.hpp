@@ -43,3 +43,5 @@
 #include "vehicles_scrtwpns.hpp"
 #include "vehicles_ffpxa185.hpp"
 #include "vehicles_NorAFF16.hpp"
+#include "vehicles_fir.hpp"
+#include "vehicles_usaf.hpp"

@@ -32,8 +32,10 @@ _groupVeh = group driver _uav;
 private _gunner = gunner _uav;
 
 _uav addEventHandler ["Fired", {
-    params ["_uav", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
-    _uav setVariable ["A3A_currentMissile", _projectile];
+    if (_uav == _side) then {
+        params ["_uav", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
+        _uav setVariable ["A3A_currentMissile", _projectile];
+    };
 }];
 
 #if __A3_DEBUG__
@@ -74,39 +76,81 @@ _uav addEventHandler
 [
     "Fired",
     {
-        params ["_uav", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
+        if (_uav == _side) then {
+            params ["_uav", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
 
-        private _target = _uav getVariable ["currentTarget", objNull]; //what target?
-        if(_target isEqualTo objNull) exitWith {};//what?
+            private _target = _uav getVariable ["currentTarget", objNull]; //what target?
+            if(_target isEqualTo objNull) exitWith {};//what?
 
-        if(_target isEqualType objNull) then
-        {
-            _target = getPosASL _target;
-        };
-
-        [_projectile, _target] spawn
-        {
-            params ["_projectile", "_target"];
-            sleep 0.25;
-            private _speed = (speed _projectile)/3.6;
-            while {!(isNull _projectile) && {alive _projectile}} do
-            {   
-                if ((getPos _projectile) select 2 < 10) exitwith {};
-                sleep 0.1;
-                private _dir = vectorNormalized (_target vectorDiff (getPosASL _projectile));
-                _projectile setVelocity (_dir vectorMultiply _speed);
-                _projectile setVectorDir _dir;
+            if(_target isEqualType objNull) then
+            {
+                _target = getPosASL _target;
             };
+
+            [_projectile, _target] spawn
+            {
+                params ["_projectile", "_target"];
+                sleep 0.25;
+                private _speed = (speed _projectile)/3.6;
+                while {!(isNull _projectile) && {alive _projectile}} do
+                {   
+                    if ((getPos _projectile) select 2 < 10) exitwith {};
+                    sleep 0.1;
+                    private _dir = vectorNormalized (_target vectorDiff (getPosASL _projectile));
+                    _projectile setVelocity (_dir vectorMultiply _speed);
+                    _projectile setVectorDir _dir;
+                };
+            };
+
+            Debug_1("%1 firing missle at %2.", _supportName, _target);
         };
     }
 ];
 
-while {time < _timeout && canMove _uav} do
+
+private _changeSides = false;
+while {time < _timeout && canMove _uav && !_changeSides} do
 {
     waitUntil { sleep 5; _uav distance2d _suppCenter < 1200 || !alive _uav};
     // check if launcher/crew are intact
     if !(canFire _uav and gunner _uav call A3A_fnc_canFight || alive _uav) exitWith {
         Info_1("%1 has been destroyed or disabled, aborting routine", _supportName);
+    };
+ 
+    // check if launcer/crew switched side
+    if (side _uav != _side && !_changeSides) exitWith {
+        private _spottedEnemies = [];
+        private _allEnemies = [];
+        _suppData set [4, 0];
+
+        { _uav deleteVehicleCrew _x } forEach crew _uav;
+        [resistance, _uav] call A3A_fnc_createVehicleCrew;
+        _groupVeh = group driver _uav;
+        _gunner = gunner _uav;
+
+        _wp = _groupVeh addWayPoint [_suppCenter, 0];
+        _wp setWaypointBehaviour "CARELESS";
+        _wp setWaypointType "LOITER";
+        _wp setWaypointLoiterType "CIRCLE_L";
+        _wp setWaypointSpeed "NORMAL";
+        _wp setWaypointLoiterRadius 600;
+        _uav flyInHeight 600;
+        _groupVeh setCurrentWaypoint _wp;
+        
+        _uav removeEventHandler "Fired";
+        _uav removeAllEventHandlers "Fired";
+        
+        if !(isNull _currentTarget) then {
+            _uav doTarget objNull; /// _gunner
+            _uav doWatch objNull; /// _gunner
+            _uav setVariable ["currentTarget", nil];
+            _suppTarget resize 0;
+            deleteVehicle _laser;
+            Debug_1("%1 removing target, targeting friendly.", _supportName);
+        };
+
+        Info_1("%1 has been hacked, exiting and removing current targets", _supportName);
+        _changeSides = true;
     };
 
     private _friends = units _side inAreaArray [_suppCenter, 1000, 1000];
@@ -133,12 +177,12 @@ while {time < _timeout && canMove _uav} do
     };
 
     sleep 10;
-    if (isNull _currentTarget) then
+    if (isNull _currentTarget && side _uav == _side) then
     {
         private _currentTarget = selectRandom _spottedEnemies;
         //Creates the laser target to mark the target
         _laser = createVehicle ["LaserTargetE", (getPos _currentTarget), [], 0, "CAN_COLLIDE"];
-        Info_1("Trying to attack laser to %1", _currentTarget);
+        Info_1("%1 trying to attack laser to %2", _uav, _currentTarget);
         _uav setVariable ["currentTarget", _currentTarget];
         _laser attachTo [_currentTarget, [0,0,0]];
         _uav doWatch _laser;
@@ -154,7 +198,7 @@ while {time < _timeout && canMove _uav} do
             _uav doWatch objNull; /// _gunner
             _uav setVariable ["currentTarget", nil];
             _suppTarget resize 0;
-	    deleteVehicle _laser;
+        deleteVehicle _laser;
             Debug_1("%1 skips target, as it is already dead", _supportName);
             continue;
         };
@@ -188,21 +232,23 @@ while {time < _timeout && canMove _uav} do
 
 _suppData set [4, 0];           // Set activesupport radius to zero, prevents adding further targets
 
-[_groupVeh] spawn A3A_fnc_groupDespawner;
-[_uav] spawn A3A_fnc_vehDespawner;
+if (side _uav == _side) then {
+    [_groupVeh] spawn A3A_fnc_groupDespawner;
+    [_uav] spawn A3A_fnc_vehDespawner;
 
-//Have the plane fly back home
-if (canMove _uav) then
-{
-    while {count waypoints _groupVeh > 0} do { deleteWaypoint [_groupVeh, 0] };
-    private _wpBase = _groupVeh addWaypoint [markerPos _airport, 0];
-    _wpBase setWaypointSpeed "NORMAL";
-    _wpBase setWaypointBehaviour "CARELESS";
-    _groupVeh setCurrentWaypoint _wpBase;
+    //Have the plane fly back home
+    if (canMove _uav) then
+    {
+        while {count waypoints _groupVeh > 0} do { deleteWaypoint [_groupVeh, 0] };
+        private _wpBase = _groupVeh addWaypoint [markerPos _airport, 0];
+        _wpBase setWaypointSpeed "NORMAL";
+        _wpBase setWaypointBehaviour "CARELESS";
+        _groupVeh setCurrentWaypoint _wpBase;
 
-    private _timeout = time + (_uav distance2d _spawnPos) / 20;
-    waitUntil { sleep 2; (currentWaypoint _groupVeh != 0) or (time > _timeout) };
-    if (time > _timeout) exitWith {};
-    { deleteVehicle _x } forEach (units _groupVeh);
-    deleteVehicle _uav;
+        private _timeout = time + (_uav distance2d _spawnPos) / 20;
+        waitUntil { sleep 2; (currentWaypoint _groupVeh != 0) or (time > _timeout) };
+        if (time > _timeout) exitWith {};
+        { deleteVehicle _x } forEach (units _groupVeh);
+        deleteVehicle _uav;
+    };
 };

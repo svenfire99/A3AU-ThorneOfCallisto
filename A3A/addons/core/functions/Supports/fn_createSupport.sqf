@@ -52,7 +52,9 @@ _reveal = [_side, _targPos, _reveal] call A3A_fnc_useRadioKey;
 
 // create function returns <0 if it couldn't do anything
 private _createFunc = missionNamespace getVariable ("A3A_fnc_SUP_" + _type);
+ServerDebug_1("Attempting to create support %1", _createFunc);
 private _resourceCost = [_supportName, _side, _resPool, _maxSpend, _target, _targPos, _reveal, _delay] call _createFunc;
+ServerDebug_1("Attempting to create support %1 with resource cost %2", _createFunc, _resourceCost);
 if (_resourceCost < 0) exitWith { A3A_supportCallInProgress = nil; "" };
 
 [-_resourceCost, _side, _resPool] call A3A_fnc_addEnemyResources;
