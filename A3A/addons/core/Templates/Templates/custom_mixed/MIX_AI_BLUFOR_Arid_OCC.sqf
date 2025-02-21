@@ -453,7 +453,7 @@ private _pilotSMGs = [];
 //    Include Factions here    //
 /////////////////////////////////
 
-// #include "Vanilla\MIX_AAF.sqf"
+#include "Vanilla\MIX_AAF.sqf"
 #include "Vanilla\MIX_NATO_Arid.sqf"
 
 #include "Vanilla\Vanilla_Vehicle_Attributes.sqf"
@@ -611,13 +611,6 @@ _loadoutData set ["items_medical_medic", ["MEDIC"] call A3A_fnc_itemset_medicalS
 _loadoutData set ["items_miscEssentials", [] call A3A_fnc_itemset_miscEssentials];
 
 //Unit type specific item sets. Add or remove these, depending on the unit types in use.
-
-if (A3A_hasACE) then {
-    _slItems append ["ACE_microDAGR", "ACE_DAGR"];
-    _eeItems append ["ACE_Clacker", "ACE_DefusalKit"];
-    _mmItems append ["ACE_RangeCard", "ACE_ATragMX", "ACE_Kestrel4500"];
-};
-
 _loadoutData set ["items_squadLeader_extras", _slItems];
 _loadoutData set ["items_rifleman_extras", _rItems];
 _loadoutData set ["items_medic_extras", _mItems];

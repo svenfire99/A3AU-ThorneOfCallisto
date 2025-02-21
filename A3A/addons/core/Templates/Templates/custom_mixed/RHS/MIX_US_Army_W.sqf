@@ -63,8 +63,6 @@ _SAM            append ["B_SAM_System_03_F"];
 _minefieldAT    append ["rhsusf_mine_M19"];
 _minefieldAPERS append ["rhsusf_mine_m14"];
 
-#include "RHS_Vehicle_Attributes.sqf"
-
 _animations append [];
 _variants append [
     ["rhsusf_stryker_m1126_m2_d", ["Tan",1]],
@@ -161,6 +159,12 @@ _mmItems append [];
 _pItems append [];
 _cItems append [];
 _uItems append [];
+
+if (A3A_hasACE) then {
+    _slItems append ["ACE_microDAGR", "ACE_DAGR"];
+    _eeItems append ["ACE_Clacker", "ACE_DefusalKit"];
+    _mmItems append ["ACE_RangeCard", "ACE_ATragMX", "ACE_Kestrel4500"];
+};
 
 _glasses append ["G_Aviator","G_Squares_Tinted","G_Squares","rhsusf_shemagh_od","rhsusf_shemagh2_od","rhsusf_shemagh_grn","rhsusf_shemagh2_grn","rhs_googles_black", "rhs_googles_clear", "rhs_googles_orange"];
 _goggles append ["rhs_ess_black", "rhs_googles_yellow","rhsusf_shemagh_gogg_grn","rhsusf_shemagh2_gogg_grn","rhsusf_shemagh_gogg_od","rhsusf_shemagh2_gogg_od","rhsusf_oakley_goggles_clr","rhsusf_oakley_goggles_blk","rhsusf_oakley_goggles_ylw"];
@@ -587,21 +591,41 @@ _policesidearms append ["rhsusf_weap_m1911a1", "rhsusf_weap_glock17g4"];
 ////////////////////////////////
 
 
-_militiaslRifles append [];
-_militiarifles append [];
-_militiacarbines append [];
-_militiagrenadeLaunchers append [];
+_militiaslRifles append [
+    ["rhs_weap_m4_carryhandle", "", "rhsusf_acc_wmx_bk", "rhsusf_acc_eotech_552", ["rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag_Tracer_Red"], [], ""],
+    ["rhs_weap_m4_carryhandle_m203S", "", "rhsusf_acc_wmx_bk", "", ["rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag_Tracer_Red"], ["rhs_mag_m714_White", "rhs_mag_m715_Green", "rhs_mag_m716_yellow", "rhs_mag_m713_Red", "rhs_mag_M583A1_white", "rhs_mag_M585_white_cluster"], ""],
+    ["rhs_weap_m4_carryhandle_m203", "", "rhsusf_acc_wmx_bk", "", ["rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag_Tracer_Red"], ["rhs_mag_m714_White", "rhs_mag_m715_Green", "rhs_mag_m716_yellow", "rhs_mag_m713_Red", "rhs_mag_M583A1_white", "rhs_mag_M585_white_cluster"], ""]
+];
+_militiarifles append [
+    ["rhs_weap_m4_carryhandle", "", "rhsusf_acc_wmx_bk", "", ["rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag_Tracer_Red"], [], ""]
+];
+_militiacarbines append [
+    ["rhs_weap_m4a1_carryhandle", "", "rhsusf_acc_wmx_bk", "", ["rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag_Tracer_Red"], [], ""]
+];
+_militiagrenadeLaunchers append [
+    ["rhs_weap_m4_carryhandle_m203S", "", "rhsusf_acc_wmx_bk", "", ["rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag_Tracer_Red"], ["rhs_mag_M441_HE", "rhs_mag_M441_HE", "rhs_mag_M441_HE", "rhs_mag_m714_White"], ""],
+    ["rhs_weap_m4_carryhandle_m203", "", "rhsusf_acc_wmx_bk", "", ["rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag_Tracer_Red"], ["rhs_mag_M441_HE", "rhs_mag_M441_HE", "rhs_mag_M441_HE", "rhs_mag_m714_White"], ""]
+];
 _militiadesignatedGrenadeLaunchers append [];
-_militiaSMGs append [];
-_militiamachineGuns append [];
-_militiamarksmanRifles append [];
-_militiasniperRifles append [];
-_militialightATLaunchers append [];
+_militiaSMGs append [
+    ["rhsusf_weap_MP7A2", "", "rhsusf_acc_wmx_bk", "", [], [], ""]
+];
+_militiamachineGuns append [
+    ["rhs_weap_m240B", "", "", "", ["rhsusf_50Rnd_762x51", "rhsusf_50Rnd_762x51", "rhsusf_50Rnd_762x51_m62_tracer"], [], ""],
+    ["rhs_weap_m249", "", "", "", ["rhsusf_100Rnd_556x45_M855_mixed_soft_pouch"], [], ""]
+];
+_militiamarksmanRifles append [
+    ["rhs_weap_m14_rail", "", "", "rhsusf_acc_LEUPOLDMK4", ["rhsusf_20Rnd_762x51_m80_Mag", "rhsusf_20Rnd_762x51_m80_Mag", "rhsusf_20Rnd_762x51_m62_Mag"], [], ""]
+];
+_militiasniperRifles append [
+    ["rhs_weap_m24sws", "", "", "rhsusf_acc_LEUPOLDMK4", [], [], ""]
+];
+_militialightATLaunchers append ["rhs_weap_m72a7"];
 _militialightHELaunchers append [];
 _militiaATLaunchers append [];
 _militiamissleATLaunchers append [];
 _militiaAALaunchers append [];
-_militiasidearms append [];
+_militiasidearms append ["rhsusf_weap_m1911a1", "rhsusf_weap_m9"];
 _militiaGLsidearms append [];
 
 _militiaATMines append [];
@@ -622,20 +646,20 @@ _militiaNVGs append [];
 _militiabinoculars append [];
 _militiarangefinders append [];
 
-_militiauniforms append [];
-_militiavests append [];
+_militiauniforms append ["rhs_uniform_bdu_erdl"];
+_militiavests append ["rhsgref_TacVest_ERDL", "V_TacVest_camo", "rhsgref_alice_webbing"];
 _militiaHvests append [];
 _militiaMGvests append [];
 _militiaMEDvests append [];
 _militiaSLvests append [];
 _militiaSNIvests append [];
 _militiaGLvests append [];
-_militiabackpacks append [];
-_militiaatBackpacks append [];
-_militialongRangeRadios append [];
-_militiahelmets append [];
-_militiaslHat append [];
-_militiasniHats append [];
+_militiabackpacks append ["B_AssaultPack_rgr", "B_Kitbag_sgg"];
+_militiaatBackpacks append ["B_Kitbag_sgg"];
+_militialongRangeRadios append ["B_RadioBag_01_wdl_F"];
+_militiahelmets append ["H_Bandanna_camo", "H_Cap_oli", "rhsgref_helmet_pasgt_woodland", "rhsgref_helmet_pasgt_woodland_rhino"];
+_militiaslHat append ["rhsgref_hat_M1951"];
+_militiasniHats append ["rhs_Booniehat_m81", "H_Booniehat_oli"];
 
 _militiaglasses append [];
 _militiagoggles append [];
@@ -644,13 +668,19 @@ _militiagoggles append [];
 //    Misc Loadouts     //
 //////////////////////////
 
-_crewuniforms append [];
-_crewvests append [];
-_crewhelmets append [];
-_crewcarbines append [];
-_crewSMGs append [];
+_crewuniforms append ["rhs_uniform_cu_ocp_1stcav"];
+_crewvests append ["rhsusf_spcs_ocp_crewman"];
+_crewhelmets append ["rhsusf_cvc_green_helmet", "rhsusf_cvc_green_alt_helmet", "rhsusf_cvc_helmet", "rhsusf_cvc_alt_helmet"];
+_crewcarbines append [
+    ["rhs_weap_m4_carryhandle", "", "rhsusf_acc_wmx_bk", "", ["rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag_Tracer_Red"], [], ""]
+];
+_crewSMGs append [
+    ["rhsusf_weap_MP7A2", "", "rhsusf_acc_wmx_bk", "", ["rhsusf_mag_40Rnd_46x30_FMJ", "rhsusf_mag_40Rnd_46x30_FMJ", "rhsusf_mag_40Rnd_46x30_JHP"], [], ""]
+];
 
-_pilotuniforms append [];
-_pilotvests append [];
-_pilothelmets append [];
-_pilotSMGs append [];
+_pilotuniforms append ["rhs_uniform_acu_oefcp"];
+_pilotvests append ["rhsusf_spcs_ocp"];
+_pilothelmets append ["rhsusf_hgu56p_black", "rhsusf_hgu56p_mask_black", "rhsusf_hgu56p_visor_black", "rhsusf_hgu56p_visor_mask_black"];
+_pilotSMGs append [
+    ["rhsusf_weap_MP7A2", "", "rhsusf_acc_wmx_bk", "", ["rhsusf_mag_40Rnd_46x30_FMJ", "rhsusf_mag_40Rnd_46x30_FMJ", "rhsusf_mag_40Rnd_46x30_JHP"], [], ""]
+];

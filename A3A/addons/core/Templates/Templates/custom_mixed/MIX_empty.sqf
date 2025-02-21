@@ -20,6 +20,7 @@ _DropPod    append ["SpaceshipCapsule_01_F"];
 
 _transportBoat  append [];
 _gunBoat        append [];
+_Amphibious     append [];
 
 _planesCAS  append [];
 _planesAA   append [];
@@ -130,6 +131,7 @@ _GLvests append [];
 _vests append [];
 _backpacks append [];
 _atBackpacks append [];
+_medBackpacks append [];
 _longRangeRadios append [];
 _helmets append [];
 _slHat append [];
