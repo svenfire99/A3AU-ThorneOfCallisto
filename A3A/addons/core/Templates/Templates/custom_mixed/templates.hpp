@@ -8,13 +8,23 @@
         description = $STR_A3AP_setupFactionsTab_vanilla_generic;
     };
 
-    class CUSTOM_MIX_BLUFOR_Van : CUSTOM_MIX_Base
+    class CUSTOM_MIX_BLUFOR_Arid : CUSTOM_MIX_Base
     {
         side = "Occ";
         flagTexture = "\A3\Data_F\Flags\Flag_NATO_CO.paa";
         name = "A3 NATO MIX Arid";
-        file = "MIX_AI_BLUFOR_OCC";
+        file = "MIX_AI_BLUFOR_Arid_OCC";
         climate[] = {"arid"};
+        description = "Mix of all Blufor factions";
+    };
+
+    class CUSTOM_MIX_BLUFOR_Temparate : CUSTOM_MIX_Base
+    {
+        side = "Occ";
+        flagTexture = "\A3\Data_F\Flags\Flag_NATO_CO.paa";
+        name = "A3 NATO MIX Temperate";
+        file = "MIX_AI_BLUFOR_Temparate_OCC";
+        climate[] = {"temperate", "tropical", "arctic"};
         description = "Mix of all Blufor factions";
     };
 

@@ -161,6 +161,12 @@ _pItems append [];
 _cItems append [];
 _uItems append [];
 
+if (A3A_hasACE) then {
+    _slItems append ["ACE_microDAGR", "ACE_DAGR"];
+    _eeItems append ["ACE_Clacker", "ACE_DefusalKit"];
+    _mmItems append ["ACE_RangeCard", "ACE_ATragMX", "ACE_Kestrel4500"];
+};
+
 _glasses append ["G_Aviator","G_Squares_Tinted","G_Squares","rhsusf_shemagh_od","rhsusf_shemagh2_od","rhsusf_shemagh_tan","rhsusf_shemagh2_tan","rhs_googles_black","rhs_googles_clear","rhs_googles_orange"];
 _goggles append ["rhs_ess_black","rhs_googles_yellow","rhsusf_shemagh_gogg_tan","rhsusf_shemagh2_gogg_tan","rhsusf_shemagh_gogg_od","rhsusf_shemagh2_gogg_od","rhsusf_oakley_goggles_clr","rhsusf_oakley_goggles_blk","rhsusf_oakley_goggles_ylw"];
 
