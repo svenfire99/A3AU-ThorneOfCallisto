@@ -1,12 +1,16 @@
+/* Faction : BW Temperate
+ * Required mods/addons: "bwa3_common"
+ * Optional mods/addons: "CUP_AirVehicles_Core", "RHS_US_A2Port_Armor"
+ */
 _basic              append ["B_T_Quadbike_01_F"];
 _unarmedVehicles    append ["BWA3_Eagle_Fleck"];
 _armedVehicles      append ["BWA3_Dingo2_FLW200_GMW_CG13_Fleck", "BWA3_Dingo2_FLW200_M2_CG13_Fleck", "BWA3_Dingo2_FLW100_MG3_CG13_Fleck", "BWA3_Eagle_FLW100_Fleck"];
-_Trucks             append ["B_T_Truck_01_covered_F", "B_T_Truck_01_transport_F"];
-_cargoTrucks        append ["B_T_Truck_01_cargo_F", "B_T_Truck_01_flatbed_F"];
-_ammoTrucks         append ["B_T_Truck_01_ammo_F"];
-_repairTrucks       append ["B_T_Truck_01_Repair_F"];
-_fuelTrucks         append ["B_T_Truck_01_fuel_F"];
-_medicalTrucks      append ["B_T_Truck_01_medical_F"];
+_Trucks             append [];
+_cargoTrucks        append [];
+_ammoTrucks         append [];
+_repairTrucks       append [];
+_fuelTrucks         append [];
+_medicalTrucks      append [];
 _lightAPCs          append [];
 _APCs               append ["BWA3_Puma_Fleck"];
 _IFVs               append ["BWA3_Puma_Fleck"];
@@ -20,19 +24,19 @@ _DropPod    append ["SpaceshipCapsule_01_F"];
 
 _transportBoat  append ["B_Boat_Transport_01_F"];
 _gunBoat        append ["B_Boat_Armed_01_minigun_F"];
-_Amphibious     append ["B_APC_Wheeled_01_cannon_F"]
+_Amphibious     append [];
 
-_planesCAS  append ["B_Plane_CAS_01_dynamicLoadout_F"];
-_planesAA   append ["B_Plane_Fighter_01_F"];
+_planesCAS  append [];
+_planesAA   append [];
 
-_planesTransport    append ["B_T_VTOL_01_infantry_F"];
+_planesTransport    append [];
 _gunship            append [];
 
 _helisLight             append ["BWA3_NH90_TTH_Fleck"];
 _transportHelicopters   append ["BWA3_NH90_TTH_M3M_Fleck"];
 _helisLightAttack       append ["BWA3_Tiger_Gunpod_FZ", "BWA3_Tiger_Gunpod_Heavy", "BWA3_Tiger_Gunpod_PARS"];
 _helisAttack            append ["BWA3_Tiger_RMK_FZ", "BWA3_Tiger_RMK_Heavy", "BWA3_Tiger_RMK_PARS", "BWA3_Tiger_RMK_Universal"];
-_airPatrol              append [];
+_airPatrol              append ["BWA3_NH90_TTH_Fleck"];
 
 _artillery      append ["BWA3_Panzerhaubitze2000_Tropen"];
 _artilleryMags  append [
@@ -49,9 +53,9 @@ _militiaAPCs        append ["BWA3_Puma_Fleck"];
 
 _policeVehs append ["B_GEN_Offroad_01_gen_F"];
 
-_staticMG       append ["B_G_HMG_02_high_F"];
+_staticMG       append [];
 _staticAT       append ["BWA3_MELLS_static_Fleck"];
-_staticAA       append ["B_static_AA_F"];
+_staticAA       append [];
 _staticMortars  append ["BWA3_MRS120_Fleck"];
 _howitzers      append [];
 _radar          append ["B_Radar_System_01_F"];
@@ -59,88 +63,6 @@ _SAM            append ["B_SAM_System_03_F"];
 
 _minefieldAT    append ["BWA3_DM31AT", "BWA3_AT2"];
 _minefieldAPERS append ["APERSMine"];
-
-if (isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core") && !isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
-    _unarmedVehicles append ["CUP_B_FENNEK_GER_Wdl"];
-    _armedVehicles append ["CUP_B_M1165_GMV_WDL_USA", "CUP_B_nM1025_M2_USA_WDL", "CUP_B_nM1025_M240_USA_WDL", "CUP_B_nM1036_TOW_USA_WDL"];
-    _Trucks append ["CUP_B_MTVR_USMC"];
-    _cargotrucks append ["CUP_B_MTVR_USMC"];
-    _ammoTrucks append ["CUP_B_MTVR_Ammo_USMC", "CUP_B_nM1038_Ammo_USA_WDL", "CUP_B_nM1038_Ammo_DF_USA_WDL"];
-    _repairTrucks append ["CUP_B_nM1038_Repair_DF_USA_WDL", "CUP_B_nM1038_Repair_USA_WDL", "CUP_B_MTVR_Repair_USMC"];
-    _fuelTrucks append ["CUP_B_MTVR_Refuel_USMC"];
-    _medicalTrucks append ["CUP_B_nM997_DF_USA_WDL", "CUP_B_nM997_USA_WDL", "CUP_B_M1133_MEV_Woodland"];
-    _lightAPCs append ["CUP_B_M113A3_desert_USA", "CUP_B_RG31_M2_USA"];
-    _APCs append ["CUP_B_Boxer_HMG_GER_WDL", "CUP_B_Boxer_GMG_GER_WDL"];
-    _Amphibious append [];
-    _gunboats append ["CUP_B_RHIB2Turret_USMC"];
-    _planesTransport append ["CUP_B_C130J_USMC"];
-    _heliLight append ["CUP_B_UH1D_GER_KSK", "CUP_B_MH6M_USA"];
-    _heliTransport append ["CUP_B_CH53E_GER", "CUP_B_UH1D_GER_KSK", "CUP_B_AW159_Unarmed_GER"];
-    _heliLightAttack append ["CUP_B_UH1D_armed_GER_KSK", "CUP_B_UH1D_gunship_GER_KSK", "CUP_B_AW159_GER"];
-    _planesCAS append ["CUP_B_A10_DYN_USA"];
-    _planesAA append ["CUP_B_GR9_DYN_GB"];
-    _miltiaLightArmed append ["CUP_B_nM1025_M2_USMC_WDL"];
-    _miltiaTrucks append ["CUP_B_MTVR_BAF_WOOD"];
-    _miltiaCars append ["CUP_B_nM1025_Unarmed_USMC_WDL"];
-    _staticMG append ["CUP_B_M2StaticMG_US"];
-    _staticAA append ["CUP_B_CUP_Stinger_AA_pod_US"];
-};
-
-if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy") && !isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core")) then {
-    _unarmedVehicles append ["rhsusf_m1151_usarmy_wd", "rhsusf_m1043_w", "rhsusf_m998_w_2dr_fulltop"];
-    _armedVehicles append ["rhsusf_m1151_m240_v1_usarmy_wd", "rhsusf_m1151_m2_lras3_v1_usarmy_wd", "rhsusf_m1151_m2_v1_usarmy_wd", "rhsusf_m966_w"];
-    _Trucks append ["rhsusf_M1078A1P2_WD_fmtv_usarmy", "rhsusf_M1078A1P2_B_WD_fmtv_usarmy", "rhsusf_M1083A1P2_WD_fmtv_usarmy", "rhsusf_M1083A1P2_B_WD_fmtv_usarmy"];
-    _cargotrucks append ["rhsusf_M1084A1R_SOV_M2_WD_fmtv_socom", "rhsusf_M1078A1P2_WD_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_WD_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_WD_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_WD_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_WD_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_M2_WD_flatbed_fmtv_usarmy", "rhsusf_M1084A1P2_WD_fmtv_usarmy", "rhsusf_M1084A1P2_B_WD_fmtv_usarmy", "rhsusf_M1084A1P2_B_M2_WD_fmtv_usarmy", "rhsusf_M977A4_usarmy_wd", "rhsusf_M977A4_BKIT_usarmy_wd", "rhsusf_M977A4_BKIT_M2_usarmy_wd"];
-    _ammoTrucks append ["rhsusf_M977A4_AMMO_usarmy_wd", "rhsusf_M977A4_AMMO_BKIT_usarmy_wd", "rhsusf_M977A4_AMMO_BKIT_M2_usarmy_wd"];
-    _repairTrucks append ["rhsusf_M977A4_REPAIR_usarmy_wd", "rhsusf_M977A4_REPAIR_BKIT_M2_usarmy_wd", "rhsusf_M977A4_REPAIR_BKIT_usarmy_wd"];
-    _fuelTrucks append ["rhsusf_M978A4_usarmy_wd", "rhsusf_M978A4_BKIT_usarmy_wd"];
-    _medicalTrucks append ["rhsusf_m113_usarmy_medical", "rhsusf_M1230a1_usarmy_wd"];
-    _lightAPCs append ["rhsusf_M1117_W", "rhsusf_m113_usarmy", "rhsusf_m113_usarmy_M240", "rhsusf_m113_usarmy_MK19", "rhsusf_M1220_M153_M2_usarmy_wd", "rhsusf_M1220_M153_MK19_usarmy_wd", "rhsusf_M1220_M2_usarmy_wd", "rhsusf_M1230_M2_usarmy_wd", "rhsusf_M1232_M2_usarmy_wd", "rhsusf_M1237_M2_usarmy_wd", "rhsusf_M1083A1P2_B_M2_WD_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_WD_fmtv_usarmy"];
-    _Amphibious append [];
-    _gunboats append ["rhsusf_mkvsoc"];
-    _planesCAS append ["RHS_A10"];
-    _planesAA append ["rhsusf_f22"];
-    _planesTransport append ["RHS_C130J"];
-    _heliLight append ["RHS_MELB_MH6M"];
-    _heliTransport append ["RHS_CH_47F", "RHS_UH60M", "rhsusf_CH53E_USMC_GAU21", "rhsusf_CH53E_USMC"];
-    _heliLightAttack append ["RHS_MELB_AH6M"];
-    _miltiaLightArmed append ["rhsusf_m1151_m240_v2_usarmy_wd", "rhsusf_m1151_m2_v2_usarmy_wd", "rhsusf_m1025_w_s_m2"];
-    _miltiaTrucks append ["rhsusf_M1078A1P2_WD_fmtv_usarmy", "rhsusf_M1078A1P2_B_WD_fmtv_usarmy"];
-    _miltiaCars append ["rhsusf_m1025_w_s", "rhsusf_m1043_w_s"];
-    _staticMG append ["RHS_M2StaticMG_WD"];
-    _staticAA append ["RHS_Stinger_AA_pod_WD"];
-};
-
-if (isClass (configfile >> "CfgPatches" >> "Redd_Marder_1A5")) then {
-    _unarmedVehicles append ["Redd_Tank_LKW_leicht_gl_Wolf_Flecktarn_FueFu"];
-    _armedVehicles append ["Redd_Tank_Fuchs_1A4_Pi_Flecktarn", "Redd_Tank_Fuchs_1A4_Jg_Flecktarn", "Redd_Tank_Wiesel_1A4_MK20_Flecktarn", "Redd_Tank_Wiesel_1A2_TOW_Flecktarn"];
-    _Trucks append ["rnt_lkw_5t_mil_gl_kat_i_transport_fleck", "rnt_lkw_7t_mil_gl_kat_i_transport_fleck"];
-    _cargotrucks append ["rnt_lkw_5t_mil_gl_kat_i_transport_fleck", "rnt_lkw_7t_mil_gl_kat_i_transport_fleck"];
-    _ammoTrucks append ["rnt_lkw_7t_mil_gl_kat_i_mun_fleck"];
-    _repairTrucks append ["rnt_lkw_5t_mil_gl_kat_i_fuel_fleck"];
-    _fuelTrucks append ["rnt_lkw_5t_mil_gl_kat_i_fuel_fleck"];
-    _medicalTrucks append ["Redd_Tank_Fuchs_1A4_San_Flecktarn", "Redd_Tank_LKW_leicht_gl_Wolf_Flecktarn_San"];
-    _APCs append ["Redd_Marder_1A5_Flecktarn"];
-    _IFVs append ["Redd_Marder_1A5_Flecktarn", "rnt_sppz_2a2_luchs_flecktarn"];
-    _AA append ["Redd_Tank_Gepard_1A2_Flecktarn"];
-    _Amphibious append ["Redd_Tank_Fuchs_1A4_Pi_Flecktarn", "Redd_Tank_Fuchs_1A4_Jg_Flecktarn"];
-    _miltiaTrucks append ["rnt_lkw_5t_mil_gl_kat_i_transport_fleck", "rnt_lkw_7t_mil_gl_kat_i_transport_fleck"];
-    _police append ["Redd_Tank_LKW_leicht_gl_Wolf_Flecktarn_FJg"];
-};
-
-if (isClass (configfile >> "CfgPatches" >> "Tornado_AWS")) then {
-    _planesCAS append ["Tornado_AWS_camo_ger"];
-    _planesAA append ["Tornado_AWS_GER", "Tornado_AWS_ecr_ger"];
-};
-
-if (isClass (configfile >> "CfgPatches" >> "USAF_MQ9")) then {
-    _uavAttack append ["USAF_MQ9", "USAF_RQ4A"];
-    _planesTransport append ["USAF_C130J", "USAF_C17"];
-};
-
-if (isClass (configfile >> "CfgPatches" >> "FIR_A10U")) then {
-    _uavAttack append ["FIR_A10U", "FIR_MQ81U_DarkGrey"];
-};
 
 _animations append [];
 _variants append [];
@@ -680,3 +602,105 @@ _pilothelmets append ["BWA3_TopOwl_nvg", "BWA3_Knighthelm"];
 _pilotSMGs append [
     ["BWA3_MP7", "", "", "", ["BWA3_40Rnd_46x30_MP7", "BWA3_40Rnd_46x30_MP7", "BWA3_40Rnd_46x30_MP7"], [], ""]
 ];
+
+
+if (isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core") || isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy") || isClass (configfile >> "CfgPatches" >> "Redd_Marder_1A5")) then {
+	if (isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core") && !isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
+        _unarmedVehicles append ["CUP_B_FENNEK_GER_Wdl"];
+        _armedVehicles append ["CUP_B_M1165_GMV_WDL_USA", "CUP_B_nM1025_M2_USA_WDL", "CUP_B_nM1025_M240_USA_WDL", "CUP_B_nM1036_TOW_USA_WDL"];
+        _Trucks append ["CUP_B_MTVR_USMC"];
+        _cargotrucks append ["CUP_B_MTVR_USMC"];
+        _ammoTrucks append ["CUP_B_MTVR_Ammo_USMC", "CUP_B_nM1038_Ammo_USA_WDL", "CUP_B_nM1038_Ammo_DF_USA_WDL"];
+        _repairTrucks append ["CUP_B_nM1038_Repair_DF_USA_WDL", "CUP_B_nM1038_Repair_USA_WDL", "CUP_B_MTVR_Repair_USMC"];
+        _fuelTrucks append ["CUP_B_MTVR_Refuel_USMC"];
+        _medicalTrucks append ["CUP_B_nM997_DF_USA_WDL", "CUP_B_nM997_USA_WDL", "CUP_B_M1133_MEV_Woodland"];
+        _lightAPCs append ["CUP_B_M113A3_desert_USA", "CUP_B_RG31_M2_USA"];
+        _APCs append ["CUP_B_Boxer_HMG_GER_WDL", "CUP_B_Boxer_GMG_GER_WDL"];
+        _Amphibious append [];
+        _gunboats append ["CUP_B_RHIB2Turret_USMC"];
+        _planesTransport append ["CUP_B_C130J_USMC"];
+        _heliLight append ["CUP_B_UH1D_GER_KSK", "CUP_B_MH6M_USA"];
+        _heliTransport append ["CUP_B_CH53E_GER", "CUP_B_UH1D_GER_KSK", "CUP_B_AW159_Unarmed_GER"];
+        _heliLightAttack append ["CUP_B_UH1D_armed_GER_KSK", "CUP_B_UH1D_gunship_GER_KSK", "CUP_B_AW159_GER"];
+        _planesCAS append ["CUP_B_A10_DYN_USA"];
+        _planesAA append ["CUP_B_GR9_DYN_GB"];
+        _miltiaLightArmed append ["CUP_B_nM1025_M2_USMC_WDL"];
+        _miltiaTrucks append ["CUP_B_MTVR_BAF_WOOD"];
+        _miltiaCars append ["CUP_B_nM1025_Unarmed_USMC_WDL"];
+        _staticMG append ["CUP_B_M2StaticMG_US"];
+        _staticAA append ["CUP_B_CUP_Stinger_AA_pod_US"];
+    };
+
+    if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy") && !isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core")) then {
+        _unarmedVehicles append ["rhsusf_m1151_usarmy_wd", "rhsusf_m1043_w", "rhsusf_m998_w_2dr_fulltop"];
+        _armedVehicles append ["rhsusf_m1151_m240_v1_usarmy_wd", "rhsusf_m1151_m2_lras3_v1_usarmy_wd", "rhsusf_m1151_m2_v1_usarmy_wd", "rhsusf_m966_w"];
+        _Trucks append ["rhsusf_M1078A1P2_WD_fmtv_usarmy", "rhsusf_M1078A1P2_B_WD_fmtv_usarmy", "rhsusf_M1083A1P2_WD_fmtv_usarmy", "rhsusf_M1083A1P2_B_WD_fmtv_usarmy"];
+        _cargotrucks append ["rhsusf_M1084A1R_SOV_M2_WD_fmtv_socom", "rhsusf_M1078A1P2_WD_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_WD_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_WD_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_WD_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_WD_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_M2_WD_flatbed_fmtv_usarmy", "rhsusf_M1084A1P2_WD_fmtv_usarmy", "rhsusf_M1084A1P2_B_WD_fmtv_usarmy", "rhsusf_M1084A1P2_B_M2_WD_fmtv_usarmy", "rhsusf_M977A4_usarmy_wd", "rhsusf_M977A4_BKIT_usarmy_wd", "rhsusf_M977A4_BKIT_M2_usarmy_wd"];
+        _ammoTrucks append ["rhsusf_M977A4_AMMO_usarmy_wd", "rhsusf_M977A4_AMMO_BKIT_usarmy_wd", "rhsusf_M977A4_AMMO_BKIT_M2_usarmy_wd"];
+        _repairTrucks append ["rhsusf_M977A4_REPAIR_usarmy_wd", "rhsusf_M977A4_REPAIR_BKIT_M2_usarmy_wd", "rhsusf_M977A4_REPAIR_BKIT_usarmy_wd"];
+        _fuelTrucks append ["rhsusf_M978A4_usarmy_wd", "rhsusf_M978A4_BKIT_usarmy_wd"];
+        _medicalTrucks append ["rhsusf_m113_usarmy_medical", "rhsusf_M1230a1_usarmy_wd"];
+        _lightAPCs append ["rhsusf_M1117_W", "rhsusf_m113_usarmy", "rhsusf_m113_usarmy_M240", "rhsusf_m113_usarmy_MK19", "rhsusf_M1220_M153_M2_usarmy_wd", "rhsusf_M1220_M153_MK19_usarmy_wd", "rhsusf_M1220_M2_usarmy_wd", "rhsusf_M1230_M2_usarmy_wd", "rhsusf_M1232_M2_usarmy_wd", "rhsusf_M1237_M2_usarmy_wd", "rhsusf_M1083A1P2_B_M2_WD_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_WD_fmtv_usarmy"];
+        _Amphibious append [];
+        _gunboats append ["rhsusf_mkvsoc"];
+        _planesCAS append ["RHS_A10"];
+        _planesAA append ["rhsusf_f22"];
+        _planesTransport append ["RHS_C130J"];
+        _heliLight append ["RHS_MELB_MH6M"];
+        _heliTransport append ["RHS_CH_47F", "RHS_UH60M", "rhsusf_CH53E_USMC_GAU21", "rhsusf_CH53E_USMC"];
+        _heliLightAttack append ["RHS_MELB_AH6M"];
+        _miltiaLightArmed append ["rhsusf_m1151_m240_v2_usarmy_wd", "rhsusf_m1151_m2_v2_usarmy_wd", "rhsusf_m1025_w_s_m2"];
+        _miltiaTrucks append ["rhsusf_M1078A1P2_WD_fmtv_usarmy", "rhsusf_M1078A1P2_B_WD_fmtv_usarmy"];
+        _miltiaCars append ["rhsusf_m1025_w_s", "rhsusf_m1043_w_s"];
+        _staticMG append ["RHS_M2StaticMG_WD"];
+        _staticAA append ["RHS_Stinger_AA_pod_WD"];
+    };
+
+    if (isClass (configfile >> "CfgPatches" >> "Redd_Marder_1A5")) then {
+        _unarmedVehicles append ["Redd_Tank_LKW_leicht_gl_Wolf_Flecktarn_FueFu"];
+        _armedVehicles append ["Redd_Tank_Fuchs_1A4_Pi_Flecktarn", "Redd_Tank_Fuchs_1A4_Jg_Flecktarn", "Redd_Tank_Wiesel_1A4_MK20_Flecktarn", "Redd_Tank_Wiesel_1A2_TOW_Flecktarn"];
+        _Trucks append ["rnt_lkw_5t_mil_gl_kat_i_transport_fleck", "rnt_lkw_7t_mil_gl_kat_i_transport_fleck"];
+        _cargotrucks append ["rnt_lkw_5t_mil_gl_kat_i_transport_fleck", "rnt_lkw_7t_mil_gl_kat_i_transport_fleck"];
+        _ammoTrucks append ["rnt_lkw_7t_mil_gl_kat_i_mun_fleck"];
+        _repairTrucks append ["rnt_lkw_5t_mil_gl_kat_i_fuel_fleck"];
+        _fuelTrucks append ["rnt_lkw_5t_mil_gl_kat_i_fuel_fleck"];
+        _medicalTrucks append ["Redd_Tank_Fuchs_1A4_San_Flecktarn", "Redd_Tank_LKW_leicht_gl_Wolf_Flecktarn_San"];
+        _APCs append ["Redd_Marder_1A5_Flecktarn"];
+        _IFVs append ["Redd_Marder_1A5_Flecktarn", "rnt_sppz_2a2_luchs_flecktarn"];
+        _AA append ["Redd_Tank_Gepard_1A2_Flecktarn"];
+        _gunBoat append ["B_Boat_Armed_01_minigun_F"];
+        _Amphibious append ["Redd_Tank_Fuchs_1A4_Pi_Flecktarn", "Redd_Tank_Fuchs_1A4_Jg_Flecktarn"];
+        _miltiaTrucks append ["rnt_lkw_5t_mil_gl_kat_i_transport_fleck", "rnt_lkw_7t_mil_gl_kat_i_transport_fleck"];
+        _police append ["Redd_Tank_LKW_leicht_gl_Wolf_Flecktarn_FJg"];
+        _staticMG append ["B_G_HMG_02_high_F"];
+        _staticAA append ["B_static_AA_F"];
+    };
+} else {
+	_cargoTrucks append ["B_T_Truck_01_cargo_F", "B_T_Truck_01_flatbed_F"];
+	_ammoTrucks append ["B_T_Truck_01_ammo_F"];
+	_repairTrucks append ["B_T_Truck_01_Repair_F"];
+	_fuelTrucks append ["B_T_Truck_01_fuel_F"];
+    _gunBoat append ["B_Boat_Armed_01_minigun_F"];
+    _Amphibious append ["B_APC_Wheeled_01_cannon_F"]
+	_planesCAS append ["B_Plane_CAS_01_dynamicLoadout_F"];
+	_planesAA append ["B_Plane_Fighter_01_F"];
+	_helisAttack append [];
+    _planesTransport append ["B_T_VTOL_01_infantry_F"];
+	_uavsAttack append ["B_UAV_02_CAS_F"];
+	_staticMG append ["B_G_HMG_02_high_F"];
+	_staticAA append ["B_static_AA_F"];
+};
+
+if (isClass (configfile >> "CfgPatches" >> "Tornado_AWS")) then {
+    _planesCAS append ["Tornado_AWS_camo_ger"];
+    _planesAA append ["Tornado_AWS_GER", "Tornado_AWS_ecr_ger"];
+};
+
+if (isClass (configfile >> "CfgPatches" >> "USAF_MQ9")) then {
+    _uavAttack append ["USAF_MQ9", "USAF_RQ4A"];
+    _planesTransport append ["USAF_C130J", "USAF_C17"];
+};
+
+if (isClass (configfile >> "CfgPatches" >> "FIR_A10U")) then {
+    _uavAttack append ["FIR_A10U", "FIR_MQ81U_DarkGrey"];
+};

@@ -1,3 +1,7 @@
+/* Faction : AAF
+ * Required mods/addons: 
+ * Optional mods/addons: "CUP_AirVehicles_Core", (All DLC's)
+ */
 _basic              append ["I_Quadbike_01_F"];
 _unarmedVehicles    append ["I_MRAP_03_F"];
 _armedVehicles      append ["I_MRAP_03_hmg_F", "I_MRAP_03_gmg_F"];

@@ -1,3 +1,7 @@
+/* Faction : NATO Temperate
+ * Required mods/addons: 
+ * Optional mods/addons: (All DLC's)
+ */
 _basic              append ["B_T_Quadbike_01_F"];
 _unarmedVehicles    append ["B_T_MRAP_01_F"];
 _armedVehicles      append ["B_T_MRAP_01_gmg_F", "B_T_MRAP_01_hmg_F"];

@@ -1,3 +1,7 @@
+/* Faction : USMC Temperate
+ * Required mods/addons: "RHS_US_A2Port_Armor"
+ * Optional mods/addons: "USAF_A10_C", "USAF_MQ9", "USAF_AC130U"
+ */
 _basic              append ["B_Quadbike_01_F"];
 _unarmedVehicles    append ["rhsusf_m1165_usmc_wd", "rhsusf_m1151_usmc_wd", "rhsusf_m1025_w_s", "rhsusf_m1043_w_s", "rhsusf_CGRCAT1A2_usmc_wd", "rhsusf_m1240a1_usmc_wd"];
 _armedVehicles      append ["rhsusf_CGRCAT1A2_M2_usmc_wd", "rhsusf_CGRCAT1A2_Mk19_usmc_wd", "rhsusf_M1232_MC_M2_usmc_wd", "rhsusf_M1232_MC_MK19_usmc_wd", "rhsusf_m1240a1_m2_usmc_wd", "rhsusf_m1240a1_m240_usmc_wd", "rhsusf_m1240a1_m2crows_usmc_wd", "rhsusf_m1240a1_mk19crows_usmc_wd", "rhsusf_m1151_m2crows_usmc_wd", "rhsusf_m1151_mk19crows_usmc_wd", "rhsusf_m1151_m2_v3_usmc_wd", "rhsusf_m1151_m240_v3_usmc_wd", "rhsusf_m1151_mk19_v3_usmc_wd"];
@@ -26,10 +30,6 @@ _planesAA   append ["rhsusf_f22"];
 
 _planesTransport    append ["RHS_C130J"];
 _gunship            append [];
-
-if (isClass (configFile >> "cfgVehicles" >> "USAF_AC130U")) then {
-	_gunship pushBack "USAF_AC130U";
-};
 
 _helisLight             append ["RHS_UH1Y_UNARMED"];
 _transportHelicopters   append ["rhsusf_CH53E_USMC", "rhsusf_CH53E_USMC_GAU21", "RHS_UH1Y", "RHS_UH1Y_UNARMED"];
@@ -686,3 +686,18 @@ _pilothelmets append ["rhsusf_hgu56p_black", "rhsusf_hgu56p_mask_black", "rhsusf
 _pilotSMGs append [
     ["rhs_weap_m4_carryhandle", "", "rhsusf_acc_wmx_bk", "", ["rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag", "rhs_mag_30Rnd_556x45_M855_Stanag_Tracer_Red"], [], ""]
 ];
+
+
+if (isClass (configFile >> "cfgVehicles" >> "USAF_AC130U")) then {
+	_gunship pushBack "USAF_AC130U";
+};
+
+if (isClass (configFile >> "cfgVehicles" >> "USAF_MQ9")) then {
+	_uavsAttack      append ["USAF_MQ9", "USAF_RQ4A"];
+	_planesTransport append ["USAF_C130J","USAF_C17"];
+};
+
+if (isClass (configFile >> "cfgVehicles" >> "USAF_A10_C")) then {
+	_planesCAS  append ["USAF_A10", "USAF_F35A"];
+	_planesAA   append ["USAF_F22", "USAF_F35A"];
+};
