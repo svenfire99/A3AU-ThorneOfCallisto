@@ -464,6 +464,25 @@ if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
     #include "RHS\RHS_Vehicle_Attributes.sqf"
 };
 
+if (isClass (configFile >> "CfgVehicles" >> "BWA3_Dingo2_FLW200_M2_CG13_Fleck")) then {
+    #include "BWA3\MIX_BW_Temperate.sqf"
+    #include "BWA3\BWA3_Vehicle_Attributes.sqf"
+};
+
+if (isClass (configFile >> "CfgVehicles" >> "B_AMF_TANK_01") && isClass(configFile >> "CfgVehicles" >> "R3F_WeaponStock")) then {
+    #include "BWA3\MIX_AMF_Temperate.sqf"
+};
+
+if (isClass (configFile >> "CfgVehicles" >> "sfp_strv122b")) then {
+    #include "SWE\MIX_SFP_Temperate.sqf"
+    #include "SWE\SFP_Vehicle_Attributes.sqf"
+
+    if (isClass(configFile >> "CfgVehicles" >> "ffp_leopard2a4")) then {
+        // #include "SWE\MIX_FFP_Temperate.sqf"
+        // #include "SWE\FFP_Vehicle_Attributes.sqf"
+    };
+};
+
 //////////////////////////////////
 //  End Include Factions here   //
 //////////////////////////////////
