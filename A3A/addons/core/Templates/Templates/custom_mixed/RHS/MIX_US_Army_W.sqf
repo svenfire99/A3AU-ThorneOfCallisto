@@ -1,3 +1,7 @@
+/* Faction : US Army Temperate
+ * Required mods/addons: "RHS_US_A2Port_Armor"
+ * Optional mods/addons: "USAF_A10_C", "USAF_MQ9", "USAF_AC130U"
+ */
 _basic              append ["B_Quadbike_01_F"];
 _unarmedVehicles    append ["rhsusf_m1240a1_usarmy_wd", "rhsusf_m1165_usarmy_wd", "rhsusf_m1151_usarmy_wd", "rhsusf_m1043_w"];
 _armedVehicles      append ["rhsusf_m1151_m2crows_usarmy_wd", "rhsusf_m1151_mk19crows_usarmy_wd", "rhsusf_m1151_m2_v1_usarmy_wd", "rhsusf_m1151_m2_lras3_v1_usarmy_wd", "rhsusf_m1151_m240_v1_usarmy_wd", "rhsusf_m1151_mk19_v1_usarmy_wd", "rhsusf_m1151_m2_v2_usarmy_wd", "rhsusf_m1151_m240_v2_usarmy_wd", "rhsusf_m1151_mk19_v2_usarmy_wd", "rhsusf_m1045_w", "rhsusf_m1240a1_m2_usarmy_wd", "rhsusf_m1240a1_m240_usarmy_wd", "rhsusf_m1240a1_mk19_usarmy_wd", "rhsusf_m1240a1_m2_uik_usarmy_wd", "rhsusf_m1240a1_m240_uik_usarmy_wd", "rhsusf_m1240a1_mk19_uik_usarmy_wd", "rhsusf_m1240a1_m2crows_usarmy_wd", "rhsusf_m1240a1_mk19crows_usarmy_wd"];
@@ -26,10 +30,6 @@ _planesAA   append ["rhsusf_f22"];
 
 _planesTransport    append ["RHS_C130J"];
 _gunship            append [];
-
-if (isClass (configFile >> "cfgVehicles" >> "USAF_AC130U")) then {
-	_gunship pushBack "USAF_AC130U";
-};
 
 _helisLight             append ["RHS_MELB_MH6M"];
 _transportHelicopters   append ["RHS_UH60M_d", "RHS_UH60M_ESSS2_d", "RHS_UH60M2_d", "RHS_CH_47F_10", "RHS_CH_47F_light"];
@@ -684,3 +684,18 @@ _pilothelmets append ["rhsusf_hgu56p_black", "rhsusf_hgu56p_mask_black", "rhsusf
 _pilotSMGs append [
     ["rhsusf_weap_MP7A2", "", "rhsusf_acc_wmx_bk", "", ["rhsusf_mag_40Rnd_46x30_FMJ", "rhsusf_mag_40Rnd_46x30_FMJ", "rhsusf_mag_40Rnd_46x30_JHP"], [], ""]
 ];
+
+
+if (isClass (configFile >> "cfgVehicles" >> "USAF_AC130U")) then {
+	_gunship pushBack "USAF_AC130U";
+};
+
+if (isClass (configFile >> "cfgVehicles" >> "USAF_MQ9")) then {
+	_uavsAttack      append ["USAF_MQ9", "USAF_RQ4A"];
+	_planesTransport append ["USAF_C130J","USAF_C17"];
+};
+
+if (isClass (configFile >> "cfgVehicles" >> "USAF_A10_C")) then {
+	_planesCAS  append ["USAF_A10", "USAF_F35A"];
+	_planesAA   append ["USAF_F22", "USAF_F35A"];
+};
