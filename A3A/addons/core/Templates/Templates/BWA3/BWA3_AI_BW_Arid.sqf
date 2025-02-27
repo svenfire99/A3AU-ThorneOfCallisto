@@ -1,3 +1,4 @@
+private _hasGM = "gm" in A3A_enabledDLC;
 //////////////////////////
 //   Side Information   //
 //////////////////////////
@@ -15,15 +16,16 @@
 
 private _lightUnarmed = ["BWA3_Eagle_Tropen"];
 private _lightArmed = ["BWA3_Dingo2_FLW200_GMW_CG13_Tropen", "BWA3_Dingo2_FLW200_M2_CG13_Tropen", "BWA3_Dingo2_FLW100_MG3_CG13_Tropen", "BWA3_Eagle_FLW100_Tropen"];
-private _trucks = ["B_Truck_01_covered_F", "B_Truck_01_transport_F"];
-private _cargotrucks = ["B_Truck_01_cargo_F", "B_Truck_01_flatbed_F"];
-private _ammo = ["B_Truck_01_ammo_F"];
-private _repair = ["B_Truck_01_Repair_F"];
-private _fuel = ["B_Truck_01_fuel_F"];
-private _medical = ["B_Truck_01_medical_F"];
+private _trucks = [];
+private _cargotrucks = [];
+private _ammo = [];
+private _repair = [];
+private _fuel = [];
+private _medical = [];
 private _lightAPCs = [];
 private _APCs = ["BWA3_Puma_Tropen"];
 private _IFVs = ["BWA3_Puma_Tropen"];
+private _lightTanks = ["BWA3_Puma_Fleck"];
 private _AA = ["Wiesel_Desert_AA"];
 private _Amphibious = ["B_APC_Wheeled_01_cannon_F"];
 private _gunboats = ["B_Boat_Armed_01_minigun_F"];
@@ -41,13 +43,18 @@ private _staticMG = ["B_G_HMG_02_high_F"];
 private _staticAA = ["B_static_AA_F"];
 private _uavAttack = ["B_UAV_02_CAS_F"];
 private _uavPortable = ["B_UAV_01_F"];
+private _artillery      = ["BWA3_Panzerhaubitze2000_Tropen"];
+private _artilleryMags  = [
+    ["BWA3_Panzerhaubitze2000_Tropen", ["BWA3_32Rnd_155mm_Mo_shells"]]
+];
+private _airPatrol = ["BWA3_NH90_TTH_Fleck"];
 
 //CUP vehicles
 if (isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core") && !isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
     _lightUnarmed append ["CUP_B_FENNEK_GER_Des"];
     _lightArmed append ["CUP_B_M1165_GMV_USA", "CUP_B_nM1025_M2_USA_DES", "CUP_B_nM1025_M240_USA_DES", "CUP_B_nM1036_TOW_USA_DES"];
     _trucks = ["CUP_B_MTVR_USA"];
-    _cargotrucks = _trucks;
+    _cargotrucks = ["CUP_B_MTVR_USMC"];
     _ammo = ["CUP_B_MTVR_Ammo_USA", "CUP_B_nM1038_Ammo_USA_DES", "CUP_B_nM1038_Ammo_DF_USA_DES"];
     _repair = ["CUP_B_nM1038_Repair_USA_DES", "CUP_B_nM1038_Repair_DF_USA_DES", "CUP_B_MTVR_Repair_USA"];
     _fuel = ["CUP_B_MTVR_Refuel_USA"];
@@ -71,46 +78,79 @@ if (isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core") && !isClass (
 
 //RHSUSAF vehicles
 if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy") && !isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core")) then {
-    _lightUnarmed append ["rhsusf_m1151_usarmy_d", "rhsusf_m1043_d", "rhsusf_m998_d_2dr_fulltop"];
-    _lightArmed append ["rhsusf_m1151_m240_v1_usarmy_d", "rhsusf_m1151_m2_lras3_v1_usarmy_d", "rhsusf_m1151_m2_v1_usarmy_d", "rhsusf_m966_d"];
-    _trucks = ["rhsusf_M1078A1P2_D_fmtv_usarmy", "rhsusf_M1078A1P2_B_D_fmtv_usarmy", "rhsusf_M1083A1P2_D_fmtv_usarmy", "rhsusf_M1083A1P2_B_D_fmtv_usarmy"];
-    _cargotrucks = ["rhsusf_M1084A1R_SOV_M2_D_fmtv_socom", "rhsusf_M1078A1P2_D_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_D_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_D_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_D_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_D_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_M2_D_flatbed_fmtv_usarmy", "rhsusf_M1084A1P2_D_fmtv_usarmy", "rhsusf_M1084A1P2_B_D_fmtv_usarmy", "rhsusf_M1084A1P2_B_M2_D_fmtv_usarmy", "rhsusf_M977A4_usarmy_d", "rhsusf_M977A4_BKIT_usarmy_d", "rhsusf_M977A4_BKIT_M2_usarmy_d"];
-    _ammo = ["rhsusf_M977A4_AMMO_usarmy_d", "rhsusf_M977A4_AMMO_BKIT_usarmy_d", "rhsusf_M977A4_AMMO_BKIT_M2_usarmy_d"];
-    _repair = ["rhsusf_M977A4_REPAIR_usarmy_d", "rhsusf_M977A4_REPAIR_BKIT_M2_usarmy_d", "rhsusf_M977A4_REPAIR_BKIT_usarmy_d"];
-    _fuel = ["rhsusf_M978A4_usarmy_d", "rhsusf_M978A4_BKIT_usarmy_d"];
-    _medical = ["rhsusf_m113_usarmy_medical", "rhsusf_M1230a1_usarmy_d"];
-    _lightAPCs = ["rhsusf_M1117_D", "rhsusf_m113d_usarmy", "rhsusf_m113d_usarmy_M240", "rhsusf_m113d_usarmy_MK19", "rhsusf_M1220_M153_M2_usarmy_d", "rhsusf_M1220_M153_MK19_usarmy_d", "rhsusf_M1220_M2_usarmy_d", "rhsusf_M1230_M2_usarmy_d", "rhsusf_M1232_M2_usarmy_d", "rhsusf_M1237_M2_usarmy_d", "rhsusf_M1083A1P2_B_M2_D_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_D_fmtv_usarmy"];
-    _Amphibious = [];
     _gunboats = ["rhsusf_mkvsoc"];
     _planesCAS = ["RHS_A10"];
     _planesAA = ["rhsusf_f22"];
     _planesTransport = ["RHS_C130J"];
-    _heliLight append ["RHS_MELB_MH6M"];
-    _heliTransport append ["RHS_CH_47F_light", "RHS_UH60M", "rhsusf_CH53E_USMC_GAU21", "rhsusf_CH53E_USMC"];
-    _heliLightAttack append ["RHS_MELB_AH6M"];
-    _miltiaLightArmed = ["rhsusf_m1151_m240_v2_usarmy_d", "rhsusf_m1151_m2_v2_usarmy_d", "rhsusf_m1025_d_s_m2"];
-    _miltiaTrucks = ["rhsusf_M1078A1P2_D_fmtv_usarmy", "rhsusf_M1078A1P2_B_D_fmtv_usarmy"];
-    _miltiaCars = ["rhsusf_m1025_d_s", "rhsusf_m1043_d_s"];
     _staticMG = ["RHS_M2StaticMG_WD"];
     _staticAA = ["RHS_Stinger_AA_pod_WD"];
+    if (!_hasGM) then {
+        _lightUnarmed append ["rhsusf_m1151_usarmy_d", "rhsusf_m1043_d", "rhsusf_m998_d_2dr_fulltop"];
+        _lightArmed append ["rhsusf_m1151_m240_v1_usarmy_d", "rhsusf_m1151_m2_lras3_v1_usarmy_d", "rhsusf_m1151_m2_v1_usarmy_d", "rhsusf_m966_d"];
+        _trucks = ["rhsusf_M1078A1P2_D_fmtv_usarmy", "rhsusf_M1078A1P2_B_D_fmtv_usarmy", "rhsusf_M1083A1P2_D_fmtv_usarmy", "rhsusf_M1083A1P2_B_D_fmtv_usarmy"];
+        _cargotrucks = ["rhsusf_M1084A1R_SOV_M2_D_fmtv_socom", "rhsusf_M1078A1P2_D_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_D_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_D_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_D_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_D_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_M2_D_flatbed_fmtv_usarmy", "rhsusf_M1084A1P2_D_fmtv_usarmy", "rhsusf_M1084A1P2_B_D_fmtv_usarmy", "rhsusf_M1084A1P2_B_M2_D_fmtv_usarmy", "rhsusf_M977A4_usarmy_d", "rhsusf_M977A4_BKIT_usarmy_d", "rhsusf_M977A4_BKIT_M2_usarmy_d"];
+        _ammo = ["rhsusf_M977A4_AMMO_usarmy_d", "rhsusf_M977A4_AMMO_BKIT_usarmy_d", "rhsusf_M977A4_AMMO_BKIT_M2_usarmy_d"];
+        _repair = ["rhsusf_M977A4_REPAIR_usarmy_d", "rhsusf_M977A4_REPAIR_BKIT_M2_usarmy_d", "rhsusf_M977A4_REPAIR_BKIT_usarmy_d"];
+        _fuel = ["rhsusf_M978A4_usarmy_d", "rhsusf_M978A4_BKIT_usarmy_d"];
+        _medical = ["rhsusf_m113_usarmy_medical", "rhsusf_M1230a1_usarmy_d"];
+        _lightAPCs = ["rhsusf_M1117_D", "rhsusf_m113d_usarmy", "rhsusf_m113d_usarmy_M240", "rhsusf_m113d_usarmy_MK19", "rhsusf_M1220_M153_M2_usarmy_d", "rhsusf_M1220_M153_MK19_usarmy_d", "rhsusf_M1220_M2_usarmy_d", "rhsusf_M1230_M2_usarmy_d", "rhsusf_M1232_M2_usarmy_d", "rhsusf_M1237_M2_usarmy_d", "rhsusf_M1083A1P2_B_M2_D_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_D_fmtv_usarmy"];
+        _heliLight append ["RHS_MELB_MH6M"];
+        _heliTransport append ["RHS_CH_47F_light", "RHS_UH60M", "rhsusf_CH53E_USMC_GAU21", "rhsusf_CH53E_USMC"];
+        _heliLightAttack append ["RHS_MELB_AH6M"];
+        _miltiaLightArmed = ["rhsusf_m1151_m240_v2_usarmy_d", "rhsusf_m1151_m2_v2_usarmy_d", "rhsusf_m1025_d_s_m2"];
+        _miltiaTrucks = ["rhsusf_M1078A1P2_D_fmtv_usarmy", "rhsusf_M1078A1P2_B_D_fmtv_usarmy"];
+        _miltiaCars = ["rhsusf_m1025_d_s", "rhsusf_m1043_d_s"];
+    };
 };
 
 //RNT Vehicles
 if (isClass (configfile >> "CfgPatches" >> "Redd_Marder_1A5")) then {
-    _lightUnarmed append ["Redd_Tank_LKW_leicht_gl_Wolf_Tropentarn_FueFu"];
-    _lightArmed append ["Redd_Tank_Fuchs_1A4_Pi_Tropentarn", "Redd_Tank_Fuchs_1A4_Jg_Tropentarn", "Redd_Tank_Wiesel_1A4_MK20_Tropentarn", "Redd_Tank_Wiesel_1A2_TOW_Tropentarn"];
+    _lightArmed append ["Redd_Tank_Wiesel_1A4_MK20_Tropentarn", "Redd_Tank_Wiesel_1A2_TOW_Tropentarn"];
     _trucks = ["rnt_lkw_5t_mil_gl_kat_i_transport_trope", "rnt_lkw_7t_mil_gl_kat_i_transport_trope"];
-    _cargotrucks = _trucks;
+    _cargotrucks = ["rnt_lkw_5t_mil_gl_kat_i_transport_trope", "rnt_lkw_7t_mil_gl_kat_i_transport_trope"];
     _ammo = ["rnt_lkw_7t_mil_gl_kat_i_mun_trope"];
     _repair = ["rnt_lkw_5t_mil_gl_kat_i_fuel_trope"];
     _fuel = ["rnt_lkw_5t_mil_gl_kat_i_fuel_trope"];
-    _medical = ["Redd_Tank_Fuchs_1A4_San_Tropentarn", "Redd_Tank_LKW_leicht_gl_Wolf_Tropentarn_San"];
-    _APCs append ["Redd_Marder_1A5_Tropentarn"];
-    _IFVs append ["Redd_Marder_1A5_Tropentarn", "rnt_sppz_2a2_luchs_tropentarn"];
-    _AA append ["Redd_Tank_Gepard_1A2_Tropentarn"];
-    _Amphibious = ["Redd_Tank_Fuchs_1A4_Pi_Tropentarn", "Redd_Tank_Fuchs_1A4_Jg_Tropentarn"];
-    _miltiaTrucks = _trucks;
-    _police = ["Redd_Tank_LKW_leicht_gl_Wolf_Tropentarn_FJg"];
+    _miltiaTrucks = ["rnt_lkw_5t_mil_gl_kat_i_transport_trope", "rnt_lkw_7t_mil_gl_kat_i_transport_trope"];
+
+    if (!_hasGM) then {
+        _lightUnarmed append ["Redd_Tank_LKW_leicht_gl_Wolf_Tropentarn_FueFu"];
+        _lightArmed append ["Redd_Tank_Fuchs_1A4_Pi_Tropentarn", "Redd_Tank_Fuchs_1A4_Jg_Tropentarn"];
+        _medical = ["Redd_Tank_Fuchs_1A4_San_Tropentarn", "Redd_Tank_LKW_leicht_gl_Wolf_Tropentarn_San"];
+        _APCs append ["Redd_Marder_1A5_Tropentarn"];
+        _IFVs append ["Redd_Marder_1A5_Tropentarn", "rnt_sppz_2a2_luchs_tropentarn"];
+        _AA append ["Redd_Tank_Gepard_1A2_Tropentarn"];
+        _Amphibious = ["Redd_Tank_Fuchs_1A4_Pi_Tropentarn", "Redd_Tank_Fuchs_1A4_Jg_Tropentarn"];
+        _police = ["Redd_Tank_LKW_leicht_gl_Wolf_Tropentarn_FJg"];
+    };
+};
+
+if (_hasGM) then {
+    _lightUnarmed = ["gm_ge_army_iltis_cargo"];
+    _lightArmed = ["gm_ge_army_iltis_milan","gm_ge_army_iltis_mg3","gm_ge_army_fuchsa0_command", "gm_ge_army_fuchsa0_engineer","gm_ge_army_fuchsa0_reconnaissance"];
+	_trucks append ["gm_ge_army_u1300l_cargo", "gm_ge_army_kat1_451_cargo"];
+	_cargotrucks append ["gm_ge_army_kat1_454_cargo", "gm_ge_army_u1300l_container","gm_ge_army_kat1_451_container","gm_ge_army_kat1_452_container"];
+	_ammo append ["gm_ge_army_kat1_451_reammo","gm_ge_army_kat1_454_reammo"];
+	_repair append ["gm_ge_army_u1300l_repair"];
+	_fuel append ["gm_ge_army_kat1_451_refuel"];
+    _lightAPCs = ["gm_ge_army_m113a1g_command", "gm_ge_army_m113a1g_apc_milan","gm_ge_army_m113a1g_apc"];
+    _APCs append ["gm_ge_army_marder1a1plus","gm_ge_army_marder1a1a","gm_ge_army_marder1a2"];
+    _IFVs append ["gm_ge_army_marder1a1plus","gm_ge_army_marder1a1a","gm_ge_army_marder1a2", "gm_ge_army_luchsa1","gm_ge_army_luchsa2"];
+    _lightTanks append ["gm_ge_army_Leopard1a1","gm_ge_army_Leopard1a1a1","gm_ge_army_Leopard1a1a2","gm_ge_army_Leopard1a3","gm_ge_army_Leopard1a3a1","gm_ge_army_Leopard1a5"];
+    _AA append ["gm_ge_army_gepard1a1"];
+    _medical = ["gm_ge_army_u1300l_medic","gm_ge_army_m113a1g_medic"];
+    _Amphibious append ["gm_ge_army_fuchsa0_command", "gm_ge_army_fuchsa0_engineer","gm_ge_army_fuchsa0_reconnaissance"];
+    _heliLight append ["gm_ge_army_bo105m_vbh", "gm_ge_army_bo105p1m_vbh"];
+    _heliTransport append ["gm_ge_army_bo105m_vbh", "gm_ge_army_bo105p1m_vbh","gm_ge_army_bo105p1m_vbh_swooper","gm_ge_army_ch53g", "gm_ge_army_ch53gs"];
+    _heliLightAttack append ["gm_ge_army_bo105p_pah1", "gm_ge_army_bo105p_pah1a1"];
+    _planesTransport append ["gm_ge_airforce_do28d2"];
+    _airPatrol append ["gm_ge_army_bo105m_vbh", "gm_ge_army_bo105p1m_vbh"];
+    _artillery append ["gm_ge_army_kat1_463_mlrs","gm_ge_army_m109g"];
+    _artilleryMags append [
+        ["gm_ge_army_kat1_463_mlrs", ["gm_36Rnd_mlrs_110mm_he_dm21"]],
+        ["gm_ge_army_m109g", ["gm_20Rnd_155mm_he_dm21"]]
+    ];
+    _police append ["gm_ge_army_k125","gm_ge_army_typ253_mp","gm_ge_army_u1300l_firefighter","gm_ge_army_typ247_firefighter","gm_ge_bgs_w123_cargo"];
 };
 
 if (isClass (configfile >> "CfgPatches" >> "Tornado_AWS")) then {
@@ -118,19 +158,70 @@ if (isClass (configfile >> "CfgPatches" >> "Tornado_AWS")) then {
     _planesAA = ["Tornado_AWS_GER", "Tornado_AWS_ecr_ger"];
 };
 
+if (isClass (configFile >> "CfgVehicles" >> "FIR_F35B_MFG1")) then {
+    _planesCAS append ["FIR_F35B_MFG1","FIR_F35B_MFG2"];
+};
+
 if (isClass (configfile >> "CfgPatches" >> "USAF_MQ9")) then {
     _uavAttack append ["USAF_MQ9", "USAF_RQ4A"];
     _planesTransport append ["USAF_C130J", "USAF_C17"];
 };
 
-if (isClass (configfile >> "CfgPatches" >> "FIR_A10U")) then {
-    _uavAttack append ["FIR_A10U", "FIR_MQ81U_DarkGrey"];
-};
+private _variants = [
+    ["gm_ge_army_iltis_cargo", ["gm_drapolive",1]],
+    ["gm_ge_army_iltis_milan", ["gm_drapolive",1]],
+    ["gm_ge_army_iltis_mg3", ["gm_drapolive",1]],
+    ["gm_ge_army_fuchsa0_command",["gm_drapolive",1]],
+    ["gm_ge_army_fuchsa0_engineer", ["gm_drapolive",1]],
+    ["gm_ge_army_fuchsa0_reconnaissance",["gm_drapolive",1]],
+    ["gm_ge_army_u1300l_cargo",["gm_drapolive",1]],
+    ["gm_ge_army_kat1_451_cargo",["gm_drapolive",1]],
+    ["gm_ge_army_kat1_454_cargo",["gm_drapolive",1]],
+    ["gm_ge_army_u1300l_container",["gm_drapolive",1]],
+    ["gm_ge_army_kat1_451_container",["gm_drapolive",1]],
+    ["gm_ge_army_kat1_452_container",["gm_drapolive",1]],
+    ["gm_ge_army_kat1_451_reammo",["gm_drapolive",1]],
+    ["gm_ge_army_kat1_454_reammo",["gm_drapolive",1]],
+    ["gm_ge_army_u1300l_repair",["gm_drapolive",1]],
+    ["gm_ge_army_kat1_451_refuel",["gm_drapolive",1]],
+    ["gm_ge_army_m113a1g_command",["gm_drapolive",1]],
+    ["gm_ge_army_m113a1g_apc_milan",["gm_drapolive",1]],
+    ["gm_ge_army_m113a1g_apc",["gm_drapolive",1]],
+    ["gm_ge_army_marder1a1plus",["gm_drapolive",1]],
+    ["gm_ge_army_marder1a1a",["gm_drapolive",1]],
+    ["gm_ge_army_marder1a2",["gm_drapolive",1]],
+    ["gm_ge_army_luchsa1",["gm_drapolive",1]],
+    ["gm_ge_army_luchsa2",["gm_drapolive",1]],
+    ["gm_ge_army_Leopard1a1",["gm_drapolive",1]],
+    ["gm_ge_army_Leopard1a1a1",["gm_drapolive",1]],
+    ["gm_ge_army_Leopard1a1a2",["gm_drapolive",1]],
+    ["gm_ge_army_Leopard1a3",["gm_drapolive",1]],
+    ["gm_ge_army_Leopard1a3a1",["gm_drapolive",1]],
+    ["gm_ge_army_Leopard1a5",["gm_drapolive",1]],
+    ["gm_ge_army_gepard1a1",["gm_drapolive",1]],
+    ["gm_ge_army_u1300l_medic",["gm_drapolive",1]],
+    ["gm_ge_army_m113a1g_medic",["gm_drapolive",1]],
+    ["gm_ge_army_bo105m_vbh",["gm_drapolive",1]],
+    ["gm_ge_army_bo105p1m_vbh",["gm_drapolive",1]],
+    ["gm_ge_army_bo105p1m_vbh_swooper",["gm_drapolive",1]],
+    ["gm_ge_army_ch53g",["gm_drapolive",1]],
+    ["gm_ge_army_ch53gs",["gm_drapolive",1]],
+    ["gm_ge_army_bo105p_pah1",["gm_drapolive",1]],
+    ["gm_ge_army_bo105p_pah1a1",["gm_drapolive",1]],
+    ["gm_ge_airforce_do28d2",["gm_drapolive",1]],
+    ["gm_ge_army_kat1_463_mlrs",["gm_drapolive",1]],
+    ["gm_ge_army_m109g",["gm_drapolive",1]],
+    ["gm_ge_army_k125",["gm_drapolive",1]],
+    ["gm_ge_army_typ253_mp",["gm_drapolive",1]],
+    ["gm_ge_army_u1300l_firefighter",["gm_drapolive",1]],
+    ["gm_ge_army_typ247_firefighter",["gm_drapolive",1]],
+    ["gm_ge_bgs_w123_cargo",["gm_drapolive",1]]
+];
 
 /* ANTISTASI PLUS STUFF START */
 ["vehiclesMilitiaAPCs", ["BWA3_Puma_Tropen"]] call _fnc_saveToTemplate;
 ["vehiclesAirborne", ["BWA3_Dingo2_FLW200_M2_CG13_Tropen"]] call _fnc_saveToTemplate;
-["vehiclesLightTanks",  ["BWA3_Puma_Tropen"]] call _fnc_saveToTemplate;
+["vehiclesLightTanks", _lightTanks] call _fnc_saveToTemplate;
 
 ["staticHowitzers", []] call _fnc_saveToTemplate;
 ["howitzerMagazineHE", ""] call _fnc_saveToTemplate;
@@ -170,10 +261,10 @@ if (isClass (configfile >> "CfgPatches" >> "FIR_A10U")) then {
 ["vehiclesHelisLightAttack", _heliLightAttack] call _fnc_saveToTemplate;
 ["vehiclesHelisAttack", ["BWA3_Tiger_RMK_FZ", "BWA3_Tiger_RMK_Heavy", "BWA3_Tiger_RMK_PARS", "BWA3_Tiger_RMK_Universal"]] call _fnc_saveToTemplate;
 
-["vehiclesArtillery", ["BWA3_Panzerhaubitze2000_Tropen"]] call _fnc_saveToTemplate;
-["magazines", createHashMapFromArray [
-["BWA3_Panzerhaubitze2000_Tropen", ["BWA3_32Rnd_155mm_Mo_shells"]]
-]] call _fnc_saveToTemplate;
+["vehiclesAirPatrol", _airPatrol] call _fnc_saveToTemplate;
+
+["vehiclesArtillery", _artillery] call _fnc_saveToTemplate;
+["magazines", createHashMapFromArray _artilleryMags] call _fnc_saveToTemplate;
 
 ["uavsAttack", _uavAttack] call _fnc_saveToTemplate;
 ["uavsPortable", _uavPortable] call _fnc_saveToTemplate;

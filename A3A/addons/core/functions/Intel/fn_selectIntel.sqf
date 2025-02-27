@@ -337,6 +337,22 @@ if (_text isEqualTo "") then {
     };
 };
 
+// Force to do Trader intel incase empty to not waste time of players.
+if (_text isEqualTo "") then {
+    if (!isTraderQuestCompleted && !isTraderQuestAssigned) then {
+        [] remoteExec ["SCRT_fnc_trader_prepareTraderQuest", 2];
+        _text = format [localize "STR_trader_task_hint_description", ([] call SCRT_fnc_misc_getWorldName)];
+    } else {
+        private _discount = traderDiscount + 0.1;
+        [_discount] call SCRT_fnc_trader_setTraderDiscount;
+
+        private _money = (round (random 50)) * 100;
+        [0, _money] remoteExec ["A3A_fnc_resourcesFIA",2];
+
+        _text = format [localize "STR_intel_discount", _discount * 100];
+    };
+};
+
 if (_text isNotEqualTo "") then {
     [_text, true] remoteExec ["A3A_fnc_showIntel", [civilian, teamPlayer]];
 };

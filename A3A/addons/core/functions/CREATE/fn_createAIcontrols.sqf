@@ -145,52 +145,52 @@ if (_isControl) then
             [_groupX, "Patrol_Defend", 0, 50, -1, true, _positionX, false] call A3A_fnc_patrolLoop;
             _groups pushBack _groupX;
 
-            // Forced non-spawner as they're very static.
-            {[_x,"",false] call A3A_fnc_NATOinit; _soldiers pushBack _x} forEach units _groupX;
-        };
-    }
-    else
-    {
-        private _vehicleGet = "";
-        switch (true) do 
-        {
-            private _tier9Vehicle = (_faction getOrDefault ["vehiclesLightTanks", []]);
-            if (_tier9Vehicle isEqualTo []) then {
-                _tier9Vehicle = "vehiclesAirborne";
-            };
+			// Forced non-spawner as they're very static.
+			{[_x,"",false] call A3A_fnc_NATOinit; _soldiers pushBack _x} forEach units _groupX;
+		};
+	}
+	else
+	{
+		private _vehicleGet = "";
+		switch (true) do 
+		{
+			case (tierWar >= 9): // if higher or equal to 9, grab military light tank (or airborne, if light tank not found)
+			{
+				private _tier9Vehicle = (_faction getOrDefault ["vehiclesLightTanks", []]);
+				if (_tier9Vehicle isEqualTo []) then {
+					_tier9Vehicle = "vehiclesAirborne";
+				};
 
-            case (tierWar >= 9): // if higher or equal to 9, grab military light tank (or airborne, if light tank not found)
-            {
-                _vehicleGet = _tier9Vehicle;
-            };
-            case (tierWar >= 6): // if higher or equal to 6, grab military APC
-            {
-                _vehicleGet = "vehiclesAPCs";
-            };
-            case (tierWar >= 3): // if higher or equal to 3, grab militia light armed car
-            {
-                _vehicleGet = "vehiclesMilitiaLightArmed";
-            };
-            default // incase it's less than 3 (or something is broken), just grab militia car
-            {
-                _vehicleGet = "vehiclesMilitiaCars";
-            };
-        };
-        _typeVehX = selectRandom (_faction get _vehicleGet);
-        _veh = _typeVehX createVehicle getPos (_roads select 0);
-        _veh setDir _dirveh + 90;
-        [_veh, _sideX] call A3A_fnc_AIVEHinit;
-        _vehiclesX pushBack _veh;
-        sleep 1;
-        _typeGroup = selectRandom (_faction get "groupsMilitiaMedium");
-        _groupX = [_positionX, _sideX, _typeGroup, true] call A3A_fnc_spawnGroup;
-        if !(isNull _groupX) then
-        {
-            _unit = [_groupX, _faction get "unitMilitiaGrunt", _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;
-            _unit moveInGunner _veh;
-            {_soldiers pushBack _x; [_x,"", false] call A3A_fnc_NATOinit} forEach units _groupX;
-        };
-    };
+				_vehicleGet = _tier9Vehicle;
+			};
+			case (tierWar >= 6): // if higher or equal to 6, grab military APC
+			{
+				_vehicleGet = "vehiclesAPCs";
+			};
+			case (tierWar >= 3): // if higher or equal to 3, grab militia light armed car
+			{
+				_vehicleGet = "vehiclesMilitiaLightArmed";
+			};
+			default // incase it's less than 3 (or something is broken), just grab militia car
+			{
+				_vehicleGet = "vehiclesMilitiaCars";
+			};
+		};
+		_typeVehX = selectRandom (_faction get _vehicleGet);
+		_veh = _typeVehX createVehicle getPos (_roads select 0);
+		_veh setDir _dirveh + 90;
+		[_veh, _sideX] call A3A_fnc_AIVEHinit;
+		_vehiclesX pushBack _veh;
+		sleep 1;
+		_typeGroup = selectRandom (_faction get "groupsMilitiaMedium");
+		_groupX = [_positionX, _sideX, _typeGroup, true] call A3A_fnc_spawnGroup;
+		if !(isNull _groupX) then
+		{
+			_unit = [_groupX, _faction get "unitMilitiaGrunt", _positionX, [], 0, "NONE"] call A3A_fnc_createUnit;
+			_unit moveInGunner _veh;
+			{_soldiers pushBack _x; [_x,"", false] call A3A_fnc_NATOinit} forEach units _groupX;
+		};
+	};
 }
 else
 {
