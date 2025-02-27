@@ -42,7 +42,7 @@ private _unhiddenMarkers = [];
 
 {
     private _markerSide = sidesX getVariable [_x, sideUnknown];
-    if (_x in markersImmune) then {} else {
+    if ((!isNil markersImmune && count markersImmune > 0) && _x in markersImmune) then {} else {
         if (_markerSide isNotEqualTo resistance) then {
             _availableMarkers pushBack _x;
         };
