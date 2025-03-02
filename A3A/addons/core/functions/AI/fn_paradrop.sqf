@@ -133,7 +133,7 @@ if !(_isReinforcement) then
     _groupJumper spawn A3A_fnc_attackDrillAI;
 };
 
-if !(isNil _helicopter) {
+if !(isNil _helicopter) then {
     private _weapons = count weapons _helicopter;
     private _driverturret = _helicopter weaponsTurret [0];
     private _gunnerturret = _helicopter weaponsTurret [-1];
