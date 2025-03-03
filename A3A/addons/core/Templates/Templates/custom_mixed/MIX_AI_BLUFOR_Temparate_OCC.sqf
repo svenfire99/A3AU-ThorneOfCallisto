@@ -459,8 +459,14 @@ private _pilotSMGs = [];
 #include "Vanilla\Vanilla_Vehicle_Attributes.sqf"
 
 if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
-    #include "RHS\MIX_US_Army_W.sqf"
-    #include "RHS\MIX_USMC_W.sqf"
+
+    if (isClass (configFile >> "CfgFactionClasses" >> "UK3CB_FIA_B")) then {
+        #include "3CBF\MIX_US_Army_W.sqf"
+        #include "3CBF\MIX_USMC_W.sqf"
+    } else {
+        #include "RHS\MIX_US_Army_W.sqf"
+        #include "RHS\MIX_USMC_W.sqf"
+    };
     #include "RHS\RHS_Vehicle_Attributes.sqf"
 };
 
@@ -470,7 +476,7 @@ if (isClass (configFile >> "CfgVehicles" >> "BWA3_Dingo2_FLW200_M2_CG13_Fleck"))
 };
 
 if (isClass (configFile >> "CfgVehicles" >> "B_AMF_TANK_01") && isClass(configFile >> "CfgVehicles" >> "R3F_WeaponStock")) then {
-    #include "BWA3\MIX_AMF_Temperate.sqf"
+    #include "AMF\MIX_AMF_Temperate.sqf"
 };
 
 if (isClass (configFile >> "CfgVehicles" >> "sfp_strv122b")) then {
@@ -478,7 +484,7 @@ if (isClass (configFile >> "CfgVehicles" >> "sfp_strv122b")) then {
     #include "SWE\SFP_Vehicle_Attributes.sqf"
 
     if (isClass(configFile >> "CfgVehicles" >> "ffp_leopard2a4")) then {
-        // #include "SWE\MIX_FFP_Temperate.sqf"
+        // #include "SWE\MIX_FFP_Temperate.sqf" // Lacking standalone content, needs other mods to be more usefull...
         // #include "SWE\FFP_Vehicle_Attributes.sqf"
     };
 };
