@@ -203,7 +203,7 @@ _sfcompasses append [];
 _sfradios append [];
 _sfgpses append [];
 _sfNVGs append [];
-_sfbinoculars append [];
+_sfbinoculars append ["Laserdesignator"];
 _sfrangefinders append [];
 
 _sfuniforms append [];
@@ -262,7 +262,7 @@ _elitecompasses append [];
 _eliteradios append [];
 _elitegpses append [];
 _eliteNVGs append [];
-_elitebinoculars append [];
+_elitebinoculars append ["Laserdesignator"];
 _eliterangefinders append [];
 
 _eliteuniforms append [];

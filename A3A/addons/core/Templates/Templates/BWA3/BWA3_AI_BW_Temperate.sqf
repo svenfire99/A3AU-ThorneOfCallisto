@@ -166,6 +166,20 @@ if (isClass (configfile >> "CfgPatches" >> "USAF_MQ9")) then {
     _planesTransport append ["USAF_C130J", "USAF_C17"];
 };
 
+if (isClass (configfile >> "CfgPatches" >> "FIR_MQ81U_DarkGrey")) then {
+    _uavAttack append ["FIR_MQ81U_DarkGrey"];
+};
+
+if (isClass (configFile >> "CfgVehicles" >> "FIR_F35B_MFG1")) then {
+	_planesCAS   append ["FIR_F35B_MFG1","FIR_F35B_MFG2"];
+	_planesAA 	 append ["FIR_F35B_MFG1","FIR_F35B_MFG2"];
+};
+
+if (isClass (configFile >> "CfgVehicles" >> "FIR_F16C_RS_86TFW")) then {
+    _planesCAS append ["FIR_F16C_RS_86TFW"];
+    _planesAA  append ["FIR_F16C_RS_86TFW"];
+};
+
 /* ANTISTASI PLUS STUFF START */
 ["vehiclesMilitiaAPCs", ["BWA3_Puma_Fleck"]] call _fnc_saveToTemplate;
 ["vehiclesAirborne", ["BWA3_Dingo2_FLW200_M2_CG13_Fleck"]] call _fnc_saveToTemplate;
