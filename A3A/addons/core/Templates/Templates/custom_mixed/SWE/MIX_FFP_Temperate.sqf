@@ -118,9 +118,9 @@ _APMines append ["ffp_sm_65_98_mag"];
 _lightExplosives append ["DemoCharge_Remote_Mag","sfp_sprdeg46_mag"];
 _heavyExplosives append ["SatchelCharge_Remote_Mag"];
 
-_loadoutData set ["antiInfantryGrenades", ["ffp_handgrenade_runko43"]];
-_loadoutData set ["smokeGrenades", ["ffp_smoke_white"]];
-_loadoutData set ["signalsmokeGrenades", ["ffp_smoke_red", "ffp_smoke_green", "ffp_smoke_blue"]];
+_antiInfantryGrenades append ["ffp_handgrenade_runko43"];
+_smokeGrenades append ["ffp_smoke_white"];
+_signalsmokeGrenades append ["ffp_smoke_red", "ffp_smoke_green", "ffp_smoke_blue"];
 
 _maps append ["ItemMap"];
 _watches append ["ItemWatch"];
@@ -399,7 +399,7 @@ _militarygoggles append [];
 _policeuniforms append ["sfp_police_uniform_modern", "sfp_police_uniform_modern_tactical"];
 _policevests append ["V_TacVest_oli", "V_TacVest_blk","sfp_police_belt", "sfp_kroppsskydd_police", "sfp_police_tacVest"];
 _policehelmets append ["H_Beret_blk","sfp_police_hat", "sfp_police_helmet"];
-_policepoliceSMGs append [
+_policeWeapons append [
 	["sfp_remington870", "", "", "", ["sfp_12Gauge_8rd_Pellets", "sfp_12Gauge_8rd_Slug"], [], ""],
 	["sfp_remington870_chrome", "", "", "", ["sfp_12Gauge_8rd_Pellets", "sfp_12Gauge_8rd_Slug"], [], ""],
 	["sfp_cga5p", "", "", "", ["sfp_30Rnd_556x45_Stanag", "sfp_30Rnd_556x45_Stanag_tracer"], [], ""],
@@ -863,7 +863,7 @@ if (isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core") || isClass (c
 		];
 		_militarybinoculars append ["CUP_Vector21Nite"];
 
-		_policepoliceSMGs append [];
+		_policeWeapons append [];
 
 		_militiaslRifles append [
 			["CUP_arifle_AKM_Early", "", "acc_flashlight", "", ["CUP_30Rnd_762x39_AK47_bakelite_M", "CUP_30Rnd_TE1_Red_Tracer_762x39_AK47_bakelite_M"], [], ""],

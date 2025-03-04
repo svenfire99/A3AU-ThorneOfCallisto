@@ -372,27 +372,6 @@ _eliteLoadoutData set ["missileATLaunchers", [
 ["UK3CB_BAF_Javelin_Launcher", "", "", "", ["UK3CB_BAF_Javelin_Mag"], [], ""]
 ]];
 
-///////////////////////////////
-//    Police Loadout Data    //
-///////////////////////////////
-
-private _policeLoadoutData = _loadoutData call _fnc_copyLoadoutData; // touch and shit breaks
-_policeLoadoutData set ["uniforms", ["U_B_GEN_Soldier_F", "U_B_GEN_Commander_F"]];		//this line determines uniforms for police loadouts -- Example: ["U_B_GEN_Commander_F"] -- Array, can contain multiple assets
-_policeLoadoutData set ["vests", ["V_TacVest_blk_POLICE"]];			//this line determines vests for police loadouts -- Example: ["V_TacVest_gen_F"] -- Array, can contain multiple assets
-_policeLoadoutData set ["helmets", ["H_Cap_police"]];			//this line determines helmets for police loadouts -- Example: ["H_Beret_gen_F"] -- Array, can contain multiple assets
-
-_policeLoadoutData set ["shotGuns", [
-["UK3CB_BAF_L128A1", "", "", "rhsusf_acc_eotech_xps3", ["UK3CB_BAF_12G_Pellets", "UK3CB_BAF_12G_Slugs"], [], ""],
-["UK3CB_BAF_L128A1", "", "", "rhsusf_acc_T1_high", ["UK3CB_BAF_12G_Pellets", "UK3CB_BAF_12G_Slugs"], [], ""]
-]];
-_policeLoadoutData set ["SMGs", [
-["UK3CB_BAF_L91A1", "", "", "rhsusf_acc_T1_high", [], [], ""],
-["UK3CB_BAF_L91A1", "", "", "rhsusf_acc_eotech_xps3", [], [], ""]
-]];
-_policeLoadoutData set ["sidearms", [
-["UK3CB_BAF_L105A2", "", "", "", ["UK3CB_BAF_9_15Rnd"], [], ""]
-]];
-
 /////////////////////////////////
 //    Military Loadout Data    //
 /////////////////////////////////

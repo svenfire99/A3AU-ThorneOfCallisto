@@ -559,7 +559,7 @@ _militarysidearms append [
 _policeuniforms append ["U_Marshal"];
 _policevests append ["V_TacVest_blk_POLICE","V_Rangemaster_belt"];
 _policehelmets append ["H_Cap_police"];
-_policepoliceSMGs append [
+_policeWeapons append [
     ["SMG_01_F", "", "acc_flashlight_smg_01", "optic_Holosight_smg", ["30Rnd_45ACP_Mag_SMG_01", "30Rnd_45ACP_Mag_SMG_01", "30Rnd_45ACP_Mag_SMG_01_Tracer_Red"], [], ""],
     ["SMG_03C_camo", "", "", "", ["50Rnd_570x28_SMG_03","50Rnd_570x28_SMG_03","50Rnd_570x28_SMG_03"], [], ""],
     ["SMG_03C_black", "", "", "", ["50Rnd_570x28_SMG_03","50Rnd_570x28_SMG_03","50Rnd_570x28_SMG_03"], [], ""],

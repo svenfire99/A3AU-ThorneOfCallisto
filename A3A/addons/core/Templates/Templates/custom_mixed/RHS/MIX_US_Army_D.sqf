@@ -578,7 +578,7 @@ _militarygoggles append [];
 _policeuniforms append ["rhs_uniform_abu"];
 _policevests append ["V_TacVest_brn", "V_BandollierB_cbr"];
 _policehelmets append ["rhsusf_patrolcap_ucp", "rhs_Booniehat_ucp", "H_Bandanna_sand"];
-_policepoliceSMGs append [
+_policeWeapons append [
     ["rhs_weap_M590_8RD", "", "", "", ["rhsusf_8Rnd_00Buck", "rhsusf_8Rnd_Slug"], [], ""],
     ["rhs_weap_M590_5RD", "", "", "", ["rhsusf_5Rnd_00Buck", "rhsusf_5Rnd_Slug"], [], ""],
     ["rhsusf_weap_MP7A2", "", "rhsusf_acc_wmx_bk", "", ["rhsusf_mag_40Rnd_46x30_FMJ", "rhsusf_mag_40Rnd_46x30_FMJ", "rhsusf_mag_40Rnd_46x30_JHP"], [], ""],

@@ -107,9 +107,9 @@ _APMines append ["APERSMine_Range_Mag"];
 _lightExplosives append ["DemoCharge_Remote_Mag"];
 _heavyExplosives append ["SatchelCharge_Remote_Mag"];
 
-_loadoutData set ["antiInfantryGrenades", ["HandGrenade", "MiniGrenade"]];
-_loadoutData set ["smokeGrenades", ["SmokeShell"]];
-_loadoutData set ["signalsmokeGrenades", ["SmokeShellYellow", "SmokeShellRed", "SmokeShellPurple", "SmokeShellOrange", "SmokeShellGreen", "SmokeShellBlue"]];
+_antiInfantryGrenades append ["HandGrenade", "MiniGrenade"];
+_smokeGrenades append ["SmokeShell"];
+_signalsmokeGrenades append ["SmokeShellYellow", "SmokeShellRed", "SmokeShellPurple", "SmokeShellOrange", "SmokeShellGreen", "SmokeShellBlue"];
 
 _maps append ["ItemMap"];
 _watches append ["ItemWatch"];
@@ -452,7 +452,7 @@ _militarygoggles append [];
 _policeuniforms append ["U_B_GEN_Soldier_F"];
 _policevests append ["R3F_vestetactique_noire", "V_TacVest_gen_F"];
 _policehelmets append ["H_Beret_gen_F"];
-_policepoliceSMGs append [
+_policeWeapons append [
     ["AMF_Samas_F1_01_F", "", "", "", ["25Rnd_samas_f1_mag_Tracer_green", "25Rnd_samas_f1_mag_Tracer_red"], [], ""],
     ["amf_hk_mp5_01_f", "", "", "", ["30Rnd_9x19_mag"], [], ""]
 ];
