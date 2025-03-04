@@ -106,9 +106,9 @@ _APMines append ["APERSMine_Range_Mag"];
 _lightExplosives append ["DemoCharge_Remote_Mag"];
 _heavyExplosives append ["SatchelCharge_Remote_Mag"];
 
-_loadoutData set ["antiInfantryGrenades", ["sfp_handgrenade_shgr2000", "sfp_handgrenade_shgr07"]];
-_loadoutData set ["smokeGrenades", ["SmokeShell"]];
-_loadoutData set ["signalsmokeGrenades", ["SmokeShellYellow", "SmokeShellRed", "SmokeShellPurple", "SmokeShellOrange", "SmokeShellGreen", "SmokeShellBlue"]];
+_antiInfantryGrenades append ["sfp_handgrenade_shgr2000", "sfp_handgrenade_shgr07"];
+_smokeGrenades append ["SmokeShell"];
+_signalsmokeGrenades append ["SmokeShellYellow", "SmokeShellRed", "SmokeShellPurple", "SmokeShellOrange", "SmokeShellGreen", "SmokeShellBlue"];
 
 _maps append ["ItemMap"];
 _watches append ["ItemWatch"];
@@ -467,7 +467,7 @@ _militarygoggles append [];
 _policeuniforms append ["sfp_police_uniform_modern", "sfp_police_uniform_modern_tactical"];
 _policevests append ["sfp_police_belt", "sfp_kroppsskydd_police", "sfp_police_tacVest"];
 _policehelmets append ["sfp_police_hat", "sfp_police_helmet"];
-_policepoliceSMGs append [
+_policeWeapons append [
 	["sfp_remington870", "", "", "", ["sfp_12Gauge_8rd_Pellets", "sfp_12Gauge_8rd_Slug"], [], ""],
 	["sfp_remington870_chrome", "", "", "", ["sfp_12Gauge_8rd_Pellets", "sfp_12Gauge_8rd_Slug"], [], ""],
 	["sfp_cga5p", "", "", "", ["sfp_30Rnd_556x45_Stanag", "sfp_30Rnd_556x45_Stanag_tracer"], [], ""],

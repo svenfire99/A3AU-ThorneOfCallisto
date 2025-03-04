@@ -506,7 +506,7 @@ _militarygoggles append [];
 _policeuniforms append ["U_B_GEN_Soldier_F", "U_B_GEN_Commander_F"];
 _policevests append ["V_TacVest_blk_POLICE"];
 _policehelmets append ["H_Cap_police"];
-_policepoliceSMGs append [
+_policeWeapons append [
     ["BWA3_MP7", "", "BWA3_acc_VarioRay_irlaser_black", "", ["BWA3_20Rnd_46x30_MP7"], [], ""]
 ];
 _policesidearms append [

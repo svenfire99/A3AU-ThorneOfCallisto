@@ -105,9 +105,9 @@ _APMines append ["rhsusf_mine_m14_mag"];
 _lightExplosives append ["rhsusf_m112_mag"];
 _heavyExplosives append ["rhsusf_m112x4_mag"];
 
-_loadoutData set ["antiInfantryGrenades", ["rhs_mag_m67"]];
-_loadoutData set ["smokeGrenades", ["rhs_mag_an_m8hc"]];
-_loadoutData set ["signalsmokeGrenades", ["rhs_mag_m18_green", "rhs_mag_m18_purple", "rhs_mag_m18_red", "rhs_mag_m18_yellow"]];
+_antiInfantryGrenades append ["rhs_mag_m67"];
+_smokeGrenades append ["rhs_mag_an_m8hc"];
+_signalsmokeGrenades append ["rhs_mag_m18_green", "rhs_mag_m18_purple", "rhs_mag_m18_red", "rhs_mag_m18_yellow"];
 
 _maps append ["ItemMap"];
 _watches append ["ItemWatch"];
@@ -584,7 +584,7 @@ _militarygoggles append [];
 _policeuniforms append ["rhs_uniform_bdu_erdl"];
 _policevests append ["rhsgref_TacVest_ERDL", "rhsgref_chestrig"];
 _policehelmets append ["H_Beret_02", "H_Booniehat_oli", "H_Cap_grn", "rhsgref_helmet_pasgt_erdl"];
-_policepoliceSMGs append [
+_policeWeapons append [
 	["rhs_weap_M590_8RD", "", "", "", ["rhsusf_8Rnd_00Buck", "rhsusf_8Rnd_Slug"], [], ""],
 	["rhs_weap_M590_5RD", "", "", "", ["rhsusf_5Rnd_00Buck", "rhsusf_5Rnd_Slug"], [], ""],
 	["UK3CB_MP5A2", "", "uk3cb_acc_surefiregrip", "", ["UK3CB_MP5_30Rnd_9x19_Magazine", "UK3CB_MP5_30Rnd_9x19_Magazine", "UK3CB_MP5_30Rnd_9x19_Magazine_RT"], [], ""],

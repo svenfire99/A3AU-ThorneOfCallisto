@@ -96,6 +96,7 @@ private _SAM = [];
 ["mortarMagazineHE", "8Rnd_82mm_Mo_shells"] call _fnc_saveToTemplate;
 ["mortarMagazineSmoke", "8Rnd_82mm_Mo_Smoke_white"] call _fnc_saveToTemplate;
 ["mortarMagazineFlare", "8Rnd_82mm_Mo_Flare_white"] call _fnc_saveToTemplate;
+["howitzerMagazineHE", "6Rnd_120mm_HE_shells_RF","2Rnd_120mm_Mo_Cluster_RF"] call _fnc_saveToTemplate;
 
 private _minefieldAT = [];
 private _minefieldAPERS = [];
@@ -139,6 +140,7 @@ private _lightExplosives = [];
 private _heavyExplosives = [];
 
 private _antiInfantryGrenades = [];
+private _antiTankGrenades = [];
 private _smokeGrenades = [];
 private _signalsmokeGrenades = [];
 
@@ -373,7 +375,7 @@ private _militarygoggles = [];
 private _policeuniforms = [];
 private _policevests = [];
 private _policehelmets = [];
-private _policepoliceSMGs = [];
+private _policeWeapons = [];
 private _policesidearms = [];
 
 ////////////////////////////////
@@ -475,7 +477,6 @@ if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
 ["vehiclesGunBoats", _gunBoat] call _fnc_saveToTemplate;
 ["vehiclesTransportBoats", _transportBoat] call _fnc_saveToTemplate;
 ["staticAA", _staticAA] call _fnc_saveToTemplate;
-["howitzerMagazineHE", "6Rnd_120mm_HE_shells_RF","2Rnd_120mm_Mo_Cluster_RF"] call _fnc_saveToTemplate;
 ["uavsAttack", _uavsAttack] call _fnc_saveToTemplate;
 ["uavsPortable", _uavsPortable] call _fnc_saveToTemplate;
 ["staticMGs", _staticMG] call _fnc_saveToTemplate;
@@ -562,6 +563,7 @@ _loadoutData set ["lightExplosives", _lightExplosives];
 _loadoutData set ["heavyExplosives", _heavyExplosives];
 
 _loadoutData set ["antiInfantryGrenades", _antiInfantryGrenades];
+_loadoutData set ["antiTankGrenades", _antiTankGrenades];
 _loadoutData set ["smokeGrenades", _smokeGrenades];
 _loadoutData set ["signalsmokeGrenades", _signalsmokeGrenades];
 
@@ -809,7 +811,7 @@ private _policeLoadoutData = _loadoutData call _fnc_copyLoadoutData;
 if (count _policeuniforms > 0) then { _policeLoadoutData set ["uniforms", _policeuniforms]; };
 if (count _policevests > 0) then { _policeLoadoutData set ["vests", _policevests]; };
 if (count _policehelmets > 0) then { _policeLoadoutData set ["helmets", _policehelmets]; };
-if (count _policepoliceSMGs > 0) then { _policeLoadoutData set ["SMGs", _policepoliceSMGs]; };
+if (count _policeWeapons > 0) then { _policeLoadoutData set ["SMGs", _policeWeapons]; };
 if (count _policesidearms > 0) then { _policeLoadoutData set ["sidearms", _policesidearms]; };
 
 ////////////////////////////////
@@ -985,7 +987,7 @@ private _medicTemplate = {
     [selectRandomWeighted [[], 2, "glasses", 0.75, "goggles", 0.5]] call _fnc_setFacewear;
     [["MEDvests", "Hvests", "vests"] call _fnc_fallback] call _fnc_setVest;
     ["uniforms"] call _fnc_setUniform;
-    ["backpacks"] call _fnc_setBackpack;
+    [["medBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
     [selectRandom ["carbines", "rifles"]] call _fnc_setPrimary;
     ["primary", 6] call _fnc_addMagazines;
@@ -1043,7 +1045,7 @@ private _explosivesExpertTemplate = {
     [selectRandomWeighted [[], 2, "glasses", 0.75, "goggles", 0.5]] call _fnc_setFacewear;
     ["Hvests", "vests"] call _fnc_setVest;
     ["uniforms"] call _fnc_setUniform;
-    ["backpacks"] call _fnc_setBackpack;
+    [["expBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
     [selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
     ["primary", 6] call _fnc_addMagazines;
@@ -1076,7 +1078,7 @@ private _engineerTemplate = {
     [selectRandomWeighted [[], 2, "glasses", 0.75, "goggles", 0.5]] call _fnc_setFacewear;
     ["vests"] call _fnc_setVest;
     ["uniforms"] call _fnc_setUniform;
-    ["backpacks"] call _fnc_setBackpack;
+    [["engBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
     [selectRandom ["carbines", "rifles"]] call _fnc_setPrimary;
     ["primary", 6] call _fnc_addMagazines;
@@ -1162,7 +1164,7 @@ private _aaTemplate = {
     [selectRandomWeighted [[], 2, "glasses", 0.75, "goggles", 0.5]] call _fnc_setFacewear;
     ["vests"] call _fnc_setVest;
     ["uniforms"] call _fnc_setUniform;
-    [["atBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+    [["aaBackpacks","atBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
     [selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
     ["primary", 5] call _fnc_addMagazines;

@@ -96,6 +96,7 @@ private _SAM = [];
 ["mortarMagazineHE", "8Rnd_82mm_Mo_shells"] call _fnc_saveToTemplate;
 ["mortarMagazineSmoke", "8Rnd_82mm_Mo_Smoke_white"] call _fnc_saveToTemplate;
 ["mortarMagazineFlare", "8Rnd_82mm_Mo_Flare_white"] call _fnc_saveToTemplate;
+["howitzerMagazineHE", "6Rnd_120mm_HE_shells_RF","2Rnd_120mm_Mo_Cluster_RF"] call _fnc_saveToTemplate;
 
 private _minefieldAT = [];
 private _minefieldAPERS = [];
@@ -139,6 +140,7 @@ private _lightExplosives = [];
 private _heavyExplosives = [];
 
 private _antiInfantryGrenades = [];
+private _antiTankGrenades = [];
 private _smokeGrenades = [];
 private _signalsmokeGrenades = [];
 
@@ -373,7 +375,7 @@ private _militarygoggles = [];
 private _policeuniforms = [];
 private _policevests = [];
 private _policehelmets = [];
-private _policepoliceSMGs = [];
+private _policeWeapons = [];
 private _policesidearms = [];
 
 ////////////////////////////////
@@ -463,6 +465,12 @@ if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
     if (isClass (configFile >> "CfgFactionClasses" >> "UK3CB_FIA_B")) then {
         #include "3CBF\MIX_US_Army_W.sqf"
         #include "3CBF\MIX_USMC_W.sqf"
+        #include "3CBF\3CBF_Vehicle_Attributes.sqf"
+
+        if (isClass (configFile >> "CfgFactionClasses" >> "UK3CB_FIA_B")) then { // TODO Change to BAF faction class at home
+            #include "3CBBAF\MIX_BAF_Temperate.sqf"
+            #include "3CBBAF\3CBBAF_Vehicle_Attributes.sqf"
+        };
     } else {
         #include "RHS\MIX_US_Army_W.sqf"
         #include "RHS\MIX_USMC_W.sqf"
@@ -501,7 +509,6 @@ if (isClass (configFile >> "CfgVehicles" >> "sfp_strv122b")) then {
 ["vehiclesGunBoats", _gunBoat] call _fnc_saveToTemplate;
 ["vehiclesTransportBoats", _transportBoat] call _fnc_saveToTemplate;
 ["staticAA", _staticAA] call _fnc_saveToTemplate;
-["howitzerMagazineHE", "6Rnd_120mm_HE_shells_RF","2Rnd_120mm_Mo_Cluster_RF"] call _fnc_saveToTemplate;
 ["uavsAttack", _uavsAttack] call _fnc_saveToTemplate;
 ["uavsPortable", _uavsPortable] call _fnc_saveToTemplate;
 ["staticMGs", _staticMG] call _fnc_saveToTemplate;
@@ -588,6 +595,7 @@ _loadoutData set ["lightExplosives", _lightExplosives];
 _loadoutData set ["heavyExplosives", _heavyExplosives];
 
 _loadoutData set ["antiInfantryGrenades", _antiInfantryGrenades];
+_loadoutData set ["antiTankGrenades", _antiTankGrenades];
 _loadoutData set ["smokeGrenades", _smokeGrenades];
 _loadoutData set ["signalsmokeGrenades", _signalsmokeGrenades];
 
@@ -622,6 +630,10 @@ _loadoutData set ["sniVests", _SNIvests];
 _loadoutData set ["GLvests", _GLvests];
 _loadoutData set ["backpacks", _backpacks];
 _loadoutData set ["atBackpacks", _atBackpacks];
+_loadoutData set ["aaBackpacks", _aaBackpacks];
+_loadoutData set ["medBackpacks", _medBackpacks];
+_loadoutData set ["engBackpacks", _engBackpacks];
+_loadoutData set ["expBackpacks", _expBackpacks];
 _loadoutData set ["longRangeRadios", _longRangeRadios];
 _loadoutData set ["helmets", _helmets];
 _loadoutData set ["slHat", _slHat];
@@ -704,6 +716,10 @@ if (count _sfSNIvests > 0) then { _sfLoadoutData set ["sniVests", _sfSNIvests]; 
 if (count _sfGLvests > 0) then { _sfLoadoutData set ["GLvests", _sfGLvests]; };
 if (count _sfbackpacks > 0) then { _sfLoadoutData set ["backpacks", _sfbackpacks]; };
 if (count _sfatBackpacks > 0) then { _sfLoadoutData set ["atBackpacks", _sfatBackpacks]; };
+if (count _sfaaBackpacks > 0) then { _sfLoadoutData set ["aaBackpacks", _sfaaBackpacks]; };
+if (count _sfmedBackpacks > 0) then { _sfLoadoutData set ["medBackpacks", _sfmedBackpacks]; };
+if (count _sfengBackpacks > 0) then { _sfLoadoutData set ["engBackpacks", _sfengBackpacks]; };
+if (count _sfexpBackpacks > 0) then { _sfLoadoutData set ["expBackpacks", _sfexpBackpacks]; };
 if (count _sflongRangeRadios > 0) then { _sfLoadoutData set ["longRangeRadios", _sflongRangeRadios]; };
 if (count _sfhelmets > 0) then { _sfLoadoutData set ["helmets", _sfhelmets]; };
 if (count _sfslHat > 0) then { _sfLoadoutData set ["slHat", _sfslHat]; };
@@ -762,6 +778,10 @@ if (count _eliteSNIvests > 0) then { _eliteLoadoutData set ["sniVests", _eliteSN
 if (count _eliteGLvests > 0) then { _eliteLoadoutData set ["GLvests", _eliteGLvests]; };
 if (count _elitebackpacks > 0) then { _eliteLoadoutData set ["backpacks", _elitebackpacks]; };
 if (count _eliteatBackpacks > 0) then { _eliteLoadoutData set ["atBackpacks", _eliteatBackpacks]; };
+if (count _eliteaaBackpacks > 0) then { _eliteLoadoutData set ["aaBackpacks", _eliteaaBackpacks]; };
+if (count _elitemedBackpacks > 0) then { _eliteLoadoutData set ["medBackpacks", _elitemedBackpacks]; };
+if (count _eliteengBackpacks > 0) then { _eliteLoadoutData set ["engBackpacks", _eliteengBackpacks]; };
+if (count _eliteexpBackpacks > 0) then { _eliteLoadoutData set ["expBackpacks", _eliteexpBackpacks]; };
 if (count _elitelongRangeRadios > 0) then { _eliteLoadoutData set ["longRangeRadios", _elitelongRangeRadios]; };
 if (count _elitehelmets > 0) then { _eliteLoadoutData set ["helmets", _elitehelmets]; };
 if (count _eliteslHat > 0) then { _eliteLoadoutData set ["slHat", _eliteslHat]; };
@@ -820,6 +840,10 @@ if (count _militarySNIvests > 0) then { _militaryLoadoutData set ["sniVests", _m
 if (count _militaryGLvests > 0) then { _militaryLoadoutData set ["GLvests", _militaryGLvests]; };
 if (count _militarybackpacks > 0) then { _militaryLoadoutData set ["backpacks", _militarybackpacks]; };
 if (count _militaryatBackpacks > 0) then { _militaryLoadoutData set ["atBackpacks", _militaryatBackpacks]; };
+if (count _militaryaaBackpacks > 0) then { _militaryLoadoutData set ["aaBackpacks", _militaryaaBackpacks]; };
+if (count _militarymedBackpacks > 0) then { _militaryLoadoutData set ["medBackpacks", _militarymedBackpacks]; };
+if (count _militaryengBackpacks > 0) then { _militaryLoadoutData set ["engBackpacks", _militaryengBackpacks]; };
+if (count _militaryexpBackpacks > 0) then { _militaryLoadoutData set ["expBackpacks", _militaryexpBackpacks]; };
 if (count _militarylongRangeRadios > 0) then { _militaryLoadoutData set ["longRangeRadios", _militarylongRangeRadios]; };
 if (count _militaryhelmets > 0) then { _militaryLoadoutData set ["helmets", _militaryhelmets]; };
 if (count _militaryslHat > 0) then { _militaryLoadoutData set ["slHat", _militaryslHat]; };
@@ -835,7 +859,7 @@ private _policeLoadoutData = _loadoutData call _fnc_copyLoadoutData;
 if (count _policeuniforms > 0) then { _policeLoadoutData set ["uniforms", _policeuniforms]; };
 if (count _policevests > 0) then { _policeLoadoutData set ["vests", _policevests]; };
 if (count _policehelmets > 0) then { _policeLoadoutData set ["helmets", _policehelmets]; };
-if (count _policepoliceSMGs > 0) then { _policeLoadoutData set ["SMGs", _policepoliceSMGs]; };
+if (count _policeWeapons > 0) then { _policeLoadoutData set ["SMGs", _policeWeapons]; };
 if (count _policesidearms > 0) then { _policeLoadoutData set ["sidearms", _policesidearms]; };
 
 ////////////////////////////////
@@ -889,6 +913,10 @@ if (count _militiaSNIvests > 0) then { _militiaLoadoutData set ["sniVests", _mil
 if (count _militiaGLvests > 0) then { _militiaLoadoutData set ["GLvests", _militiaGLvests]; };
 if (count _militiabackpacks > 0) then { _militiaLoadoutData set ["backpacks", _militiabackpacks]; };
 if (count _militiaatBackpacks > 0) then { _militiaLoadoutData set ["atBackpacks", _militiaatBackpacks]; };
+if (count _militiaaaBackpacks > 0) then { _militiaLoadoutData set ["aaBackpacks", _militiaaaBackpacks]; };
+if (count _militiamedBackpacks > 0) then { _militiaLoadoutData set ["medBackpacks", _militiamedBackpacks]; };
+if (count _militiaengBackpacks > 0) then { _militiaLoadoutData set ["engBackpacks", _militiaengBackpacks]; };
+if (count _militiaexpBackpacks > 0) then { _militiaLoadoutData set ["expBackpacks", _militiaexpBackpacks]; };
 if (count _militialongRangeRadios > 0) then { _militiaLoadoutData set ["longRangeRadios", _militialongRangeRadios]; };
 if (count _militiahelmets > 0) then { _militiaLoadoutData set ["helmets", _militiahelmets]; };
 if (count _militiaslHat > 0) then { _militiaLoadoutData set ["slHat", _militiaslHat]; };
@@ -905,8 +933,8 @@ private _crewLoadoutData = _militaryLoadoutData call _fnc_copyLoadoutData;
 if (count _crewuniforms > 0) then { _crewLoadoutData set ["uniforms", _crewuniforms]; };
 if (count _crewvests > 0) then { _crewLoadoutData set ["vests", _crewvests]; };
 if (count _crewhelmets > 0) then { _crewLoadoutData set ["helmets", _crewhelmets]; };
-if (count _crewcarbines > 0) then { _policeLoadoutData set ["carbines", _crewcarbines]; };
-if (count _crewSMGs > 0) then { _policeLoadoutData set ["SMGs", _crewSMGs]; };
+if (count _crewcarbines > 0) then { _crewLoadoutData set ["carbines", _crewcarbines]; };
+if (count _crewSMGs > 0) then { _crewLoadoutData set ["SMGs", _crewSMGs]; };
 
 private _pilotLoadoutData = _militaryLoadoutData call _fnc_copyLoadoutData;
 if (count _pilotuniforms > 0) then { _pilotLoadoutData set ["uniforms", _pilotuniforms]; };
@@ -1011,7 +1039,7 @@ private _medicTemplate = {
     [selectRandomWeighted [[], 2, "glasses", 0.75, "goggles", 0.5]] call _fnc_setFacewear;
     [["MEDvests", "Hvests", "vests"] call _fnc_fallback] call _fnc_setVest;
     ["uniforms"] call _fnc_setUniform;
-    ["backpacks"] call _fnc_setBackpack;
+    [["medBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
     [selectRandom ["carbines", "rifles"]] call _fnc_setPrimary;
     ["primary", 6] call _fnc_addMagazines;
@@ -1069,7 +1097,7 @@ private _explosivesExpertTemplate = {
     [selectRandomWeighted [[], 2, "glasses", 0.75, "goggles", 0.5]] call _fnc_setFacewear;
     ["Hvests", "vests"] call _fnc_setVest;
     ["uniforms"] call _fnc_setUniform;
-    ["backpacks"] call _fnc_setBackpack;
+    [["expBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
     [selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
     ["primary", 6] call _fnc_addMagazines;
@@ -1102,7 +1130,7 @@ private _engineerTemplate = {
     [selectRandomWeighted [[], 2, "glasses", 0.75, "goggles", 0.5]] call _fnc_setFacewear;
     ["vests"] call _fnc_setVest;
     ["uniforms"] call _fnc_setUniform;
-    ["backpacks"] call _fnc_setBackpack;
+    [["engBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
     [selectRandom ["carbines", "rifles"]] call _fnc_setPrimary;
     ["primary", 6] call _fnc_addMagazines;
@@ -1188,7 +1216,7 @@ private _aaTemplate = {
     [selectRandomWeighted [[], 2, "glasses", 0.75, "goggles", 0.5]] call _fnc_setFacewear;
     ["vests"] call _fnc_setVest;
     ["uniforms"] call _fnc_setUniform;
-    [["atBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
+    [["aaBackpacks","atBackpacks", "backpacks"] call _fnc_fallback] call _fnc_setBackpack;
 
     [selectRandom ["rifles", "carbines"]] call _fnc_setPrimary;
     ["primary", 5] call _fnc_addMagazines;

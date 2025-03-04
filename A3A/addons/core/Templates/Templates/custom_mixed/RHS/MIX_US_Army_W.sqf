@@ -577,7 +577,7 @@ _militarygoggles append [];
 _policeuniforms append ["rhs_uniform_bdu_erdl"];
 _policevests append ["rhsgref_TacVest_ERDL", "rhsgref_chestrig"];
 _policehelmets append ["H_Beret_02", "H_Booniehat_oli", "H_Cap_grn", "rhsgref_helmet_pasgt_erdl"];
-_policepoliceSMGs append [
+_policeWeapons append [
     ["rhs_weap_M590_8RD", "", "", "", ["rhsusf_8Rnd_00Buck", "rhsusf_8Rnd_Slug"], [], ""],
     ["rhs_weap_M590_5RD", "", "", "", ["rhsusf_5Rnd_00Buck", "rhsusf_5Rnd_Slug"], [], ""],
     ["rhsusf_weap_MP7A2", "", "rhsusf_acc_wmx_bk", "", ["rhsusf_mag_40Rnd_46x30_FMJ", "rhsusf_mag_40Rnd_46x30_FMJ", "rhsusf_mag_40Rnd_46x30_JHP"], [], ""],
