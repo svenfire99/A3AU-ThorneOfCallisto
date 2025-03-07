@@ -1,4 +1,4 @@
-/* Faction : Sweden Temperate
+/* Faction : Sweden Arid
  * Required mods/addons: "sfp_soldiers"
  * Optional mods/addons: "CUP_AirVehicles_Core", "RHS_US_A2Port_Armor", "rhssaf_c_vehicles"
  */
@@ -13,11 +13,11 @@ _fuelTrucks         append [];
 _medicalTrucks      append ["sfp_tgb1314"];
 _lightAPCs          append ["sfp_patgb360", "sfp_bv206"];
 _APCs               append ["sfp_81_pbv302_mounted", "sfp_pbv302_mounted", "sfp_pbv302", "sfp_81_pbv302"];
-_IFVs               append ["sfp_ikv91", "sfp_strf90c", "sfp_strv103b", "sfp_strv103c"];
+_IFVs               append ["sfp_ikv91", "sfp_strf90c_desert", "sfp_strv103b", "sfp_strv103c"];
 _airborneVehicles   append ["sfp_patgb360", "sfp_bv206"];
 _tanks              append ["sfp_strv121", "sfp_strv122", "sfp_81_strv102"];
 _lightTanks         append ["sfp_ikv91", "sfp_strf90c", "sfp_strv103b", "sfp_strv103c"];
-_aa                 append ["sfp_lvkv90c"];
+_aa                 append ["sfp_lvkv90c_desert"];
 
 _SDV        append [];
 _DropPod    append [];
@@ -36,7 +36,7 @@ _helisLight             append ["sfp_hkp9", "sfp_hkp6"];
 _transportHelicopters   append ["sfp_hkp9_sog", "sfp_hkp16", "sfp_hkp16_ffv","sfp_hkp4"];
 _helisLightAttack       append ["sfp_hkp9_rb55"];
 _helisAttack            append [];
-_airPatrol              append ["sfp_hkp6"];
+_airPatrol              append ["sfp_hkp9"];
 
 _artillery      append ["sfp_grkpbv90120"];
 _artilleryMags  append [
@@ -88,17 +88,20 @@ _designatedGrenadeLaunchers append [];
 _SMGs append [];
 _machineGuns append [];
 _marksmanRifles append [];
+_sniperRifles append [];
 _lightATLaunchers append ["sfp_rb57", "sfp_pskott86", "sfp_pskott68"];
 _lightHELaunchers append [];
 _ATLaunchers append [
-    ["sfp_grg48", "", "", "", ["sfp_grg_he_mag", "sfp_grg_heat_mag"], [], ""],
+	["sfp_grg48", "", "", "", ["sfp_grg_he_mag", "sfp_grg_heat_mag"], [], ""],
     ["sfp_grg86", "", "", "", ["sfp_grg_he_mag", "sfp_grg_heat_mag"], [], ""]
 ];
 _missleATLaunchers append [];
 _AALaunchers append [
-    ["sfp_rbs69", "", "", "", ["sfp_rbs69_mag"], [], ""]
+	["sfp_rbs69", "", "", "", ["sfp_rbs69_mag"], [], ""]
 ];
-_sidearms append [];
+_sidearms append [
+	["sfp_p88", "muzzle_snds_L", "sfp_tlr2", "", ["sfp_17Rnd_9x19_Mag"], [], ""]
+];
 _GLsidearms append [];
 
 _ATMines append ["ATMine_Range_Mag"];
@@ -107,6 +110,7 @@ _lightExplosives append ["DemoCharge_Remote_Mag"];
 _heavyExplosives append ["SatchelCharge_Remote_Mag"];
 
 _antiInfantryGrenades append ["sfp_handgrenade_shgr2000", "sfp_handgrenade_shgr07"];
+_antiTankGrenades append [];
 _smokeGrenades append ["SmokeShell"];
 _signalsmokeGrenades append ["SmokeShellYellow", "SmokeShellRed", "SmokeShellPurple", "SmokeShellOrange", "SmokeShellGreen", "SmokeShellBlue"];
 
@@ -119,13 +123,13 @@ _NVGs append [];
 _binoculars append ["Binocular"];
 _rangefinders append [];
 
-_traitorUniforms append ["sfp_m90w_uniform"];
-_traitorVests append ["sfp_kroppskydd94_rifle1"];
-_traitorHats append ["sfp_m90w_booniehat"];
+_traitorUniforms append [];
+_traitorVests append [];
+_traitorHats append [];
 
-_officerUniforms append ["sfp_m90w_uniform_tucked_m08"];
-_officerVests append ["sfp_kroppsskydd94"];
-_officerHats append ["sfp_army_beret"];
+_officerUniforms append [];
+_officerVests append [];
+_officerHats append [];
 
 _cloakUniforms append [];
 _cloakVests append [];
@@ -140,7 +144,10 @@ _GLvests append [];
 _vests append [];
 _backpacks append [];
 _atBackpacks append [];
+_aaBackpacks append [];
 _medBackpacks append [];
+_engBackpacks append [];
+_expBackpacks append [];
 _longRangeRadios append ["sfp_lk35_ra145", "sfp_stridssack2000_ra_ksk90"];
 _helmets append [];
 _slHat append [];
@@ -199,8 +206,8 @@ _sfcarbines append [
 	["sfp_ak5d", "", "", "", ["sfp_30Rnd_556x45_Stanag_plastic", "sfp_30Rnd_556x45_Stanag", "sfp_30Rnd_556x45_Stanag_tracer"], [], ""]
 ];
 _sfgrenadeLaunchers append [
-	["sfp_ak5c_m203", "", "", "sfp_optic_aimpoint_t1", ["sfp_30Rnd_556x45_Stanag_plastic", "sfp_30Rnd_556x45_Stanag", "sfp_30Rnd_556x45_Stanag_tracer"], ["1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "UGL_FlareWhite_F"], ""],
-	["sfp_ak5_m203", "", "", "", ["sfp_30Rnd_556x45_Stanag_plastic", "sfp_30Rnd_556x45_Stanag", "sfp_30Rnd_556x45_Stanag_tracer"], ["1Rnd_HE_Grenade_shell", "1Rnd_HE_Grenade_shell", "1Rnd_Smoke_Grenade_shell", "UGL_FlareWhite_F"], ""]
+	["sfp_ak5c_m203", "", "", "sfp_optic_aimpoint_t1", ["sfp_30Rnd_556x45_Stanag_plastic", "sfp_30Rnd_556x45_Stanag", "sfp_30Rnd_556x45_Stanag_tracer"], ["CUP_1Rnd_HE_M203", "CUP_1Rnd_HE_M203", "CUP_1Rnd_Smoke_M203", "CUP_1Rnd_StarCluster_White_M203"], ""],
+	["sfp_ak5_m203", "", "", "", ["sfp_30Rnd_556x45_Stanag_plastic", "sfp_30Rnd_556x45_Stanag", "sfp_30Rnd_556x45_Stanag_tracer"], ["CUP_1Rnd_HE_M203", "CUP_1Rnd_HE_M203", "CUP_1Rnd_Smoke_M203", "CUP_1Rnd_StarCluster_White_M203"], ""]
 ];
 _sfdesignatedGrenadeLaunchers append [];
 _sfSMGs append [
@@ -210,7 +217,9 @@ _sfSMGs append [
 ];
 _sfmachineGuns append [
 	["sfp_ksp58B2", "", "", "sfp_optic_susat_4x", ["sfp_100Rnd_762x51_ksp58"], [], ""],
-	["sfp_ksp58f", "", "sfp_dbal2", "sfp_optic_susat_4x", ["sfp_100Rnd_762x51_ksp58"], [], ""]
+	["sfp_ksp58f", "", "sfp_dbal2", "sfp_optic_susat_4x", ["sfp_100Rnd_762x51_ksp58"], [], ""],
+	["sfp_ksp90b", "", "", "cup_optic_acog2", ["sfp_200Rnd_556x45_ksp90"], [], ""],
+	["sfp_ksp90c", "", "sfp_dbal2", "cup_optic_acog2", ["sfp_200Rnd_556x45_ksp90"], [], ""]
 ];
 _sfmarksmanRifles append [
 	["sfp_ak4", "", "", "sfp_optic_kikarsikte09_4x", ["sfp_20Rnd_762x51_ak4_ap", "sfp_20Rnd_762x51_ak4"], [], ""],
@@ -224,9 +233,7 @@ _sflightHELaunchers append [];
 _sfATLaunchers append [];
 _sfmissleATLaunchers append [];
 _sfAALaunchers append [];
-_sfsidearms append [
-	["sfp_p88", "muzzle_snds_L", "sfp_tlr2", "", ["sfp_17Rnd_9x19_Mag"], [], ""]
-];
+_sfsidearms append [];
 _sfGLsidearms append [];
 
 _sfATMines append [];
@@ -244,10 +251,10 @@ _sfcompasses append [];
 _sfradios append [];
 _sfgpses append [];
 _sfNVGs append [];
-_sfbinoculars append [];
+_sfbinoculars append ["Laserdesignator"];
 _sfrangefinders append [];
 
-_sfuniforms append ["sfp_m90w_uniform", "sfp_m90w_uniform_ksk90_modern", "sfp_m90w_uniform_ksk90", "sfp_m90w_uniform_boots_m08", "sfp_m90w_uniform_m08", "sfp_m90w_uniform_modern", "sfp_m90w_uniform_dirty"];
+_sfuniforms append ["sfp_m90d_uniform", "sfp_m90d_uniform_folded", "sfp_m90d_uniform_tucked_m08", "sfp_m90d_uniform_long_m08", "sfp_m90d_uniform_fs18"];
 _sfslUniforms append [];
 _sfvests append ["sfp_kroppsskydd12", "sfp_kroppsskydd12_tl"];
 _sfHvests append [];
@@ -258,10 +265,14 @@ _sfSNIvests append [];
 _sfGLvests append ["sfp_kroppsskydd12_gl"];
 _sfbackpacks append ["sfp_backpack_stridssack08"];
 _sfatBackpacks append ["sfp_backpack_stridssack2000"];
+_sfaaBackpacks append [];
+_sfmedBackpacks append [];
+_sfengBackpacks append [];
+_sfexpBackpacks append [];
 _sflongRangeRadios append [];
-_sfhelmets append ["sfp_m90w_helmet", "sfp_m90w_helmet_headset_nvg", "sfp_m90w_helmet_headset", "sfp_m90w_helmet_nvg", "sfp_m90w_helmet_peltor_nomic", "sfp_m90w_helmet_peltor_nvg", "sfp_m90w_helmet_peltor"];
+_sfhelmets append ["sfp_m90d_helmet", "sfp_m90d_helmet_headset_nvg", "sfp_m90d_helmet_headset", "sfp_m90d_helmet_nvg", "sfp_m90d_helmet_peltor_nomic", "sfp_m90d_helmet_peltor_nvg", "sfp_m90d_helmet_peltor"];
 _sfslHat append ["sfp_sf_beret"];
-_sfsniHats append ["sfp_m90w_booniehat"];
+_sfsniHats append [];
 
 _sfglasses append [];
 _sfgoggles append [];
@@ -307,7 +318,9 @@ _eliteSMGs append [
 ];
 _elitemachineGuns append [
 	["sfp_ksp58B2", "", "", "sfp_optic_susat_4x", ["sfp_100Rnd_762x51_ksp58"], [], ""],
-	["sfp_ksp58f", "", "sfp_dbal2", "sfp_optic_susat_4x", ["sfp_100Rnd_762x51_ksp58"], [], ""]
+	["sfp_ksp58f", "", "sfp_dbal2", "sfp_optic_susat_4x", ["sfp_100Rnd_762x51_ksp58"], [], ""],
+	["sfp_ksp90b", "", "", "cup_optic_acog2", ["sfp_200Rnd_556x45_ksp90"], [], ""],
+	["sfp_ksp90c", "", "sfp_dbal2", "cup_optic_acog2", ["sfp_200Rnd_556x45_ksp90"], [], ""]
 ];
 _elitemarksmanRifles append [
 	["sfp_ak4", "", "", "sfp_optic_kikarsikte09_4x", ["sfp_20Rnd_762x51_ak4_ap", "sfp_20Rnd_762x51_ak4"], [], ""],
@@ -321,9 +334,7 @@ _elitelightHELaunchers append [];
 _eliteATLaunchers append [];
 _elitemissleATLaunchers append [];
 _eliteAALaunchers append [];
-_elitesidearms append [
-	["sfp_p88", "", "sfp_tlr2", "", ["sfp_17Rnd_9x19_Mag"], [], ""]
-];
+_elitesidearms append [];
 _eliteGLsidearms append [];
 
 _eliteATMines append [];
@@ -341,11 +352,11 @@ _elitecompasses append [];
 _eliteradios append [];
 _elitegpses append [];
 _eliteNVGs append [];
-_elitebinoculars append [];
+_elitebinoculars append ["Laserdesignator"];
 _eliterangefinders append [];
 
-_eliteuniforms append ["sfp_m90w_uniform", "sfp_m90w_uniform_ksk90_modern", "sfp_m90w_uniform_ksk90", "sfp_m90w_uniform_boots_m08", "sfp_m90w_uniform_m08", "sfp_m90w_uniform_modern", "sfp_m90w_uniform_dirty"];
-_eliteslUniforms append ["sfp_m90w_uniform_tucked_m08"];
+_eliteuniforms append ["sfp_m90d_uniform", "sfp_m90d_uniform_folded", "sfp_m90d_uniform_tucked_m08", "sfp_m90d_uniform_long_m08", "sfp_m90d_uniform_fs18"];
+_eliteslUniforms append ["sfp_m90d_uniform_tucked_m08"];
 _elitevests append ["sfp_kroppskydd94_rifle1"];
 _eliteHvests append ["sfp_kroppskydd94_sv2k_rifle1_diaper"];
 _eliteMGvests append ["sfp_kroppskydd94_sv2k_rifle1"];
@@ -355,10 +366,14 @@ _eliteSNIvests append [];
 _eliteGLvests append ["sfp_kroppskydd94_sv2k_rifle1"];
 _elitebackpacks append ["sfp_backpack_stridssack2000", "sfp_backpack_lk35","sfp_backpack_stridssack08"];
 _eliteatBackpacks append ["sfp_backpack_grg_loader"];
+_eliteaaBackpacks append [];
+_elitemedBackpacks append [];
+_aliteengBackpacks append [];
+_eliteexpBackpacks append [];
 _elitelongRangeRadios append [];
-_elitehelmets append ["sfp_m90w_helmet", "sfp_m90w_helmet_headset_nvg", "sfp_m90w_helmet_headset", "sfp_m90w_helmet_nvg", "sfp_m90w_helmet_peltor_nomic", "sfp_m90w_helmet_peltor_nvg", "sfp_m90w_helmet_peltor"];
+_elitehelmets append ["sfp_m90d_helmet", "sfp_m90d_helmet_headset_nvg", "sfp_m90d_helmet_headset", "sfp_m90d_helmet_nvg", "sfp_m90d_helmet_peltor_nomic", "sfp_m90d_helmet_peltor_nvg", "sfp_m90d_helmet_peltor"];
 _eliteslHat append ["sfp_army_beret"];
-_elitesniHats append ["sfp_m90w_booniehat"];
+_elitesniHats append [];
 
 _eliteglasses append [];
 _elitegoggles append [];
@@ -418,9 +433,7 @@ _militarylightHELaunchers append [];
 _militaryATLaunchers append [];
 _militarymissleATLaunchers append [];
 _militaryAALaunchers append [];
-_militarysidearms append [
-	["sfp_p88", "", "", "", ["sfp_17Rnd_9x19_Mag"], [], ""]
-];
+_militarysidearms append [];
 _militaryGLsidearms append [];
 
 _militaryATMines append [];
@@ -441,8 +454,8 @@ _militaryNVGs append [];
 _militarybinoculars append [];
 _militaryrangefinders append [];
 
-_militaryuniforms append ["sfp_m90w_uniform", "sfp_m90w_uniform_ksk90_modern", "sfp_m90w_uniform_ksk90", "sfp_m90w_uniform_boots_m08", "sfp_m90w_uniform_m08", "sfp_m90w_uniform_modern", "sfp_m90w_uniform_dirty"];
-_militaryslUniforms append ["sfp_m90w_uniform_tucked_m08"];
+_militaryuniforms append ["sfp_m90d_uniform", "sfp_m90d_uniform_folded", "sfp_m90d_uniform_tucked_m08", "sfp_m90d_uniform_long_m08", "sfp_m90d_uniform_fs18"];
+_militaryslUniforms append ["sfp_m90d_uniform_tucked_m08"];
 _militaryvests append ["sfp_kroppskydd94_rifle1"];
 _militaryHvests append ["sfp_kroppskydd94_sv2k_rifle1_diaper"];
 _militaryMGvests append ["sfp_kroppskydd94_sv2k_rifle1"];
@@ -452,10 +465,14 @@ _militarySNIvests append [];
 _militaryGLvests append ["sfp_kroppskydd94_sv2k_rifle1"];
 _militarybackpacks append ["sfp_backpack_stridssack2000", "sfp_backpack_lk35","sfp_backpack_stridssack08"];
 _militaryatBackpacks append ["sfp_backpack_grg_loader"];
+_militaryaaBackpacks append [];
+_militarymedBackpacks append [];
+_militaryengBackpacks append [];
+_militaryexpBackpacks append [];
 _militarylongRangeRadios append [];
-_militaryhelmets append ["sfp_m90w_helmet", "sfp_m90w_helmet_headset_nvg", "sfp_m90w_helmet_headset", "sfp_m90w_helmet_nvg", "sfp_m90w_helmet_peltor_nomic", "sfp_m90w_helmet_peltor_nvg", "sfp_m90w_helmet_peltor"];
+_militaryhelmets append ["sfp_m90d_helmet", "sfp_m90d_helmet_headset_nvg", "sfp_m90d_helmet_headset", "sfp_m90d_helmet_nvg", "sfp_m90d_helmet_peltor_nomic", "sfp_m90d_helmet_peltor_nvg", "sfp_m90d_helmet_peltor"];
 _militaryslHat append ["sfp_army_beret"];
-_militarysniHats append ["sfp_m90w_booniehat"];
+_militarysniHats append [];
 
 _militaryglasses append [];
 _militarygoggles append [];
@@ -474,9 +491,7 @@ _policeWeapons append [
 	["sfp_mp5", "", "", "", ["sfp_30Rnd_9mm_mp5", "sfp_30Rnd_9mm_mp5_JHP"], [], ""],
 	["sfp_mp5_rail", "", "", "", ["sfp_30Rnd_9mm_mp5", "sfp_30Rnd_9mm_mp5_JHP"], [], ""]
 ];
-_policesidearms append [
-	["sfp_p88", "", "", "", ["sfp_17Rnd_9x19_Mag"], [], ""]
-];
+_policesidearms append [];
 
 ////////////////////////////////
 //    Militia Loadout Data    //
@@ -512,14 +527,12 @@ _militiamarksmanRifles append [
 _militiasniperRifles append [
 	["sfp_psg90_base", "", "", "sfp_optic_kikarsikte90b_10x", ["sfp_9Rnd_762x51_psg90"], [], ""]
 ];
-_militialightATLaunchers append ["sfp_pskott68"];
+_militialightATLaunchers append [];
 _militialightHELaunchers append [];
 _militiaATLaunchers append [];
 _militiamissleATLaunchers append [];
 _militiaAALaunchers append [];
-_militiasidearms append [
-	["sfp_p88", "", "", "", ["sfp_17Rnd_9x19_Mag"], [], ""]
-];
+_militiasidearms append [];
 _militiaGLsidearms append [];
 
 _militiaATMines append [];
@@ -540,7 +553,7 @@ _militiaNVGs append [];
 _militiabinoculars append [];
 _militiarangefinders append [];
 
-_militiauniforms append ["sfp_m58w_uniform", "sfp_m58w_uniform_alt1", "sfp_m59w_uniform", "sfp_m59w_uniform_alt1"];
+_militiauniforms append ["sfp_m90d_uniform", "sfp_m90d_uniform_folded", "sfp_m90d_uniform_tucked_m08", "sfp_m90d_uniform_long_m08", "sfp_m90d_uniform_fs18"];
 _militiaslUniforms append [];
 _militiavests append ["sfp_stridsvast2000", "sfp_stridsvast2000_ar", "sfp_stridsvast2000_gl", "sfp_stridsvast2000_mg", "sfp_stridsvast2000_light"];
 _militiaHvests append [];
@@ -551,10 +564,14 @@ _militiaSNIvests append ["sfp_stridsvast2000_light"];
 _militiaGLvests append [];
 _militiabackpacks append ["sfp_stridssele_backpack"];
 _militiaatBackpacks append ["sfp_stridssele_backpack_grg"];
+_militiaaaBackpacks append [];
+_militiamedBackpacks append [];
+_militiaengBackpacks append [];
+_militiaexpBackpacks append [];
 _militialongRangeRadios append [];
-_militiahelmets append ["sfp_m37w_helmet", "sfp_m37w_helmet_dok3", "sfp_m37w_helmet_dok4", "sfp_m37w_helmet_dok2", "sfp_m37w_helmet_dok"];
+_militiahelmets append ["sfp_m90d_helmet", "sfp_m90d_helmet_headset_nvg", "sfp_m90d_helmet_headset", "sfp_m90d_helmet_nvg", "sfp_m90d_helmet_peltor_nomic", "sfp_m90d_helmet_peltor_nvg", "sfp_m90d_helmet_peltor"];
 _militiaslHat append ["sfp_homeguard_beret"];
-_militiasniHats append ["sfp_wool_beanie_green"];
+_militiasniHats append [];
 
 _militiaglasses append [];
 _militiagoggles append [];
@@ -582,12 +599,13 @@ _pilotSMGs append [
 	["sfp_kpistm45b", "", "", "", ["sfp_36Rnd_9mm_kpistm45"], [], ""]
 ];
 
+
 if (isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core") || isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
 	if (isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core") && !isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
-		_cargoTrucks        append ["CUP_B_MTVR_BAF_WOOD"];
-		_ammoTrucks         append ["CUP_B_MTVR_Ammo_BAF_WOOD"];
-		_repairTrucks       append ["CUP_B_MTVR_Repair_BAF_WOOD"];
-		_fuelTrucks         append ["CUP_B_MTVR_Refuel_BAF_WOOD"];
+		_cargoTrucks        append ["CUP_B_MTVR_BAF_DES"];
+		_ammoTrucks         append ["CUP_B_MTVR_Ammo_BAF_DES"];
+		_repairTrucks       append ["CUP_B_MTVR_Repair_BAF_DES"];
+		_fuelTrucks         append ["CUP_B_MTVR_Refuel_BAF_DES"];
 		_planesCAS  		append ["CUP_I_JAS39_RACS"];
 		_planesAA   		append ["CUP_I_JAS39_RACS"];
 		_helisAttack        append ["CUP_B_AH64_DL_BAF"];
@@ -601,15 +619,32 @@ if (isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core") || isClass (c
 		_rangefinders append ["CUP_LRTV"];
 		
 		_sfbinoculars append ["CUP_SOFLAM"];
+		_sfsniHats append ["CUP_H_CZ_Booniehat_vz95_des"];
+		_sfsidearms append [
+			["CUP_hgun_Glock17", "", "", "", [], [], ""],
+			["CUP_hgun_Glock17_blk", "", "", "", [], [], ""]	
+		];
 		_elitebinoculars append ["CUP_LRTV"];
+		_elitesniHats append ["CUP_H_CZ_Booniehat_vz95_des"];
+		_elitesidearms append [
+			["CUP_hgun_Glock17", "", "", "", [], [], ""],
+			["CUP_hgun_Glock17_blk", "", "", "", [], [], ""]
+		];	
 		_militarybinoculars append ["CUP_LRTV"];
+		_militarysniHats append ["CUP_H_CZ_Booniehat_vz95_des"];
+		_militarysidearms append [
+			["CUP_hgun_Glock17", "", "", "", [], [], ""],
+			["CUP_hgun_Glock17_blk", "", "", "", [], [], ""]
+		];	
 		_militialightATLaunchers append ["CUP_launch_M72A6"];
+		_militiasniHats append ["CUP_H_CZ_Booniehat_vz95_des"];
+		_militiasidearms append ["CUP_hgun_Glock17"];
 	}; 
 	if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy") && !isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core")) then {
-		_cargoTrucks        append ["rhsusf_M1084A1R_SOV_M2_WD_fmtv_socom", "rhsusf_M1078A1P2_WD_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_WD_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_WD_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_WD_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_WD_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_M2_WD_flatbed_fmtv_usarmy", "rhsusf_M1084A1P2_WD_fmtv_usarmy", "rhsusf_M1084A1P2_B_WD_fmtv_usarmy", "rhsusf_M1084A1P2_B_M2_WD_fmtv_usarmy", "rhsusf_M977A4_usarmy_wd", "rhsusf_M977A4_BKIT_usarmy_wd", "rhsusf_M977A4_BKIT_M2_usarmy_wd"];
-		_ammoTrucks         append ["rhsusf_M977A4_AMMO_usarmy_wd", "rhsusf_M977A4_AMMO_BKIT_usarmy_wd", "rhsusf_M977A4_AMMO_BKIT_M2_usarmy_wd"];
-		_repairTrucks       append ["rhsusf_M977A4_REPAIR_usarmy_wd", "rhsusf_M977A4_REPAIR_BKIT_M2_usarmy_wd", "rhsusf_M977A4_REPAIR_BKIT_usarmy_wd"];
-		_fuelTrucks         append ["rhsusf_M978A4_usarmy_wd", "rhsusf_M978A4_BKIT_usarmy_wd"];
+		_cargoTrucks        append ["rhsusf_M1078A1P2_D_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_D_flatbed_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_D_flatbed_fmtv_usarmy", "rhsusf_M1083A1P2_B_M2_D_flatbed_fmtv_usarmy", "rhsusf_M1084A1P2_B_M2_D_fmtv_usarmy", "rhsusf_M977A4_usarmy_d", "rhsusf_M977A4_BKIT_usarmy_d", "rhsusf_M977A4_BKIT_M2_usarmy_d"];
+		_ammoTrucks         append ["rhsusf_M977A4_AMMO_usarmy_d", "rhsusf_M977A4_AMMO_BKIT_usarmy_d", "rhsusf_M977A4_AMMO_BKIT_M2_usarmy_d"];
+		_repairTrucks       append ["rhsusf_M977A4_REPAIR_usarmy_d", "rhsusf_M977A4_REPAIR_BKIT_M2_usarmy_d", "rhsusf_M977A4_REPAIR_BKIT_usarmy_d"];
+		_fuelTrucks         append ["rhsusf_M978A4_BKIT_usarmy_d", "rhsusf_M978A4_usarmy_d"];
 		_planesCAS  		append ["RHS_A10"];
 		_planesAA   		append ["rhsusf_f22"];
 		_helisAttack        append ["RHS_AH64D_wd"];
