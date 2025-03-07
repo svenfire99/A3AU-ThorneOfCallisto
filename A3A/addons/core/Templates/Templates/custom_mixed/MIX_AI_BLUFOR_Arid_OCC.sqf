@@ -465,6 +465,16 @@ if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
     #include "RHS\RHS_Vehicle_Attributes.sqf"
 };
 
+if (isClass (configFile >> "CfgVehicles" >> "BWA3_Dingo2_FLW200_M2_CG13_Fleck")) then {
+    #include "BWA3\MIX_BW_Arid.sqf"
+    #include "BWA3\BWA3_Vehicle_Attributes.sqf"
+};
+
+if (isClass (configFile >> "CfgVehicles" >> "sfp_strv122b")) then {
+    #include "SWE\MIX_SFP_Arid.sqf"
+    #include "SWE\SFP_Vehicle_Attributes.sqf"
+};
+
 //////////////////////////////////
 //  End Include Factions here   //
 //////////////////////////////////
