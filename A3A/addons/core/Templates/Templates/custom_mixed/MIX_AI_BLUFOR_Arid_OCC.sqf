@@ -481,7 +481,20 @@ private _pilotSMGs = [];
 #include "Vanilla\Vanilla_Vehicle_Attributes.sqf"
 
 if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
-    #include "RHS\MIX_US_Army_D.sqf"
+    
+    if (isClass (configFile >> "CfgFactionClasses" >> "UK3CB_FIA_B")) then {
+        // #include "3CBF\MIX_US_Army_W.sqf"
+        // #include "3CBF\MIX_USMC_W.sqf"
+        // #include "3CBF\3CBF_Vehicle_Attributes.sqf"
+
+        if (isClass (configFile >> "CfgFactionClasses" >> "UK3CB_FIA_B")) then { // TODO Change to BAF faction class at home
+            #include "3CBBAF\MIX_BAF_Arid.sqf"
+            #include "3CBBAF\3CBBAF_Vehicle_Attributes.sqf"
+        };
+    } else {
+        #include "RHS\MIX_US_Army_D.sqf"
+        // #include "RHS\MIX_USMC_D.sqf"
+    };
     #include "RHS\RHS_Vehicle_Attributes.sqf"
 };
 
