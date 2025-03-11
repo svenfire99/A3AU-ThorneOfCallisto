@@ -3,20 +3,20 @@
  * Optional mods/addons: 
  */
 _basic              append ["B_Quadbike_01_F"];
-_unarmedVehicles    append ["R3F_PVP_CE", "B_AMF_VAB_ULTIMA_X8_F"];
-_armedVehicles      append ["R3F_PVP_FN_CE", "AMF_VBMR_L_01"];
-_Trucks             append ["AMF_GBC180_PERS_01", "R3F_KAMAZ_CE_trans"];
+_unarmedVehicles    append ["R3F_PVP_DA", "B_AMF_VAB_ULTIMA_X8_TDF_F"];
+_armedVehicles      append ["R3F_PVP_FN_DA", "AMF_VBMR_L_TDF_01"];
+_Trucks             append ["AMF_GBC180_PERS_01", "R3F_KAMAZ_DA_trans"];
 _cargoTrucks        append ["AMF_GBC180_PLATEAU_01", "AMF_GBC180_PERS_01"];
 _ammoTrucks         append ["AMF_GBC180_AmmoTruck"];
 _repairTrucks       append ["AMF_GBC180_MECA_01"];
-_fuelTrucks         append ["R3F_KAMAZ_CE_fuel"];
-_medicalTrucks      append ["R3F_KAMAZ_CE_medevac", "AMF_VBMR_SAN_CE"];
-_lightAPCs          append ["B_AMF_VAB_ULTIMA_X8_F", "AMF_VBMR_HMG_CE", "AMF_VBMR_GENIE_OD", "AMF_VBMR_L_CE_01"];
-_APCs               append ["R3F_PANDUR_CE", "B_AMF_AMX10_RCR_01_F", "B_AMF_VAB_ULTIMA_TOP_X8_F", "AMF_VBMR_COMMANDEMENT_CE", "AMF_VBCI_CE_01_F"];
-_IFVs               append ["AMF_VBCI_CE_01_F", "B_AMF_AMX10_RCR_01_F"];
-_airborneVehicles   append ["B_AMF_VAB_ULTIMA_X8_F", "AMF_VBMR_HMG_CE", "AMF_VBCI_CE_01_F", "AMF_EBRC_CE_01", "B_AMF_AMX10_RCR_01_F"];
-_tanks              append ["B_AMF_TANK_01", "B_AMF_TANK_CE_02_F", "R3F_MBT52_CE"];
-_lightTanks         append ["B_AMF_AMX10_RCR_SEPAR_01_F", "R3F_DCL_CE"];
+_fuelTrucks         append ["R3F_KAMAZ_DA_fuel"];
+_medicalTrucks      append ["R3F_KAMAZ_DA_medevac", "AMF_VBMR_SAN_TDF"];
+_lightAPCs          append ["B_AMF_VAB_ULTIMA_X8_TDF_F", "AMF_VBMR_HMG_TDF", "AMF_VBMR_GENIE_TDF", "AMF_VBMR_L_TDF_01"];
+_APCs               append ["R3F_PANDUR_DA", "B_AMF_AMX10_RCR_02_F", "B_AMF_VAB_ULTIMA_TOP_X8_TDF_F", "AMF_VBMR_COMMANDEMENT_TDF", "AMF_VBCI_TDF_01_F"];
+_IFVs               append ["AMF_VBCI_TDF_01_F", "B_AMF_AMX10_RCR_02_F"];
+_airborneVehicles   append ["B_AMF_VAB_ULTIMA_X8_TDF_F", "AMF_VBMR_HMG_TDF", "AMF_VBCI_TDF_01_F", "AMF_EBRC_TDF_01", "B_AMF_AMX10_RCR_02_F"];
+_tanks              append ["B_AMF_TANK_TDF_01_F", "B_AMF_TANK_TDF_02_F", "R3F_MBT52_DA"];
+_lightTanks         append ["B_AMF_AMX10_RCR_SEPAR_02_F", "R3F_DCL_DA"];
 _aa                 append ["B_APC_Tracked_01_AA_F"]; // TODO Try find fitting replacement in other mods
 
 _SDV        append [];
@@ -24,7 +24,7 @@ _DropPod    append [];
 
 _transportBoat  append ["B_Boat_Transport_01_F"];
 _gunBoat        append ["B_Boat_Armed_01_minigun_F"];
-_Amphibious     append ["R3F_PANDUR_CE"];
+_Amphibious     append ["R3F_PANDUR_DA"];
 
 _planesCAS  append ["R3F_ALCA_ADLA", "AMF_RAFALE_B_01_F"];
 _planesAA   append ["AMF_RAFALE_B_01_F", "R3F_GRIPEN", "B_AMF_PLANE_FIGHTER_02_F"];
@@ -32,11 +32,11 @@ _planesAA   append ["AMF_RAFALE_B_01_F", "R3F_GRIPEN", "B_AMF_PLANE_FIGHTER_02_F
 _planesTransport    append ["B_AMF_PLANE_TRANSPORT_01_F"];
 _gunship            append [];
 
-_helisLight             append ["AMF_gazelle_afte_f", "R3F_AH6_CE", "R3F_LYNX_CE"];
-_transportHelicopters   append ["amf_nh90_tth_transport", "amf_cougar", "R3F_MERLIN_CE"];
-_helisLightAttack       append ["R3F_AH6_CE_ARMED", "R3F_LYNX_CE_ARMED"];
+_helisLight             append ["AMF_gazelle_afte_f", "R3F_AH6_DA", "R3F_LYNX_DA"];
+_transportHelicopters   append ["amf_nh90_tth_transport", "amf_cougar", "R3F_MERLIN_DA"];
+_helisLightAttack       append ["R3F_AH6_DA_ARMED", "R3F_LYNX_DA_ARMED"];
 _helisAttack            append ["AMF_TIGRE_01"];
-_airPatrol              append ["R3F_AH6_CE"];
+_airPatrol              append ["AMF_gazelle_afte_f"];
 
 _artillery      append ["B_T_MBT_01_arty_F","B_T_MBT_01_mlrs_F"];
 _artilleryMags  append [
@@ -47,10 +47,10 @@ _artilleryMags  append [
 _uavsAttack     append ["B_UAV_02_CAS_F"];
 _uavsPortable   append ["B_UAV_01_F"];
 
-_militiaLightArmed  append ["R3F_PVP_FN_CE"];
+_militiaLightArmed  append ["R3F_PVP_FN_DA"];
 _militiaTrucks      append ["AMF_GBC180_PERS_01"];
-_militiaCars        append ["R3F_PVP_CE"];
-_militiaAPCs        append ["R3F_FENNEC_CE"]; 
+_militiaCars        append ["R3F_PVP_DA"];
+_militiaAPCs        append ["R3F_FENNEC_DA"]; 
 
 _policeVehs append ["R3F_PVP_GENDARMERIE"];
 
@@ -89,6 +89,7 @@ _designatedGrenadeLaunchers append [];
 _SMGs append [];
 _machineGuns append [];
 _marksmanRifles append [];
+_sniperRifles append [];
 _lightATLaunchers append [];
 _lightHELaunchers append [];
 _ATLaunchers append [];
@@ -108,6 +109,7 @@ _lightExplosives append ["DemoCharge_Remote_Mag"];
 _heavyExplosives append ["SatchelCharge_Remote_Mag"];
 
 _antiInfantryGrenades append ["HandGrenade", "MiniGrenade"];
+_antiTankGrenades append [];
 _smokeGrenades append ["SmokeShell"];
 _signalsmokeGrenades append ["SmokeShellYellow", "SmokeShellRed", "SmokeShellPurple", "SmokeShellOrange", "SmokeShellGreen", "SmokeShellBlue"];
 
@@ -132,6 +134,7 @@ _cloakUniforms append [];
 _cloakVests append [];
 
 _uniforms append [];
+_slUniforms append [];
 _MGvests append [];
 _MEDvests append [];
 _SLvests append [];
@@ -140,7 +143,10 @@ _GLvests append [];
 _vests append [];
 _backpacks append [];
 _atBackpacks append [];
+_aaBackpacks append [];
 _medBackpacks append [];
+_engBackpacks append [];
+_expBackpacks append [];
 _longRangeRadios append ["B_RadioBag_01_black_F"];
 _helmets append [];
 _slHat append ["AMF_BERET_INFANTERIE"];
@@ -160,6 +166,7 @@ _pItems append [];
 _cItems append [];
 _uItems append [];
 
+// Remove this if not wanted, example: WW2 mods
 if (A3A_hasACE) then {
 	_slItems append ["ACE_microDAGR", "ACE_DAGR"];
 	_eeItems append ["ACE_Clacker", "ACE_DefusalKit"];
@@ -178,7 +185,7 @@ _sfslRifles append [
     ["AMF_614_short_FS4_BLK", "AMF_ROTEX_V", "AMF_WMX200", "AMF_AIMPOINT_MICRO_T2", ["30Rnd_556x45_Stanag_Tracer_Green"], [], "amf_acc_614_grip4"],
     ["AMF_Samas_VALO_01_F", "muzzle_snds_M", "AMF_AN_PEQ_15_black", "AMF_Red_Dot_Sight", ["25Rnd_samas_f1_mag"], [], "amf_acc_famas_grip5"]
 ];
-_sfrifles append [ 
+_sfrifles append [
     ["R3F_SCAR_L_BLACK", "R3F_SILENCIEUX_ROTEX", "r3f_acc_anpeq_laser_scar", "R3F_ELCAN_5_56", ["R3F_30Rnd_Magpul_556x45"], [], ""],
     ["AMF_614_long_FS3_BLK", "AMF_ROTEX_V", "", "AMF_exps3_magnifier_side", ["30Rnd_556x45_Stanag_Tracer_Green"], [], "amf_acc_614_grip5"],
     ["AMF_614_short_FS3_BLK", "AMF_ROTEX_V", "", "AMF_EOTECH_553", ["30Rnd_556x45_Stanag_Tracer_Green"], [], ""],
@@ -210,7 +217,7 @@ _sfmarksmanRifles append [
     ["AMF_714_Long_01_F", "", "AMF_AN_PEQ_15_black", "R3F_NF", ["20Rnd_762x51_HK417_mag"], [], "bipod_03_F_blk"],
     ["R3F_SCAR_H_TPR_20pcs_blk", "", "AMF_AN_PEQ_15_black", "R3F_NF42", ["R3F_20Rnd_762x51_SCAR"], [], "R3F_BIPIED_HK417"]
 ];
-_sfsniperRifles append [ 
+_sfsniperRifles append [
     ["AMF_PGM_ULTIMA_RATIO_01_F", "", "", "optic_LRPS", ["10Rnd_762x51_Mag"], [], "bipod_01_F_blk"]
 ];
 _sflightATLaunchers append ["AMF_AT4CS_Loaded"];
@@ -239,24 +246,29 @@ _sfwatches append [];
 _sfcompasses append [];
 _sfradios append [];
 _sfgpses append [];
-_sfNVGs append ["AMF_BINYX_BLK_NVG"];
+_sfNVGs append ["AMF_ONYX_NVG"];
 _sfbinoculars append ["AMF_OB72_SOPHIE"];
 _sfrangefinders append [];
 
-_sfuniforms append ["amf_uniform_04_OD", "amf_uniform_05_OD"];
-_sfvests append ["amf_JPC_01_OD", "amf_DCS_01_OD"];
+_sfuniforms append ["amf_uniform_04_TAN", "amf_uniform_05_TAN"];
+_sfslUniforms append [];
+_sfvests append ["amf_JPC_01_BLK", "amf_DCS_01_BLK", "amf_DCS_02_BLK"];
 _sfHvests append [];
-_sfMGvests append ["amf_SMB_ART_TDF"];
-_sfMEDvests append ["amf_DCS_03_OD"];
-_sfSLvests append [];
+_sfMGvests append ["amf_SMB_ART_TAN"];
+_sfMEDvests append ["amf_SMB_AUXSAN_TAN"];
+_sfSLvests append ["AMF_FELIN_BACKPACK_LIGHT_TAN", "AMF_FELIN_BACKPACK_MEDIC_TAN"];
 _sfSNIvests append [];
-_sfGLvests append ["amf_SMB_GRE_TDF"];
-_sfbackpacks append ["AMF_rush24_01","R3F_sac_petit_noir"];
-_sfatBackpacks append ["AMF_Bergen_F2"];
+_sfGLvests append ["amf_SMB_GRE_TAN"];
+_sfbackpacks append ["AMF_rush24_01_BLK", "AMF_rush24_01_TAN"];
+_sfatBackpacks append ["amf_tecpack_70L_TAN"];
+_sfaaBackpacks append [];
+_sfmedBackpacks append [];
+_sfengBackpacks append [];
+_sfexpBackpacks append [];
 _sflongRangeRadios append [];
-_sfhelmets append ["AMF_opscore4", "AMF_OPSCORE2_OD1_2"];
+_sfhelmets append ["AMF_OPSCORE4_BLACK", "AMF_OPSCORE4_TAN", "AMF_OPSCORE_TAN1", "AMF_OPSCORE_TAN_2"];
 _sfslHat append ["AMF_BERET_MARINE_PARA"];
-_sfsniHats append ["AMF_F3_L02"];
+_sfsniHats append ["AMF_OPSCORE_TAN2_2", "AMF_FELIN_L03_TAN"];
 
 _sfglasses append [];
 _sfgoggles append [];
@@ -337,7 +349,7 @@ _eliteNVGs append [];
 _elitebinoculars append ["AMF_OB72_SOPHIE"];
 _eliterangefinders append [];
 
-_eliteuniforms append ["amf_uniform_01_CE_HS", "amf_uniform_01_RE_CE_HS", "amf_uniform_03_CE_HS", "amf_uniform_05_TAN"];
+_eliteuniforms append ["amf_uniform_01_DA_HS", "amf_uniform_01_RE_DA_HS", "amf_uniform_03_DA_HS", "amf_uniform_05_TAN"];
 _eliteslUniforms append ["amf_uniform_04_TAN"];
 _elitevests append ["amf_DCS_04_TAN", "amf_DCS_03_TAN", "amf_DCS_02_TAN"];
 _eliteHvests append ["amf_SMB_GRE_FAMAS_TAN"];
@@ -348,6 +360,10 @@ _eliteSNIvests append [];
 _eliteGLvests append ["amf_SMB_GRE_TAN"];
 _elitebackpacks append ["AMF_rush24_01_TAN", "AMF_FELIN_BACKPACK_TAN", "AMF_Bergen_F2","AMF_FELIN_BACKPACK_MEDIC_TAN", "AMF_FELIN_BACKPACK_LIGHT_TAN"];
 _eliteatBackpacks append ["amf_tecpack_70L_TAN"];
+_eliteaaBackpacks append [];
+_elitemedBackpacks append [];
+_aliteengBackpacks append [];
+_eliteexpBackpacks append [];
 _elitelongRangeRadios append [];
 _elitehelmets append ["AMF_FELIN_05_TAN", "AMF_FELIN_06_TAN", "AMF_OPSCORE_TAN_2", "AMF_OPSCORE3_TAN", "AMF_OPSCORE4_TAN"];
 _eliteslHat append [];
@@ -383,7 +399,7 @@ _militarygrenadeLaunchers append [
 ];
 _militarydesignatedGrenadeLaunchers append [];
 _militarySMGs append [
-    ["amf_hk_mp5_02_f", "", "", "AMF_Red_Dot_Sight", ["30Rnd_9x19_mag"], [], ""]
+	["amf_hk_mp5_02_f", "", "", "AMF_Red_Dot_Sight", ["30Rnd_9x19_mag"], [], ""]
 ];
 _militarymachineGuns append [
     ["amf_mini_mg_tactical_mk3", "", "", "AMF_specter", ["150Rnd_MINI_MG_mag"], [], "amf_acc_mini_grip2"],
@@ -423,24 +439,28 @@ _militarycompasses append [];
 _militaryradios append [];
 _militarygpses append [];
 _militaryNVGs append [];
-_militarybinoculars append [];
+_militarybinoculars append ["AMF_APX_M241"];
 _militaryrangefinders append [];
 
-_militaryuniforms append ["amf_uniform_01_CE_HX", "amf_uniform_01_RE_CE_MD", "amf_uniform_01_RE_NG_CE_HS"];
+_militaryuniforms append ["amf_uniform_01_DA_HX", "amf_uniform_01_RE_DA_MD", "amf_uniform_01_RE_NG_DA_HS"];
 _militaryslUniforms append ["amf_uniform_05_TAN"];
 _militaryvests append ["amf_SMB_AUXSAN_TAN", "amf_SMB_AUXSAN_FAMAS_TAN", "amf_JPC_01_TAN"];
-_militaryHvests append [];
+_militaryHvests append ["amf_SMB_GRE_FAMAS_TAN"];
 _militaryMGvests append ["amf_SMB_ART_TAN"];
 _militaryMEDvests append ["amf_SMB_FUS_TAN", "amf_jpc_02_TAN"];
 _militarySLvests append ["amf_DCS_03_TAN", "amf_JPC_03_TAN", "amf_DCS_02_TAN"];
 _militarySNIvests append [];
-_militaryGLvests append ["amf_SMB_GRE_TAN","amf_SMB_GRE_FAMAS_TAN"];
+_militaryGLvests append ["amf_SMB_GRE_TAN"];
 _militarybackpacks append ["AMF_rush24_01_TAN", "amf_tecpack_30L_TAN", "AMF_FELIN_BACKPACK_TAN","AMF_FELIN_BACKPACK_LIGHT_TAN", "AMF_rush24_01_TAN"];
 _militaryatBackpacks append ["AMF_Bergen_F2"];
+_militaryaaBackpacks append [];
+_militarymedBackpacks append [];
+_militaryengBackpacks append [];
+_militaryexpBackpacks append [];
 _militarylongRangeRadios append [];
-_militaryhelmets append ["AMF_FELIN_05_TAN", "AMF_FELIN_05_CE", "AMF_FELIN_06_CE", "AMF_FELIN_06_TAN", "AMF_TC801_TAN_EARPROT_BLK", "AMF_TC801_TAN_EARPROT_BLK_2"];
-_militaryslHat append ["AMF_FELIN_L05_TAN", "AMF_FELIN_L05_CE", "AMF_TC800_TAN_EARPROT_TAN", "AMF_TC800_TAN_EARPROT_TAN_2"];
-_militarysniHats append ["AMF_APX_M241"];
+_militaryhelmets append ["AMF_FELIN_05_TAN", "AMF_FELIN_06_TAN", "AMF_TC801_TAN_EARPROT_BLK", "AMF_TC801_TAN_EARPROT_BLK_2"];
+_militaryslHat append [];
+_militarysniHats append ["AMF_FELIN_L05_TAN", "AMF_TC800_TAN_EARPROT_TAN", "AMF_TC800_TAN_EARPROT_TAN_2"];
 
 _militaryglasses append [];
 _militarygoggles append [];
@@ -522,7 +542,7 @@ _militiaNVGs append [];
 _militiabinoculars append [];
 _militiarangefinders append [];
 
-_militiauniforms append ["amf_uniform_01_RE_NG_OD_HX", "amf_uniform_01_RE_OD_HS"];
+_militiauniforms append ["amf_uniform_01_RE_NG_DA_HX", "amf_uniform_01_RE_DA_HS"];
 _militiaslUniforms append [];
 _militiavests append ["amf_SMB_TDF"];
 _militiaHvests append [];
@@ -531,12 +551,16 @@ _militiaMEDvests append [];
 _militiaSLvests append [];
 _militiaSNIvests append ["amf_SMB_TP_SCAR_TAN"];
 _militiaGLvests append [];
-_militiabackpacks append ["AMF_rush24_01_TAN", "amf_tecpack_30L_TAN","AMF_FELIN_BACKPACK_TAN"];
+_militiabackpacks append ["AMF_rush24_01_TAN", "amf_tecpack_30L_TAN"];
 _militiaatBackpacks append ["B_Kitbag_cbr"];
+_militiaaaBackpacks append [];
+_militiamedBackpacks append [];
+_militiaengBackpacks append [];
+_militiaexpBackpacks append [];
 _militialongRangeRadios append [];
-_militiahelmets append ["AMF_FELIN_05_CE", "AMF_FELIN_05_TAN", "AMF_FELIN_06_CE"];
-_militiaslHat append [];
-_militiasniHats append ["AMF_FELIN_L06_CE", "AMF_FELIN_L06_TAN"];
+_militiahelmets append ["AMF_FELIN_05_TAN", "AMF_FELIN_06_TAN"];
+_militiaslHat append ["AMF_FELIN_BACKPACK_TAN"];
+_militiasniHats append ["AMF_FELIN_L06_TAN"];
 
 _militiaglasses append [];
 _militiagoggles append [];
