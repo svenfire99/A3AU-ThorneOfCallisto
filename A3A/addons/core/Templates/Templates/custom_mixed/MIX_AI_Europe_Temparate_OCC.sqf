@@ -16,26 +16,16 @@
 //    Include Factions here    //
 /////////////////////////////////
 
-#include "Vanilla\MIX_AAF.sqf"
-#include "Vanilla\MIX_NATO_Temparate.sqf"
-
-#include "Vanilla\Vanilla_Vehicle_Attributes.sqf"
-
 if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
 
     if (isClass (configFile >> "CfgFactionClasses" >> "UK3CB_FIA_B")) then {
-        #include "3CBF\MIX_US_Army_W.sqf"
-        #include "3CBF\MIX_USMC_W.sqf"
         #include "3CBF\3CBF_Vehicle_Attributes.sqf"
 
         if (isClass (configFile >> "CfgFactionClasses" >> "UK3CB_FIA_B")) then { // TODO Change to BAF faction class at home
             #include "3CBBAF\MIX_BAF_Temperate.sqf"
             #include "3CBBAF\3CBBAF_Vehicle_Attributes.sqf"
         };
-    } else {
-        #include "RHS\MIX_US_Army_W.sqf"
-        #include "RHS\MIX_USMC_W.sqf"
-    };
+    }
     #include "RHS\RHS_Vehicle_Attributes.sqf"
 };
 
@@ -46,16 +36,6 @@ if (isClass (configFile >> "CfgVehicles" >> "BWA3_Dingo2_FLW200_M2_CG13_Fleck"))
 
 if (isClass (configFile >> "CfgVehicles" >> "B_AMF_TANK_01") && isClass(configFile >> "CfgVehicles" >> "R3F_WeaponStock")) then {
     #include "AMF\MIX_AMF_Temperate.sqf"
-};
-
-if (isClass (configFile >> "CfgVehicles" >> "sfp_strv122b")) then {
-    #include "SWE\MIX_SFP_Temperate.sqf"
-    #include "SWE\SFP_Vehicle_Attributes.sqf"
-
-    if (isClass(configFile >> "CfgVehicles" >> "ffp_leopard2a4")) then {
-        #include "SWE\MIX_FFP_Temperate.sqf" // Lacking standalone content, needs other mods to be more usefull...
-        #include "SWE\FFP_Vehicle_Attributes.sqf"
-    };
 };
 
 //////////////////////////////////
