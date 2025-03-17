@@ -152,6 +152,9 @@ private _officerHats = [];
 
 private _cloakUniforms = [];
 private _cloakVests = [];
+private _cloakRifles = [];
+private _cloakCarbines = [];
+private _cloakSidearms = [];
 
 private _uniforms = [];
 private _slUniforms = [];

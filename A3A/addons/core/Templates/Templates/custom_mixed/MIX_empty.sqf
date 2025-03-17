@@ -127,6 +127,9 @@ _officerHats append [];
 
 _cloakUniforms append [];
 _cloakVests append [];
+_cloakRifles append [];
+_cloakCarbines append [];
+_cloakSidearms append [];
 
 _uniforms append [];
 _slUniforms append [];

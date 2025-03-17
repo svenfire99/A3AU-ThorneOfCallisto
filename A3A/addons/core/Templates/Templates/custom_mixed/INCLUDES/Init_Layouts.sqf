@@ -116,6 +116,9 @@ _loadoutData set ["officerVests", _officerVests];
 _loadoutData set ["officerHats", _officerHats];
 _loadoutData set ["cloakUniforms", _cloakUniforms];
 _loadoutData set ["cloakVests", _cloakVests];
+_loadoutData set ["cloakRifles", _cloakRifles];
+_loadoutData set ["cloakCarbines", _cloakCarbines];
+_loadoutData set ["cloakSidearms", _cloakSidearms];
 
 _loadoutData set ["uniforms", _uniforms];
 _loadoutData set ["slUniforms", _slUniforms];
@@ -924,10 +927,10 @@ private _patrolSniperTemplate = {
     [["cloakVests","vests"] call _fnc_fallback] call _fnc_setVest;
     [["cloakUniforms","uniforms"] call _fnc_fallback] call _fnc_setUniform;
 
-    [["sniperRifles", "marksmanRifles"] call _fnc_fallback] call _fnc_setPrimary;
+    [selectRandomWeighted [["sniperRifles", "marksmanRifles"] call _fnc_fallback, 2, ["cloakRifles","sniperRifles", "marksmanRifles"] call _fnc_fallback, 1]] call _fnc_setPrimary;
     ["primary", 6] call _fnc_addMagazines;
 
-    ["sidearms"] call _fnc_setHandgun;
+    [selectRandomWeighted ["sidearms", 2, ["cloakSidearms","sidearms"] call _fnc_fallback, 1]] call _fnc_setHandgun;
     ["handgun", 2] call _fnc_addMagazines;
 
     ["items_medical_standard"] call _fnc_addItemSet;
@@ -949,10 +952,10 @@ private _patrolSpotterTemplate = {
     [["cloakVests","vests"] call _fnc_fallback] call _fnc_setVest;
     [["cloakUniforms","uniforms"] call _fnc_fallback] call _fnc_setUniform;
 
-    [selectRandom ["rifles", "carbines", "marksmanRifles"]] call _fnc_setPrimary;
+    [selectRandomWeighted [["rifles", "carbines", "marksmanRifles"] call _fnc_fallback, 2, ["cloakCarbines", "rifles", "carbines", "marksmanRifles"] call _fnc_fallback, 1]] call _fnc_setPrimary;
     ["primary", 6] call _fnc_addMagazines;
 
-    ["sidearms"] call _fnc_setHandgun;
+    [selectRandomWeighted ["sidearms", 2, ["cloakSidearms","sidearms"] call _fnc_fallback, 1]] call _fnc_setHandgun;
     ["handgun", 2] call _fnc_addMagazines;
 
     ["items_medical_standard"] call _fnc_addItemSet;
