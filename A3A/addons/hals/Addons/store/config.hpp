@@ -991,5 +991,27 @@ class cfgHALsStore
 				"magazinesTier1"
 			};
 		};
+		class SIGXM7_stock
+		{
+			displayName = $STR_ARMS_DEALER_STORE;
+			categories[] = {
+				"riflesSIGXM7",
+				"magazinesSIGXM7"
+			};
+		};
+		class Tier1_stock
+		{
+			displayName = $STR_ARMS_DEALER_STORE;
+			categories[] = {
+				"riflesTier1",
+				"sniperRiflesTier1",
+				"mgTier1",
+				"underbarrelTier1",
+				"pointersTier1",
+				"muzzlesTier1",
+				"opticsTier1",
+				"magazinesTier1"
+			};
+		};
 	};
 };

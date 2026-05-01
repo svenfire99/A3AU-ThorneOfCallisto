@@ -730,4 +730,8 @@ class Templates
 
     #include "Templates\custom_mixed\templates.hpp"
 
+    // ***************************** Custom Mix Factions *****************************
+
+    #include "Templates\custom_mixed\templates.hpp"
+
 };
