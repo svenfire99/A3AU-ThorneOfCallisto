@@ -51,7 +51,7 @@ _militiaTrucks      append ["B_Truck_01_covered_F", "B_Truck_01_transport_F"];
 _militiaCars        append ["B_G_Offroad_01_F"];
 _militiaAPCs        append ["BWA3_Puma_Fleck"]; 
 
-_policeVehs append ["B_GEN_Offroad_01_gen_F"];
+_policeVehs append ["B_GEN_Offroad_01_gen_F", "Polizei_Van_01_transport"];
 
 _staticMG       append [];
 _staticAT       append ["BWA3_MELLS_static_Fleck"];

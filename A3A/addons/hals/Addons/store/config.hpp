@@ -215,6 +215,7 @@ class cfgHALsStore
 				"pointersRF", 
 				"muzzlesRF", 
 				"opticsRF", 
+				"magazinesSpecialRF", 
 				"miscRF"
 			};
 		};
