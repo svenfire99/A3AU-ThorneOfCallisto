@@ -2,67 +2,64 @@
  * Required mods/addons: "ADDONCLASS"
  * Optional mods/addons: "OPTADDONCLASS", "OPTADDONCLASS"
  */
-_basic              append ["I_Quadbike_01_F"];
-_unarmedVehicles    append [];
-_armedVehicles      append [];
-_Trucks             append [];
-_cargoTrucks        append [];
-_ammoTrucks         append [];
-_repairTrucks       append [];
-_fuelTrucks         append [];
-_medicalTrucks      append [];
-_lightAPCs          append [];
-_APCs               append [];
-_IFVs               append [];
-_airborneVehicles   append [];
-_tanks              append [];
-_lightTanks         append [];
-_aa                 append [];
+_basic append ["I_Quadbike_01_F"];
+_unarmedVehicles append [];
+_armedVehicles append [];
+_Trucks append [];
+_cargoTrucks append [];
+_ammoTrucks append [];
+_repairTrucks append [];
+_fuelTrucks append [];
+_medicalTrucks append [];
+_lightAPCs append [];
+_APCs append [];
+_IFVs append [];
+_airborneVehicles append [];
+_tanks append [];
+_lightTanks append [];
+_aa append [];
 
-_SDV        append ["B_SDV_01_F"];
-_DropPod    append ["SpaceshipCapsule_01_F"];
+_SDV append ["B_SDV_01_F"];
+_DropPod append ["SpaceshipCapsule_01_F"];
 
-_transportBoat  append [];
-_gunBoat        append [];
-_Amphibious     append [];
+_transportBoat append [];
+_gunBoat append [];
+_Amphibious append [];
 
-_planesCAS  append [];
-_planesAA   append [];
+_planesCAS append [];
+_planesAA append [];
 
-_planesTransport    append [];
-_gunship            append [];
+_planesTransport append [];
+_gunship append [];
 
-_helisLight             append [];
-_transportHelicopters   append [];
-_helisLightAttack       append [];
-_helisAttack            append [];
-_airPatrol              append [];
+_helisLight append [];
+_transportHelicopters append [];
+_helisLightAttack append [];
+_helisAttack append [];
+_airPatrol append [];
 
-_artillery      append [];
-_artilleryMags  append [
-    // ["ARTILLERy_CLASS", ["ARTILLERY_AMMO", "ARTILLERY_AMMO"]]
-    ["", ["", ""]]
-];
+_artillery append [];
+_artilleryMags append [];
 
-_uavsAttack     append [];
-_uavsPortable   append [];
+_uavsAttack append [];
+_uavsPortable append [];
 
-_militiaLightArmed  append [];
-_militiaTrucks      append [];
-_militiaCars        append [];
-_militiaAPCs        append []; 
+_militiaLightArmed append [];
+_militiaTrucks append [];
+_militiaCars append [];
+_militiaAPCs append [];
 
 _policeVehs append [];
 
-_staticMG       append [];
-_staticAT       append [];
-_staticAA       append [];
-_staticMortars  append [];
-_howitzers      append [];
-_radar          append [];
-_SAM            append [];
+_staticMG append [];
+_staticAT append [];
+_staticAA append [];
+_staticMortars append [];
+_howitzers append [];
+_radar append [];
+_SAM append [];
 
-_minefieldAT    append ["ATMine"];
+_minefieldAT append ["ATMine"];
 _minefieldAPERS append ["APERSMine"];
 
 _animations append [];
@@ -132,23 +129,31 @@ _cloakCarbines append [];
 _cloakSidearms append [];
 
 _uniforms append [];
-_slUniforms append [];
+_SLuniforms append [];
+_ENGuniforms append [];
 _MGvests append [];
 _MEDvests append [];
 _SLvests append [];
 _SNIvests append [];
 _GLvests append [];
+_ATvests append [];
+_ENGvests append [];
 _vests append [];
 _backpacks append [];
-_atBackpacks append [];
-_aaBackpacks append [];
-_medBackpacks append [];
-_engBackpacks append [];
-_expBackpacks append [];
+_ATBackpacks append [];
+_AABackpacks append [];
+_MGBackpacks append [];
+_GLBackpacks append [];
+_MEDBackpacks append [];
+_ENGBackpacks append [];
+_EXPBackpacks append [];
+_SLBackpacks append [];
 _longRangeRadios append [];
 _helmets append [];
-_slHat append [];
-_sniHats append [];
+_MEDhelmets append [];
+_SLhelmets append [];
+_SLhats append [];
+_SNIhats append [];
 
 _slItems append ["Laserbatteries", "Laserbatteries", "Laserbatteries"];
 _rItems append [];
@@ -214,7 +219,9 @@ _sfbinoculars append ["Laserdesignator"];
 _sfrangefinders append [];
 
 _sfuniforms append [];
-_sfslUniforms append [];
+_sfMEDuniforms append [];
+_sfENGuniforms append [];
+_sfSLuniforms append [];
 _sfvests append [];
 _sfHvests append [];
 _sfMGvests append [];
@@ -222,16 +229,23 @@ _sfMEDvests append [];
 _sfSLvests append [];
 _sfSNIvests append [];
 _sfGLvests append [];
+_sfATvests append [];
+_sfENGvests append [];
 _sfbackpacks append [];
-_sfatBackpacks append [];
-_sfaaBackpacks append [];
-_sfmedBackpacks append [];
-_sfengBackpacks append [];
-_sfexpBackpacks append [];
+_sfATBackpacks append [];
+_sfAABackpacks append [];
+_sfMGbackpacks append [];
+_sfGLbackpacks append [];
+_sfMEDBackpacks append [];
+_sfENGBackpacks append [];
+_sfEXPBackpacks append [];
+_sfSLBackpacks append [];
 _sflongRangeRadios append [];
 _sfhelmets append [];
-_sfslHat append [];
-_sfsniHats append [];
+_sfMEDhelmets append [];
+_sfSLhelmets append [];
+_sfSLhats append [];
+_sfSNIhats append [];
 
 _sfglasses append [];
 _sfgoggles append [];
@@ -277,7 +291,7 @@ _elitebinoculars append ["Laserdesignator"];
 _eliterangefinders append [];
 
 _eliteuniforms append [];
-_eliteslUniforms append [];
+_eliteSLuniforms append [];
 _elitevests append [];
 _eliteHvests append [];
 _eliteMGvests append [];
@@ -285,16 +299,23 @@ _eliteMEDvests append [];
 _eliteSLvests append [];
 _eliteSNIvests append [];
 _eliteGLvests append [];
+_eliteATvests append [];
+_eliteENGvests append [];
 _elitebackpacks append [];
-_eliteatBackpacks append [];
-_eliteaaBackpacks append [];
-_elitemedBackpacks append [];
-_aliteengBackpacks append [];
-_eliteexpBackpacks append [];
+_eliteATBackpacks append [];
+_eliteAABackpacks append [];
+_eliteMGBackpacks append [];
+_eliteGLBackpacks append [];
+_eliteMEDBackpacks append [];
+_eliteENGBackpacks append [];
+_eliteEXPBackpacks append [];
+_eliteSLBackpacks append [];
 _elitelongRangeRadios append [];
 _elitehelmets append [];
-_eliteslHat append [];
-_elitesniHats append [];
+_eliteMEDhelmets append [];
+_eliteSLhelmets append [];
+_eliteSLhats append [];
+_eliteSNIhats append [];
 
 _eliteglasses append [];
 _elitegoggles append [];
@@ -340,7 +361,8 @@ _militarybinoculars append [];
 _militaryrangefinders append [];
 
 _militaryuniforms append [];
-_militaryslUniforms append [];
+_militaryENGuniforms append [];
+_militarySLuniforms append [];
 _militaryvests append [];
 _militaryHvests append [];
 _militaryMGvests append [];
@@ -348,16 +370,23 @@ _militaryMEDvests append [];
 _militarySLvests append [];
 _militarySNIvests append [];
 _militaryGLvests append [];
+_militaryATvests append [];
+_militaryENGvests append [];
 _militarybackpacks append [];
-_militaryatBackpacks append [];
-_militaryaaBackpacks append [];
-_militarymedBackpacks append [];
-_militaryengBackpacks append [];
-_militaryexpBackpacks append [];
+_militaryATBackpacks append [];
+_militaryAABackpacks append [];
+_militaryMGBackpacks append [];
+_militaryGLBackpacks append [];
+_militaryMEDBackpacks append [];
+_militaryENGBackpacks append [];
+_militaryEXPBackpacks append [];
+_militarySLBackpacks append [];
 _militarylongRangeRadios append [];
 _militaryhelmets append [];
-_militaryslHat append [];
-_militarysniHats append [];
+_militaryMEDhelmets append [];
+_militarySLhelmets append [];
+_militarySLhats append [];
+_militarySNIhats append [];
 
 _militaryglasses append [];
 _militarygoggles append [];
@@ -367,10 +396,13 @@ _militarygoggles append [];
 ///////////////////////////////
 
 _policeuniforms append [];
+_policeSLuniforms append [];
 _policevests append [];
 _policehelmets append [];
 _policeWeapons append [];
 _policesidearms append [];
+
+_policefacewear append [];
 
 ////////////////////////////////
 //    Militia Loadout Data    //
@@ -413,7 +445,9 @@ _militiabinoculars append [];
 _militiarangefinders append [];
 
 _militiauniforms append [];
-_militiaslUniforms append [];
+_militiaMEDuniforms append [];
+_militiaENGuniforms append [];
+_militiaSLuniforms append [];
 _militiavests append [];
 _militiaHvests append [];
 _militiaMGvests append [];
@@ -421,19 +455,28 @@ _militiaMEDvests append [];
 _militiaSLvests append [];
 _militiaSNIvests append [];
 _militiaGLvests append [];
+_militiaATvests append [];
+_militiaENGvests append [];
 _militiabackpacks append [];
-_militiaatBackpacks append [];
-_militiaaaBackpacks append [];
-_militiamedBackpacks append [];
-_militiaengBackpacks append [];
-_militiaexpBackpacks append [];
+_militiaATBackpacks append [];
+_militiaAABackpacks append [];
+_militiaMGBackpacks append [];
+_militiaGLBackpacks append [];
+_militiaMEDBackpacks append [];
+_militiaENGBackpacks append [];
+_militiaEXPBackpacks append [];
+_militiaSLBackpacks append [];
 _militialongRangeRadios append [];
 _militiahelmets append [];
-_militiaslHat append [];
-_militiasniHats append [];
+_militiaMEDhelmets append [];
+_militiaSLhelmets append [];
+_militiaSLhats append [];
+_militiaSNIhats append [];
+
 
 _militiaglasses append [];
 _militiagoggles append [];
+_militiafacewear append [];
 
 //////////////////////////
 //    Misc Loadouts     //
@@ -444,8 +487,20 @@ _crewvests append [];
 _crewhelmets append [];
 _crewcarbines append [];
 _crewSMGs append [];
+_crewsidearms append [];
+
+_crewfacewear append [];
 
 _pilotuniforms append [];
 _pilotvests append [];
+_pilotbackpacks append [];
 _pilothelmets append [];
+_pilotcarbines append [];
 _pilotSMGs append [];
+_pilotsidearms append [];
+
+_pilotfacewear append [];
+
+/////////////////////////////
+//    Conditional Gear     //
+/////////////////////////////

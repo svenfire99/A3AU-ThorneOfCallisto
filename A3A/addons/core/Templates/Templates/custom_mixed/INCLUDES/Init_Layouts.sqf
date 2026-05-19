@@ -121,7 +121,7 @@ _loadoutData set ["cloakCarbines", _cloakCarbines];
 _loadoutData set ["cloakSidearms", _cloakSidearms];
 
 _loadoutData set ["uniforms", _uniforms];
-_loadoutData set ["slUniforms", _slUniforms];
+_loadoutData set ["slUniforms", _SLuniforms];
 _loadoutData set ["vests", _vests];
 _loadoutData set ["Hvests", _Hvests];
 _loadoutData set ["MGvests", _MGvests];
@@ -130,15 +130,15 @@ _loadoutData set ["SLvests", _SLvests];
 _loadoutData set ["sniVests", _SNIvests];
 _loadoutData set ["GLvests", _GLvests];
 _loadoutData set ["backpacks", _backpacks];
-_loadoutData set ["atBackpacks", _atBackpacks];
-_loadoutData set ["aaBackpacks", _aaBackpacks];
-_loadoutData set ["medBackpacks", _medBackpacks];
-_loadoutData set ["engBackpacks", _engBackpacks];
-_loadoutData set ["expBackpacks", _expBackpacks];
+_loadoutData set ["atBackpacks", _ATBackpacks];
+_loadoutData set ["aaBackpacks", _AABackpacks];
+_loadoutData set ["medBackpacks", _MEDBackpacks];
+_loadoutData set ["engBackpacks", _ENGBackpacks];
+_loadoutData set ["expBackpacks", _EXPBackpacks];
 _loadoutData set ["longRangeRadios", _longRangeRadios];
 _loadoutData set ["helmets", _helmets];
-_loadoutData set ["slHat", _slHat];
-_loadoutData set ["sniHats", _sniHats];
+_loadoutData set ["slHat", _SLhats];
+_loadoutData set ["sniHats", _SNIhats];
 
 _loadoutData set ["glasses", _glasses];
 _loadoutData set ["goggles", _goggles];
@@ -207,7 +207,7 @@ if (count _sfbinoculars > 0) then { _sfLoadoutData set ["binoculars", _sfbinocul
 if (count _sfrangefinders > 0) then { _sfLoadoutData set ["rangefinders", _sfrangefinders]; };
 
 if (count _sfuniforms > 0) then { _sfLoadoutData set ["uniforms", _sfuniforms]; };
-if (count _sfslUniforms > 0) then { _sfLoadoutData set ["slUniforms", _sfslUniforms]; };
+if (count _sfSLuniforms > 0) then { _sfLoadoutData set ["slUniforms", _sfSLuniforms]; };
 if (count _sfvests > 0) then { _sfLoadoutData set ["vests", _sfvests]; };
 if (count _sfHvests > 0) then { _sfLoadoutData set ["Hvests", _sfHvests]; };
 if (count _sfMGvests > 0) then { _sfLoadoutData set ["MGvests", _sfMGvests]; };
@@ -216,15 +216,15 @@ if (count _sfSLvests > 0) then { _sfLoadoutData set ["SLvests", _sfSLvests]; };
 if (count _sfSNIvests > 0) then { _sfLoadoutData set ["sniVests", _sfSNIvests]; };
 if (count _sfGLvests > 0) then { _sfLoadoutData set ["GLvests", _sfGLvests]; };
 if (count _sfbackpacks > 0) then { _sfLoadoutData set ["backpacks", _sfbackpacks]; };
-if (count _sfatBackpacks > 0) then { _sfLoadoutData set ["atBackpacks", _sfatBackpacks]; };
-if (count _sfaaBackpacks > 0) then { _sfLoadoutData set ["aaBackpacks", _sfaaBackpacks]; };
-if (count _sfmedBackpacks > 0) then { _sfLoadoutData set ["medBackpacks", _sfmedBackpacks]; };
-if (count _sfengBackpacks > 0) then { _sfLoadoutData set ["engBackpacks", _sfengBackpacks]; };
-if (count _sfexpBackpacks > 0) then { _sfLoadoutData set ["expBackpacks", _sfexpBackpacks]; };
+if (count _sfATBackpacks > 0) then { _sfLoadoutData set ["atBackpacks", _sfATBackpacks]; };
+if (count _sfAABackpacks > 0) then { _sfLoadoutData set ["aaBackpacks", _sfAABackpacks]; };
+if (count _sfMEDBackpacks > 0) then { _sfLoadoutData set ["medBackpacks", _sfMEDBackpacks]; };
+if (count _sfENGBackpacks > 0) then { _sfLoadoutData set ["engBackpacks", _sfENGBackpacks]; };
+if (count _sfEXPBackpacks > 0) then { _sfLoadoutData set ["expBackpacks", _sfEXPBackpacks]; };
 if (count _sflongRangeRadios > 0) then { _sfLoadoutData set ["longRangeRadios", _sflongRangeRadios]; };
 if (count _sfhelmets > 0) then { _sfLoadoutData set ["helmets", _sfhelmets]; };
-if (count _sfslHat > 0) then { _sfLoadoutData set ["slHat", _sfslHat]; };
-if (count _sfsniHats > 0) then { _sfLoadoutData set ["sniHats", _sfsniHats]; };
+if (count _sfSLhats > 0) then { _sfLoadoutData set ["slHat", _sfSLhats]; };
+if (count _sfSNIhats > 0) then { _sfLoadoutData set ["sniHats", _sfSNIhats]; };
 if (count _sfglasses > 0) then { _sfLoadoutData set ["glasses", _sfglasses]; };
 if (count _sfgoggles > 0) then { _sfLoadoutData set ["goggles", _sfgoggles]; };
 
@@ -269,7 +269,7 @@ if (count _elitebinoculars > 0) then { _eliteLoadoutData set ["binoculars", _eli
 if (count _eliterangefinders > 0) then { _eliteLoadoutData set ["rangefinders", _eliterangefinders]; };
 
 if (count _eliteuniforms > 0) then { _eliteLoadoutData set ["uniforms", _eliteuniforms]; };
-if (count _eliteslUniforms > 0) then { _eliteLoadoutData set ["slUniforms", _eliteslUniforms]; };
+if (count _eliteSLuniforms > 0) then { _eliteLoadoutData set ["slUniforms", _eliteSLuniforms]; };
 if (count _elitevests > 0) then { _eliteLoadoutData set ["vests", _elitevests]; };
 if (count _eliteHvests > 0) then { _eliteLoadoutData set ["Hvests", _eliteHvests]; };
 if (count _eliteMGvests > 0) then { _eliteLoadoutData set ["MGvests", _eliteMGvests]; };
@@ -278,15 +278,15 @@ if (count _eliteSLvests > 0) then { _eliteLoadoutData set ["SLvests", _eliteSLve
 if (count _eliteSNIvests > 0) then { _eliteLoadoutData set ["sniVests", _eliteSNIvests]; };
 if (count _eliteGLvests > 0) then { _eliteLoadoutData set ["GLvests", _eliteGLvests]; };
 if (count _elitebackpacks > 0) then { _eliteLoadoutData set ["backpacks", _elitebackpacks]; };
-if (count _eliteatBackpacks > 0) then { _eliteLoadoutData set ["atBackpacks", _eliteatBackpacks]; };
-if (count _eliteaaBackpacks > 0) then { _eliteLoadoutData set ["aaBackpacks", _eliteaaBackpacks]; };
-if (count _elitemedBackpacks > 0) then { _eliteLoadoutData set ["medBackpacks", _elitemedBackpacks]; };
-if (count _eliteengBackpacks > 0) then { _eliteLoadoutData set ["engBackpacks", _eliteengBackpacks]; };
-if (count _eliteexpBackpacks > 0) then { _eliteLoadoutData set ["expBackpacks", _eliteexpBackpacks]; };
+if (count _eliteATBackpacks > 0) then { _eliteLoadoutData set ["atBackpacks", _eliteATBackpacks]; };
+if (count _eliteAABackpacks > 0) then { _eliteLoadoutData set ["aaBackpacks", _eliteAABackpacks]; };
+if (count _eliteMEDBackpacks > 0) then { _eliteLoadoutData set ["medBackpacks", _eliteMEDBackpacks]; };
+if (count _eliteENGBackpacks > 0) then { _eliteLoadoutData set ["engBackpacks", _eliteENGBackpacks]; };
+if (count _eliteEXPBackpacks > 0) then { _eliteLoadoutData set ["expBackpacks", _eliteEXPBackpacks]; };
 if (count _elitelongRangeRadios > 0) then { _eliteLoadoutData set ["longRangeRadios", _elitelongRangeRadios]; };
 if (count _elitehelmets > 0) then { _eliteLoadoutData set ["helmets", _elitehelmets]; };
-if (count _eliteslHat > 0) then { _eliteLoadoutData set ["slHat", _eliteslHat]; };
-if (count _elitesniHats > 0) then { _eliteLoadoutData set ["sniHats", _elitesniHats]; };
+if (count _eliteSLhats > 0) then { _eliteLoadoutData set ["slHat", _eliteSLhats]; };
+if (count _eliteSNIhats > 0) then { _eliteLoadoutData set ["sniHats", _eliteSNIhats]; };
 if (count _eliteglasses > 0) then { _eliteLoadoutData set ["glasses", _eliteglasses]; };
 if (count _elitegoggles > 0) then { _eliteLoadoutData set ["goggles", _elitegoggles]; };
 
@@ -331,7 +331,7 @@ if (count _militarybinoculars > 0) then { _militaryLoadoutData set ["binoculars"
 if (count _militaryrangefinders > 0) then { _militaryLoadoutData set ["rangefinders", _militaryrangefinders]; };
 
 if (count _militaryuniforms > 0) then { _militaryLoadoutData set ["uniforms", _militaryuniforms]; };
-if (count _militaryslUniforms > 0) then { _militaryLoadoutData set ["slUniforms", _militaryslUniforms]; };
+if (count _militarySLuniforms > 0) then { _militaryLoadoutData set ["slUniforms", _militarySLuniforms]; };
 if (count _militaryvests > 0) then { _militaryLoadoutData set ["vests", _militaryvests]; };
 if (count _militaryHvests > 0) then { _militaryLoadoutData set ["Hvests", _militaryHvests]; };
 if (count _militaryMGvests > 0) then { _militaryLoadoutData set ["MGvests", _militaryMGvests]; };
@@ -340,15 +340,15 @@ if (count _militarySLvests > 0) then { _militaryLoadoutData set ["SLvests", _mil
 if (count _militarySNIvests > 0) then { _militaryLoadoutData set ["sniVests", _militarySNIvests]; };
 if (count _militaryGLvests > 0) then { _militaryLoadoutData set ["GLvests", _militaryGLvests]; };
 if (count _militarybackpacks > 0) then { _militaryLoadoutData set ["backpacks", _militarybackpacks]; };
-if (count _militaryatBackpacks > 0) then { _militaryLoadoutData set ["atBackpacks", _militaryatBackpacks]; };
-if (count _militaryaaBackpacks > 0) then { _militaryLoadoutData set ["aaBackpacks", _militaryaaBackpacks]; };
-if (count _militarymedBackpacks > 0) then { _militaryLoadoutData set ["medBackpacks", _militarymedBackpacks]; };
-if (count _militaryengBackpacks > 0) then { _militaryLoadoutData set ["engBackpacks", _militaryengBackpacks]; };
-if (count _militaryexpBackpacks > 0) then { _militaryLoadoutData set ["expBackpacks", _militaryexpBackpacks]; };
+if (count _militaryATBackpacks > 0) then { _militaryLoadoutData set ["atBackpacks", _militaryATBackpacks]; };
+if (count _militaryAABackpacks > 0) then { _militaryLoadoutData set ["aaBackpacks", _militaryAABackpacks]; };
+if (count _militaryMEDBackpacks > 0) then { _militaryLoadoutData set ["medBackpacks", _militaryMEDBackpacks]; };
+if (count _militaryENGBackpacks > 0) then { _militaryLoadoutData set ["engBackpacks", _militaryENGBackpacks]; };
+if (count _militaryEXPBackpacks > 0) then { _militaryLoadoutData set ["expBackpacks", _militaryEXPBackpacks]; };
 if (count _militarylongRangeRadios > 0) then { _militaryLoadoutData set ["longRangeRadios", _militarylongRangeRadios]; };
 if (count _militaryhelmets > 0) then { _militaryLoadoutData set ["helmets", _militaryhelmets]; };
-if (count _militaryslHat > 0) then { _militaryLoadoutData set ["slHat", _militaryslHat]; };
-if (count _militarysniHats > 0) then { _militaryLoadoutData set ["sniHats", _militarysniHats]; };
+if (count _militarySLhats > 0) then { _militaryLoadoutData set ["slHat", _militarySLhats]; };
+if (count _militarySNIhats > 0) then { _militaryLoadoutData set ["sniHats", _militarySNIhats]; };
 if (count _militaryglasses > 0) then { _militaryLoadoutData set ["glasses", _militaryglasses]; };
 if (count _militarygoggles > 0) then { _militaryLoadoutData set ["goggles", _militarygoggles]; };
 
@@ -404,7 +404,7 @@ if (count _militiabinoculars > 0) then { _militiaLoadoutData set ["binoculars", 
 if (count _militiarangefinders > 0) then { _militiaLoadoutData set ["rangefinders", _militiarangefinders]; };
 
 if (count _militiauniforms > 0) then { _militiaLoadoutData set ["uniforms", _militiauniforms]; };
-if (count _militiaslUniforms > 0) then { _militiaLoadoutData set ["slUniforms", _militiaslUniforms]; };
+if (count _militiaSLuniforms > 0) then { _militiaLoadoutData set ["slUniforms", _militiaSLuniforms]; };
 if (count _militiavests > 0) then { _militiaLoadoutData set ["vests", _militiavests]; };
 if (count _militiaHvests > 0) then { _militiaLoadoutData set ["Hvests", _militiaHvests]; };
 if (count _militiaMGvests > 0) then { _militiaLoadoutData set ["MGvests", _militiaMGvests]; };
@@ -413,15 +413,15 @@ if (count _militiaSLvests > 0) then { _militiaLoadoutData set ["SLvests", _milit
 if (count _militiaSNIvests > 0) then { _militiaLoadoutData set ["sniVests", _militiaSNIvests]; };
 if (count _militiaGLvests > 0) then { _militiaLoadoutData set ["GLvests", _militiaGLvests]; };
 if (count _militiabackpacks > 0) then { _militiaLoadoutData set ["backpacks", _militiabackpacks]; };
-if (count _militiaatBackpacks > 0) then { _militiaLoadoutData set ["atBackpacks", _militiaatBackpacks]; };
-if (count _militiaaaBackpacks > 0) then { _militiaLoadoutData set ["aaBackpacks", _militiaaaBackpacks]; };
-if (count _militiamedBackpacks > 0) then { _militiaLoadoutData set ["medBackpacks", _militiamedBackpacks]; };
-if (count _militiaengBackpacks > 0) then { _militiaLoadoutData set ["engBackpacks", _militiaengBackpacks]; };
-if (count _militiaexpBackpacks > 0) then { _militiaLoadoutData set ["expBackpacks", _militiaexpBackpacks]; };
+if (count _militiaATBackpacks > 0) then { _militiaLoadoutData set ["atBackpacks", _militiaATBackpacks]; };
+if (count _militiaAABackpacks > 0) then { _militiaLoadoutData set ["aaBackpacks", _militiaAABackpacks]; };
+if (count _militiaMEDBackpacks > 0) then { _militiaLoadoutData set ["medBackpacks", _militiaMEDBackpacks]; };
+if (count _militiaENGBackpacks > 0) then { _militiaLoadoutData set ["engBackpacks", _militiaENGBackpacks]; };
+if (count _militiaEXPBackpacks > 0) then { _militiaLoadoutData set ["expBackpacks", _militiaEXPBackpacks]; };
 if (count _militialongRangeRadios > 0) then { _militiaLoadoutData set ["longRangeRadios", _militialongRangeRadios]; };
 if (count _militiahelmets > 0) then { _militiaLoadoutData set ["helmets", _militiahelmets]; };
-if (count _militiaslHat > 0) then { _militiaLoadoutData set ["slHat", _militiaslHat]; };
-if (count _militiasniHats > 0) then { _militiaLoadoutData set ["sniHats", _militiasniHats]; };
+if (count _militiaSLhats > 0) then { _militiaLoadoutData set ["slHat", _militiaSLhats]; };
+if (count _militiaSNIhats > 0) then { _militiaLoadoutData set ["sniHats", _militiaSNIhats]; };
 if (count _militiaglasses > 0) then { _militiaLoadoutData set ["glasses", _militiaglasses]; };
 if (count _militiagoggles > 0) then { _militiaLoadoutData set ["goggles", _militiagoggles]; };
 
@@ -434,14 +434,20 @@ private _crewLoadoutData = _militaryLoadoutData call _fnc_copyLoadoutData;
 if (count _crewuniforms > 0) then { _crewLoadoutData set ["uniforms", _crewuniforms]; };
 if (count _crewvests > 0) then { _crewLoadoutData set ["vests", _crewvests]; };
 if (count _crewhelmets > 0) then { _crewLoadoutData set ["helmets", _crewhelmets]; };
-if (count _crewcarbines > 0) then { _policeLoadoutData set ["carbines", _crewcarbines]; };
-if (count _crewSMGs > 0) then { _policeLoadoutData set ["SMGs", _crewSMGs]; };
+if (count _crewcarbines > 0) then { _crewLoadoutData set ["carbines", _crewcarbines]; };
+if (count _crewSMGs > 0) then { _crewLoadoutData set ["SMGs", _crewSMGs]; };
+if (count _crewsidearms > 0) then { _crewLoadoutData set ["sidearms", _crewsidearms]; };
+if (count _crewfacewear > 0) then { _crewLoadoutData set ["goggles", _crewfacewear]; };
 
 private _pilotLoadoutData = _militaryLoadoutData call _fnc_copyLoadoutData;
 if (count _pilotuniforms > 0) then { _pilotLoadoutData set ["uniforms", _pilotuniforms]; };
 if (count _pilotvests > 0) then { _pilotLoadoutData set ["vests", _pilotvests]; };
+if (count _pilotbackpacks > 0) then { _pilotLoadoutData set ["backpacks", _pilotbackpacks]; };
 if (count _pilothelmets > 0) then { _pilotLoadoutData set ["helmets", _pilothelmets]; };
+if (count _pilotcarbines > 0) then { _pilotLoadoutData set ["carbines", _pilotcarbines]; };
 if (count _pilotSMGs > 0) then { _pilotLoadoutData set ["SMGs", _pilotSMGs]; };
+if (count _pilotsidearms > 0) then { _pilotLoadoutData set ["sidearms", _pilotsidearms]; };
+if (count _pilotfacewear > 0) then { _pilotLoadoutData set ["goggles", _pilotfacewear]; };
 
 /////////////////////////////////
 //    Unit Type Definitions    //
@@ -1061,8 +1067,8 @@ private _unitTypes = [
 	["MachineGunner", _machineGunnerTemplate, [], [_prefix]],
 	["Marksman", _marksmanTemplate, [], [_prefix]],
 	["Sniper", _sniperTemplate, [], [_prefix]],
-    	["PatrolSniper", _patrolSniperTemplate, [], [_prefix]],
-    	["PatrolSpotter", _patrolSpotterTemplate, [], [_prefix]]
+    ["PatrolSniper", _patrolSniperTemplate, [], [_prefix]],
+    ["PatrolSpotter", _patrolSpotterTemplate, [], [_prefix]]
 ];
 
 [_prefix, _unitTypes, _militiaLoadoutData] call _fnc_generateAndSaveUnitsToTemplate;

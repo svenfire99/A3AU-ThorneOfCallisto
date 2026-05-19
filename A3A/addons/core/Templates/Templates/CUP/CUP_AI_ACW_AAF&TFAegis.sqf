@@ -85,7 +85,7 @@
 ["vehiclesLightTanks",  ["Flex_CUP_AAF_Warrior"]] call _fnc_saveToTemplate;
 
 ["vehiclesTransportBoats", ["Flex_CUP_AAF_Boat_Transport", "Flex_CUP_AAF_Lifeboat", "Flex_CUP_AAF_RHIB_Unarmed"]] call _fnc_saveToTemplate;
-["vehiclesGunBoats", ["Flex_CUP_AAF_RHIB", "Flex_CUP_AAF_RHIB2Turret", "Flex_CUP_AAF_Frigate"/*Can't help it lol*/]] call _fnc_saveToTemplate;
+["vehiclesGunBoats", ["Flex_CUP_AAF_RHIB", "Flex_CUP_AAF_RHIB2Turret", "Flex_CUP_AAF_Frigate"]] call _fnc_saveToTemplate;
 ["vehiclesAmphibious", ["Flex_CUP_AAF_BTR80A", "Flex_CUP_AAF_M113A3", "Flex_CUP_AAF_M113A3_HQ"]] call _fnc_saveToTemplate;
 
 ["vehiclesPlanesCAS", call {
