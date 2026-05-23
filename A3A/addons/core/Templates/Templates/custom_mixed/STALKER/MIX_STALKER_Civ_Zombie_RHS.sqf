@@ -2,8 +2,8 @@
  * Converted from: STALKER_Civ_Zombie_RHS.sqf
  */
 _basic append ["I_Quadbike_01_F"];
-_unarmedVehicles append [];
-_armedVehicles append [];
+_lightUnarmed append [];
+_lightArmed append [];
 _Trucks append [];
 _cargoTrucks append [];
 _ammoTrucks append [];
@@ -127,7 +127,15 @@ _cloakRifles append [];
 _cloakCarbines append [];
 _cloakSidearms append [];
 
-_uniforms append [];
+_uniforms append [
+	"SCE_Loner_4",
+	"SCE_Loner_3",
+	"SCE_Loner_2",
+	"SCE_Loner_1",
+	"SCE_Loner_CBRN",
+	"SE_Assault_Fatigues_Loner",
+	"SE_SEVA_Loner"
+];
 _SLuniforms append [];
 _ENGuniforms append [];
 _MGvests append [];

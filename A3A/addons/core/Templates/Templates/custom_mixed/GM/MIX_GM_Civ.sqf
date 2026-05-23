@@ -2,8 +2,8 @@
  * Converted from: GM_Civ.sqf
  */
 _basic append ["I_Quadbike_01_F"];
-_unarmedVehicles append [];
-_armedVehicles append [];
+_lightUnarmed append [];
+_lightArmed append [];
 _Trucks append [];
 _cargoTrucks append [];
 _ammoTrucks append [];
@@ -131,7 +131,7 @@ _cloakRifles append [];
 _cloakCarbines append [];
 _cloakSidearms append [];
 
-_uniforms append [];
+_uniforms append _uniforms;
 _SLuniforms append [];
 _ENGuniforms append [];
 _MGvests append [];
@@ -152,7 +152,7 @@ _ENGBackpacks append [];
 _EXPBackpacks append [];
 _SLBackpacks append [];
 _longRangeRadios append [];
-_helmets append [];
+_helmets append _civHats;
 _MEDhelmets append [];
 _SLhelmets append [];
 _SLhats append [];

@@ -2,8 +2,8 @@
  * Converted from: BWA3_AI_BW_Temperate.sqf
  */
 _basic append ["B_T_Quadbike_01_F"];
-_unarmedVehicles append ["BWA3_Eagle_Fleck"];
-_armedVehicles append ["BWA3_Dingo2_FLW200_GMW_CG13_Fleck", "BWA3_Dingo2_FLW200_M2_CG13_Fleck", "BWA3_Dingo2_FLW100_MG3_CG13_Fleck", "BWA3_Eagle_FLW100_Fleck"];
+_lightUnarmed append ["BWA3_Eagle_Fleck"];
+_lightArmed append ["BWA3_Dingo2_FLW200_GMW_CG13_Fleck", "BWA3_Dingo2_FLW200_M2_CG13_Fleck", "BWA3_Dingo2_FLW100_MG3_CG13_Fleck", "BWA3_Eagle_FLW100_Fleck"];
 _Trucks append [];
 _cargoTrucks append [];
 _ammoTrucks append [];
@@ -88,40 +88,57 @@ _SMGs append [];
 _machineGuns append [];
 _marksmanRifles append [];
 _sniperRifles append [];
-_lightATLaunchers append [];
+_lightATLaunchers append [
+["BWA3_CarlGustav", "", "", "", ["BWA3_CarlGustav_HE", "BWA3_CarlGustav_HEAT"], [], ""],
+["BWA3_CarlGustav", "", "", "", ["BWA3_CarlGustav_HEDP", "BWA3_CarlGustav_HEAT"], [], ""],
+["BWA3_CarlGustav", "", "", "", ["BWA3_CarlGustav_HEDP", "BWA3_CarlGustav_HE"], [], ""],
+["BWA3_CarlGustav", "", "", "BWA3_optic_CarlGustav", ["BWA3_CarlGustav_HE", "BWA3_CarlGustav_HEAT"], [], ""],
+["BWA3_CarlGustav", "", "", "BWA3_optic_CarlGustav", ["BWA3_CarlGustav_HEDP", "BWA3_CarlGustav_HEAT"], [], ""],
+["BWA3_CarlGustav", "", "", "BWA3_optic_CarlGustav", ["BWA3_CarlGustav_HEDP", "BWA3_CarlGustav_HE"], [], ""]
+];
 _lightHELaunchers append [];
-_ATLaunchers append [];
+_ATLaunchers append [
+["BWA3_PzF3_Tandem_Loaded", "", "", "", [""], [], ""],
+["BWA3_PzF3_Tandem_Loaded", "", "", "", [""], [], ""],
+["BWA3_RGW90_Loaded", "", "", "", [""], [], ""],
+["BWA3_Bunkerfaust_Loaded", "", "", "", [""], [], ""]
+];
 _missleATLaunchers append [];
-_AALaunchers append [];
-_sidearms append [];
+_AALaunchers append [
+["BWA3_Fliegerfaust", "", "", "", ["BWA3_Fliegerfaust_Mag"], [], ""]
+];
+_sidearms append [
+["BWA3_P12", "", "BWA3_acc_LLMPI_irlaser", "", [], [], ""],
+["BWA3_P8", "", "BWA3_acc_LLMPI_irlaser", "", [], [], ""]
+];
 _GLsidearms append [];
 
-_ATMines append ["ATMine_Range_Mag"];
-_APMines append ["APERSMine_Range_Mag"];
+_ATMines append ["BWA3_DM31AT_Mag"];
+_APMines append ["APERSMine_Range_Mag", "SLAMDirectionalMine_Wire_Mag"];
 _lightExplosives append ["DemoCharge_Remote_Mag"];
 _heavyExplosives append ["SatchelCharge_Remote_Mag"];
 
-_antiInfantryGrenades append ["HandGrenade", "MiniGrenade"];
+_antiInfantryGrenades append ["BWA3_DM51A1"];
 _antiTankGrenades append [];
-_smokeGrenades append ["SmokeShell"];
-_signalsmokeGrenades append ["SmokeShellYellow", "SmokeShellRed", "SmokeShellPurple", "SmokeShellOrange", "SmokeShellGreen", "SmokeShellBlue"];
+_smokeGrenades append ["BWA3_DM25"];
+_signalsmokeGrenades append ["BWA3_DM32_Yellow", "BWA3_DM32_Red", "BWA3_DM32_Purple", "BWA3_DM32_Orange", "BWA3_DM32_Green", "BWA3_DM32_Blue"];
 
 _maps append ["ItemMap"];
 _watches append ["ItemWatch"];
 _compasses append ["ItemCompass"];
 _radios append ["ItemRadio"];
-_gpses append ["ItemGPS"];
-_NVGs append ["NVGoggles"];
+_gpses append ["BWA3_ItemNaviPad", "ItemGPS"];
+_NVGs append ["NVGoggles_OPFOR"];
 _binoculars append ["Binocular"];
-_rangefinders append ["Rangefinder"];
+_rangefinders append ["BWA3_Vector"];
 
-_traitorUniforms append [];
-_traitorVests append [];
-_traitorHats append [];
+_traitorUniforms append ["BWA3_Uniform_tee_Fleck"];
+_traitorVests append ["BWA3_Vest_JPC_Leader_Fleck", "BWA3_Vest_JPC_Radioman_Fleck"];
+_traitorHats append ["BWA3_Booniehat_Fleck"];
 
-_officerUniforms append [];
-_officerVests append [];
-_officerHats append [];
+_officerUniforms append ["BWA3_Uniform2_sleeves_Fleck"];
+_officerVests append ["V_LegStrapBag_black_F", "V_Rangemaster_belt"];
+_officerHats append ["BWA3_Beret_Wach_blue"];
 
 _cloakUniforms append [];
 _cloakVests append [];
@@ -129,9 +146,10 @@ _cloakRifles append [];
 _cloakCarbines append [];
 _cloakSidearms append [];
 
-_uniforms append [];
+_uniforms append ["BWA3_Uniform_sleeves_Fleck", "BWA3_Uniform_Fleck"];
 _SLuniforms append [];
 _ENGuniforms append [];
+_MEDuniforms append [];
 _MGvests append [];
 _MEDvests append [];
 _SLvests append [];
@@ -140,12 +158,12 @@ _GLvests append [];
 _ATvests append [];
 _ENGvests append [];
 _vests append [];
-_backpacks append [];
+_backpacks append ["BWA3_Kitbag_Fleck", "BWA3_AssaultPack_Fleck", "BWA3_Carryall_Fleck", "BWA3_PatrolPack_Fleck"];
 _ATBackpacks append [];
 _AABackpacks append [];
 _MGBackpacks append [];
 _GLBackpacks append [];
-_MEDBackpacks append [];
+_MEDBackpacks append ["BWA3_TacticalPack_Fleck_Medic", "BWA3_Kitbag_Fleck_Medic", "BWA3_AssaultPack_Fleck_Medic"];
 _ENGBackpacks append [];
 _EXPBackpacks append [];
 _SLBackpacks append [];
@@ -154,7 +172,7 @@ _helmets append [];
 _MEDhelmets append [];
 _SLhelmets append [];
 _SLhats append [];
-_SNIhats append [];
+_SNIhats append ["BWA3_Booniehat_Fleck"];
 
 _slItems append ["Laserbatteries", "Laserbatteries", "Laserbatteries"];
 _rItems append [];
@@ -177,8 +195,7 @@ if (A3A_hasACE) then {
 	_mmItems append [];
 };
 
-_glasses append [];
-_goggles append [];
+_facewear append ["G_Bandanna_oli", "BWA3_G_Combat_black", "BWA3_G_Combat_clear", "G_Bandanna_blk", "None"];
 
 ///////////////////////////////////////
 //    Special Forces Loadout Data    //
@@ -294,8 +311,7 @@ _sfSLhelmets append [];
 _sfSLhats append ["BWA3_Beret_Falli"];
 _sfSNIhats append [];
 
-_sfglasses append [];
-_sfgoggles append [];
+_sffacewear append [];
 
 /////////////////////////////////
 //    Elite Loadout Data       //
@@ -417,8 +433,7 @@ _eliteSLhelmets append [];
 _eliteSLhats append ["BWA3_Beret_Pz"];
 _eliteSNIhats append [];
 
-_eliteglasses append [];
-_elitegoggles append [];
+_elitefacewear append [];
 
 /////////////////////////////////
 //    Military Loadout Data    //
@@ -541,8 +556,7 @@ _militarySLhelmets append [];
 _militarySLhats append ["BWA3_Beret_Pz"];
 _militarySNIhats append [];
 
-_militaryglasses append [];
-_militarygoggles append [];
+_militaryfacewear append [];
 
 ///////////////////////////////
 //    Police Loadout Data    //
@@ -643,9 +657,6 @@ _militiaSLhelmets append [];
 _militiaSLhats append ["BWA3_Beret_Wach_blue"];
 _militiaSNIhats append [];
 
-
-_militiaglasses append [];
-_militiagoggles append [];
 _militiafacewear append ["G_Spectacles", "None", "BWA3_G_Combat_black", "BWA3_G_Combat_clear", "BWA3_G_Combat_orange"];
 
 //////////////////////////
@@ -680,8 +691,8 @@ _pilotfacewear append [];
 /////////////////////////////
 
 if (isClass (configFile >> "CfgPatches" >> "CUP_AirVehicles_Core") && !isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy")) then {
-    _unarmedVehicles append ["CUP_B_FENNEK_GER_Wdl"];
-    _armedVehicles append ["CUP_B_M1165_GMV_WDL_USA", "CUP_B_nM1025_M2_USA_WDL", "CUP_B_nM1025_M240_USA_WDL", "CUP_B_nM1036_TOW_USA_WDL"];
+    _lightUnarmed append ["CUP_B_FENNEK_GER_Wdl"];
+    _lightArmed append ["CUP_B_M1165_GMV_WDL_USA", "CUP_B_nM1025_M2_USA_WDL", "CUP_B_nM1025_M240_USA_WDL", "CUP_B_nM1036_TOW_USA_WDL"];
     _Trucks = ["CUP_B_MTVR_USMC"];
     _cargoTrucks = ["CUP_B_MTVR_USMC"];
     _ammoTrucks = ["CUP_B_MTVR_Ammo_USMC", "CUP_B_nM1038_Ammo_USA_WDL", "CUP_B_nM1038_Ammo_DF_USA_WDL"];
@@ -719,8 +730,8 @@ if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy") && !isCl
         _fuelTrucks = ["rhsusf_M978A4_usarmy_wd", "rhsusf_M978A4_BKIT_usarmy_wd"];
         _medicalTrucks = ["rhsusf_m113_usarmy_medical", "rhsusf_M1230a1_usarmy_wd"];
         _lightAPCs = ["rhsusf_M1117_W", "rhsusf_m113_usarmy", "rhsusf_m113_usarmy_M240", "rhsusf_m113_usarmy_MK19", "rhsusf_M1220_M153_M2_usarmy_wd", "rhsusf_M1220_M153_MK19_usarmy_wd", "rhsusf_M1220_M2_usarmy_wd", "rhsusf_M1230_M2_usarmy_wd", "rhsusf_M1232_M2_usarmy_wd", "rhsusf_M1237_M2_usarmy_wd", "rhsusf_M1083A1P2_B_M2_WD_fmtv_usarmy", "rhsusf_M1078A1P2_B_M2_WD_fmtv_usarmy"];
-        _unarmedVehicles append ["rhsusf_m1151_usarmy_wd", "rhsusf_m1043_w", "rhsusf_m998_w_2dr_fulltop"];
-        _armedVehicles append ["rhsusf_m1151_m240_v1_usarmy_wd", "rhsusf_m1151_m2_lras3_v1_usarmy_wd", "rhsusf_m1151_m2_v1_usarmy_wd", "rhsusf_m966_w"];
+        _lightUnarmed append ["rhsusf_m1151_usarmy_wd", "rhsusf_m1043_w", "rhsusf_m998_w_2dr_fulltop"];
+        _lightArmed append ["rhsusf_m1151_m240_v1_usarmy_wd", "rhsusf_m1151_m2_lras3_v1_usarmy_wd", "rhsusf_m1151_m2_v1_usarmy_wd", "rhsusf_m966_w"];
         _helisLight append ["RHS_MELB_MH6M"];
         _transportHelicopters append ["RHS_CH_47F", "RHS_UH60M", "rhsusf_CH53E_USMC_GAU21", "rhsusf_CH53E_USMC"];
         _helisLightAttack append ["RHS_MELB_AH6M"];
@@ -731,7 +742,7 @@ if (isClass (configFile >> "CfgFactionClasses" >> "rhs_faction_usarmy") && !isCl
 };
 
 if (isClass (configfile >> "CfgPatches" >> "Redd_Marder_1A5")) then {
-    _armedVehicles append ["Redd_Tank_Wiesel_1A4_MK20_Flecktarn", "Redd_Tank_Wiesel_1A2_TOW_Flecktarn"];
+    _lightArmed append ["Redd_Tank_Wiesel_1A4_MK20_Flecktarn", "Redd_Tank_Wiesel_1A2_TOW_Flecktarn"];
     _Trucks = ["rnt_lkw_5t_mil_gl_kat_i_transport_fleck", "rnt_lkw_7t_mil_gl_kat_i_transport_fleck"];
     _cargoTrucks = ["rnt_lkw_5t_mil_gl_kat_i_transport_fleck", "rnt_lkw_7t_mil_gl_kat_i_transport_fleck"];
     _ammoTrucks = ["rnt_lkw_7t_mil_gl_kat_i_mun_fleck"];
@@ -740,8 +751,8 @@ if (isClass (configfile >> "CfgPatches" >> "Redd_Marder_1A5")) then {
     _miltiaTrucks = ["rnt_lkw_5t_mil_gl_kat_i_transport_fleck", "rnt_lkw_7t_mil_gl_kat_i_transport_fleck"];
     
     if (!_hasGM) then {
-        _unarmedVehicles append ["Redd_Tank_LKW_leicht_gl_Wolf_Flecktarn_FueFu"];
-        _armedVehicles append ["Redd_Tank_Fuchs_1A4_Pi_Flecktarn", "Redd_Tank_Fuchs_1A4_Jg_Flecktarn"];
+        _lightUnarmed append ["Redd_Tank_LKW_leicht_gl_Wolf_Flecktarn_FueFu"];
+        _lightArmed append ["Redd_Tank_Fuchs_1A4_Pi_Flecktarn", "Redd_Tank_Fuchs_1A4_Jg_Flecktarn"];
         _medicalTrucks append ["Redd_Tank_Fuchs_1A4_San_Flecktarn", "Redd_Tank_LKW_leicht_gl_Wolf_Flecktarn_San"];
         _APCs append ["Redd_Marder_1A5_Flecktarn"];
         _IFVs append ["Redd_Marder_1A5_Flecktarn", "rnt_sppz_2a2_luchs_flecktarn"];
@@ -752,8 +763,8 @@ if (isClass (configfile >> "CfgPatches" >> "Redd_Marder_1A5")) then {
 };
 
 if (_hasGM) then {
-    _unarmedVehicles = ["gm_ge_army_iltis_cargo"];
-    _armedVehicles = ["gm_ge_army_iltis_milan","gm_ge_army_iltis_mg3","gm_ge_army_fuchsa0_command", "gm_ge_army_fuchsa0_engineer","gm_ge_army_fuchsa0_reconnaissance"];
+    _lightUnarmed = ["gm_ge_army_iltis_cargo"];
+    _lightArmed = ["gm_ge_army_iltis_milan","gm_ge_army_iltis_mg3","gm_ge_army_fuchsa0_command", "gm_ge_army_fuchsa0_engineer","gm_ge_army_fuchsa0_reconnaissance"];
 	_Trucks append ["gm_ge_army_u1300l_cargo", "gm_ge_army_kat1_451_cargo"];
 	_cargoTrucks append ["gm_ge_army_kat1_454_cargo", "gm_ge_army_u1300l_container","gm_ge_army_kat1_451_container","gm_ge_army_kat1_452_container"];
 	_ammoTrucks append ["gm_ge_army_kat1_451_reammo","gm_ge_army_kat1_454_reammo"];

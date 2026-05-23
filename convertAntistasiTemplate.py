@@ -3,17 +3,26 @@
 Convert old Antistasi faction .sqf template format to a newer MIX_*.sqf append format.
 
 Usage examples:
-  python convert_antistasi_template.py AMF_AI_Army_Tan.sqf MIX_AMF_Arid.sqf -o output/MIX_AMF_Army_Tan.sqf
-  python convert_antistasi_template.py old_folder/*.sqf MIX_AMF_Arid.sqf -o converted/
+  python convertAntistasiTemplate.py AMF_AI_Army_Tan.sqf MIX_AMF_Arid.sqf -o output/MIX_AMF_Army_Tan.sqf
+  python convertAntistasiTemplate.py old_folder/*.sqf MIX_AMF_Arid.sqf -o converted/
 
 The second argument is a new-format file used as layout/template. The script replaces matching
 `_var append ...;` lines with values scraped from the old file.
+
+Patch notes:
+  - Rival saveToTemplate vehicle keys are mapped to the normal MIX variables:
+      vehiclesRivalsLightArmed -> _lightArmed
+      vehiclesRivalsTrucks     -> _Trucks
+  - Rival templates are detected by `_Riv_` in the filename and can automatically use
+    MIX_Rivals_empty.sqf via --rival-template.
+  - `_loadoutData set [...]` is parsed too, which is required for rival infantry gear.
 """
 from __future__ import annotations
 
 import argparse
 import re
 from pathlib import Path
+
 
 def strip_comments_preserve_length(text: str) -> str:
     """Replace SQF // and /* */ comments with spaces, preserving indexes and line breaks."""
@@ -80,6 +89,29 @@ def line_context(text: str, pos: int, context_lines: int = 4) -> tuple[int, str]
     return line_no, "\n".join(chunk)
 
 
+def is_rival_template_path(path: Path) -> bool:
+    """Antistasi Ultimate rival templates consistently include `_Riv_` in the filename."""
+    return "_Riv_" in path.name
+
+
+def is_ai_template_path(path: Path) -> bool:
+    """Normal army templates consistently include `_AI_` in the filename."""
+    return "_AI_" in path.name
+
+
+def template_kind_from_path(path: Path) -> str | None:
+    """Return `ai`, `rival`, or None for unsupported template types.
+
+    `_Civ_`, `_Reb_`, and other variants are intentionally skipped for now
+    so they can get their own converter/layout pass later.
+    """
+    if is_rival_template_path(path):
+        return "rival"
+    if is_ai_template_path(path):
+        return "ai"
+    return None
+
+
 def template_append_vars(template_text: str) -> set[str]:
     return {
         m.group("var")
@@ -95,11 +127,12 @@ def missing_template_vars(values: dict[str, str], template_text: str) -> list[st
     return sorted(var for var in values if var not in existing)
 
 
+
 # Old saveToTemplate keys -> new append variable names
 SAVE_MAP = {
     "vehiclesBasic": "_basic",
-    "vehiclesLightUnarmed": "_unarmedVehicles",
-    "vehiclesLightArmed": "_armedVehicles",
+    "vehiclesLightUnarmed": "_lightUnarmed",
+    "vehiclesLightArmed": "_lightArmed",
     "vehiclesTrucks": "_Trucks",
     "vehiclesCargoTrucks": "_cargoTrucks",
     "vehiclesAmmoTrucks": "_ammoTrucks",
@@ -145,6 +178,20 @@ SAVE_MAP = {
     "voices": "_voices",
 }
 
+# Rival saveToTemplate keys -> variables in MIX_Rivals_empty.sqf.
+# This is used only when the input filename contains `_Riv_`.
+RIVAL_SAVE_MAP = dict(SAVE_MAP)
+RIVAL_SAVE_MAP.update({
+    "vehiclesRivalsCars": "_unarmedVehicles",
+    "vehiclesRivalsLightArmed": "_armedVehicles",
+    "vehiclesRivalsTrucks": "_Trucks",
+    "vehiclesRivalsAPCs": "_lightAPCs",
+    "vehiclesRivalsTanks": "_tanks",
+    "vehiclesRivalsHelis": "_transportHelicopters",
+    "vehiclesRivalsUavs": "_uavsAttack",
+    "staticLowWeapons": "_staticLowWeapons",
+})
+
 LOADOUT_OBJECTS = {
     "_loadoutData": "",
     "_sfLoadoutData": "sf",
@@ -167,6 +214,21 @@ KEY_SUFFIX_MAP = {
     "glVests": "GLvests",
     "slUniform": "slUniforms",  # some older files use singular
     "slUniforms": "slUniforms",
+
+    # Rival loadout keys -> normal MIX loadout keys.
+    # AU rival templates use these names, but the MIX layout uses slRifles/SMGs.
+    "tunedRifles": "slRifles",
+    "enforcerRifles": "SMGs",
+
+    # AU rival-specific loadout keys -> MIX_Rivals_empty names.
+    "Rangefinder": "rangefinders",
+    "headgear": "helmets",
+    "heavyHelmets": "helmets",
+    "offuniforms": "SLuniforms",
+    "heavyUniforms": "uniforms",
+    "heavyVests": "vests",
+    "atBackpacks": "ATBackpacks",
+    "crewHelmets": "crewhelmets",
 }
 
 # Old item-set keys -> new variable names
@@ -195,6 +257,43 @@ ITEM_KEY_TO_VAR = {
 # Add more entries here whenever old templates use redundant / wrong names.
 VARIABLE_ALIASES = {
     # Generalizing old loadout names into universal ones
+    "_shotGuns": "_SMGs",
+    "_heavyATLaunchers": "_missleATLaunchers",
+
+    "_rangefinder": "_rangefinders",
+
+    "_cloakGlasses": "_SNIhats",
+    "_slUniorms": "_SLuniforms",
+    "_slUniforms": "_SLuniforms",
+    "_medUniforms": "_MEDuniforms",
+    "_engUniforms": "_uniforms",
+    "_Hvests": "_vests",
+    "_maVests": "_SNIvests",
+    "_engVests": "_ENGvests",
+    "_MEDIvests": "_MEDvests",
+    "_atBackpacks": "_ATBackpacks",
+    "_aaBackpacks": "_AABackpacks",
+    "_mgBackpacks": "_MGBackpacks",
+    "_MGbackpacks": "_MGBackpacks",
+    "_glBackpacks": "_GLBackpacks",
+    "_medBackpacks": "_MEDBackpacks",
+    "_MEDIbackpacks": "_MEDBackpacks",
+    "_Medbackpacks": "_MEDBackpacks",
+    "_engBackpacks": "_ENGBackpacks",
+    "_expBackpacks": "_EXPBackpacks",
+    "_slBackpacks": "_SLBackpacks",
+    "_ViperBP": "_SLBackpacks",
+    "_MGhelmets": "_helmets",
+    "_GLhelmets": "_helmets",
+    "_medHelmets": "_MEDhelmets",
+    "_Medhelmets": "_MEDhelmets",
+    "_slHelmets": "_SLhelmets",
+    "_slHat": "_SLhats",
+    "_sniHats": "_SNIhats",
+
+    "_glasses": "_facewear",
+    "_goggles": "_facewear",
+    
     # SF
     "_sfslSidearms": "_sfGLsidearms",
     "_sfmedUniforms": "_sfMEDuniforms",
@@ -216,7 +315,8 @@ VARIABLE_ALIASES = {
     "_sfslHelmets": "_sfSLhelmets",
     "_sfslHat": "_sfSLhats",
     "_sfsniHats": "_sfSNIhats",
-    "_sffacewear": "_sfglasses",
+    "_sfglasses": "_sffacewear",
+    "_sfgoggles": "_sffacewear",
 
     # Elite
     "_eliteslSidearms": "_eliteGLsidearms",
@@ -236,6 +336,8 @@ VARIABLE_ALIASES = {
     "_eliteMGhelmets": "_elitehelmets",
     "_eliteslHat": "_eliteSLhats",
     "_elitesniHats": "_eliteSNIhats",
+    "_eliteglasses": "_elitefacewear",
+    "_elitegoggles": "_elitefacewear",
 
     # Military
     "_militaryslUniforms": "_militarySLuniforms",
@@ -255,6 +357,8 @@ VARIABLE_ALIASES = {
     "_militaryMGhelmets": "_militaryhelmets",
     "_militaryslHat": "_militarySLhats",
     "_militarysniHats": "_militarySNIhats",
+    "_militaryglasses": "_militaryfacewear",
+    "_militarygoggles": "_militaryfacewear",
 
     # Militia
     "_militiashotguns": "_militiaSMGs",
@@ -269,7 +373,6 @@ VARIABLE_ALIASES = {
     "_militiaengVests": "_militiaENGvests",
     "_militiaENGVests": "_militiaENGvests",
     "_militiaatBackpacks": "_militiaATBackpacks",
-    "_militaryaaBackpacks": "_militiaAABackpacks",
     "_militiaMGbackpacks": "_militiaMGBackpacks",
     "_militiaglBackpacks": "_militiaGLBackpacks",
     "_militiamedBackpacks": "_militiaMEDBackpacks",
@@ -281,6 +384,8 @@ VARIABLE_ALIASES = {
     "_militiaslHelmets": "_militiaSLhelmets",
     "_militiaslHat": "_militiaSLhats",
     "_militiasniHats": "_militiaSNIhats",
+    "_militiaglasses": "_militaryfacewear",
+    "_militiagoggles": "_militaryfacewear",
 
     # Misc
     "_pilotslUniforms": "_pilotuniforms",
@@ -291,6 +396,7 @@ VARIABLE_ALIASES = {
     "_crewslUniforms": "_crewuniforms",
     "_crewcrewHelmets": "_crewhelmets",
     "_crewCrewHelmets": "_crewhelmets",
+    "_crewcrewhelmets": "_crewhelmets",
     "_crewglasses": "_crewfacewear",
     "_policepoliceWeapons": "_policeWeapons",
     "_policerifles": "_policeWeapons",
@@ -305,8 +411,8 @@ VARIABLE_ALIASES = {
     
 
     # common old conditional vehicle variable names -> MIX_empty names
-    "_lightUnarmed": "_unarmedVehicles",
-    "_lightArmed": "_armedVehicles",
+    "_unarmedVehicles": "_lightUnarmed",
+    "_armedVehicles": "_lightArmed",
     "_trucks": "_Trucks",
     "_cargotrucks": "_cargoTrucks",
     "_cargoTrucks": "_cargoTrucks",
@@ -340,14 +446,38 @@ VARIABLE_ALIASES = {
 }
 
 
-def canonical_var_name(var: str) -> str:
-    """Map old/redundant variable names to the variable names used by MIX_empty.sqf."""
-    return VARIABLE_ALIASES.get(var, var)
+# Aliases for the rival empty/layout. These keep old/normal names usable,
+# but canonicalize them to the variables used in MIX_Rivals_empty.sqf.
+# Normal templates still use VARIABLE_ALIASES unchanged.
+RIVAL_VARIABLE_ALIASES = dict(VARIABLE_ALIASES)
+RIVAL_VARIABLE_ALIASES.update({
+    "_lightUnarmed": "_unarmedVehicles",
+    "_unarmedVehicles": "_unarmedVehicles",
+    "_lightArmed": "_armedVehicles",
+    "_armedVehicles": "_armedVehicles",
+    "_staticMG": "_staticLowWeapons",
+    "_staticLowWeapons": "_staticLowWeapons",
+
+    "_smgs": "_SMGs",
+    
+    "_offvests": "_SLvests",
+    "_offbackpacks": "_SLBackpacks",
+    "_offhelmets": "_SLhelmets",
+    "_offfacewear": "_facewear",
+
+    "_glasses": "_facewear",
+})
 
 
-def add_value(values: dict[str, str], var: str, value: str) -> None:
-    """Store extracted value after applying VARIABLE_ALIASES."""
-    values[canonical_var_name(var)] = value
+def canonical_var_name(var: str, aliases: dict[str, str] | None = None) -> str:
+    """Map old/redundant variable names to the variable names used by the selected template."""
+    aliases = aliases or VARIABLE_ALIASES
+    return aliases.get(var, var)
+
+
+def add_value(values: dict[str, str], var: str, value: str, aliases: dict[str, str] | None = None) -> None:
+    """Store extracted value after applying the selected alias map."""
+    values[canonical_var_name(var, aliases)] = value
 
 
 
@@ -449,6 +579,7 @@ def second_arg_from_outer_array(text: str, bracket_start: int) -> str:
     _, second = split_top_level_once(inside)
     return second.strip()
 
+
 def normalize_value(value: str, *, force_array: bool = False) -> str:
     value = value.strip()
     if value.startswith("createHashMapFromArray"):
@@ -462,7 +593,7 @@ def normalize_value(value: str, *, force_array: bool = False) -> str:
     return value
 
 
-def extract_private_assignments(old_text: str) -> dict[str, str]:
+def extract_private_assignments(old_text: str, aliases: dict[str, str] | None = None) -> dict[str, str]:
     """Extract top-level/private variable assignments from old templates.
 
     This fixes old templates that do this pattern:
@@ -475,6 +606,7 @@ def extract_private_assignments(old_text: str) -> dict[str, str]:
     The result stores both the original variable name and its canonical alias so
     redundant old names can still be resolved.
     """
+    aliases = aliases or VARIABLE_ALIASES
     text = strip_comments_preserve_length(old_text)
     assignments: dict[str, str] = {}
 
@@ -487,50 +619,60 @@ def extract_private_assignments(old_text: str) -> dict[str, str]:
         raw = read_value_until_statement_end(text, m.end())
         value = normalize_value(raw)
         assignments[var] = value
-        assignments[canonical_var_name(var)] = value
+        assignments[canonical_var_name(var, aliases)] = value
 
     return assignments
 
 
-def resolve_value_references(value: str, assignments: dict[str, str]) -> str:
+def resolve_value_references(value: str, assignments: dict[str, str], aliases: dict[str, str] | None = None) -> str:
     """If a saveToTemplate value is just a variable name, replace it with its array."""
+    aliases = aliases or VARIABLE_ALIASES
     value = value.strip()
     if re.fullmatch(r'_\w+', value):
-        return assignments.get(value) or assignments.get(canonical_var_name(value)) or value
+        return assignments.get(value) or assignments.get(canonical_var_name(value, aliases)) or value
     return value
 
 
-def extract_save_values(old_text: str, assignments: dict[str, str] | None = None) -> dict[str, str]:
+def extract_save_values(old_text: str, assignments: dict[str, str] | None = None, *, save_map: dict[str, str] | None = None, aliases: dict[str, str] | None = None) -> dict[str, str]:
+    save_map = save_map or SAVE_MAP
+    aliases = aliases or VARIABLE_ALIASES
     text = strip_comments_preserve_length(old_text)
-    assignments = assignments or extract_private_assignments(old_text)
+    assignments = assignments or extract_private_assignments(old_text, aliases)
     values = {}
     pat = re.compile(r'\[\s*"(?P<key>[^"]+)"\s*,')
     for m in pat.finditer(text):
         key = m.group("key")
-        if key not in SAVE_MAP:
+        if key not in save_map:
             continue
         stmt_end = text.find(";", m.end())
         if stmt_end == -1 or "call _fnc_saveToTemplate" not in text[m.end():stmt_end + 1]:
             continue
         value = second_arg_from_outer_array(text, m.start())
-        value = resolve_value_references(value, assignments)
-        add_value(values, SAVE_MAP[key], normalize_value(value, force_array=key in {"vehicleRadar", "vehicleSam"}))
+        value = resolve_value_references(value, assignments, aliases)
+        add_value(values, save_map[key], normalize_value(value, force_array=key in {"vehicleRadar", "vehicleSam"}), aliases)
     return values
+
 
 def suffix_for_key(key: str) -> str:
     return KEY_SUFFIX_MAP.get(key, key)
 
 
-def extract_loadout_values(old_text: str) -> dict[str, str]:
+def extract_loadout_values(old_text: str, aliases: dict[str, str] | None = None, assignments: dict[str, str] | None = None) -> dict[str, str]:
+    aliases = aliases or VARIABLE_ALIASES
     text = strip_comments_preserve_length(old_text)
+    assignments = assignments or extract_private_assignments(old_text, aliases)
     values = {}
-    pat = re.compile(r'(?P<obj>_\w+LoadoutData)\s+set\s+(?P<bracket>\[)\s*"(?P<key>[^"]+)"\s*,')
+    # Match both the base object `_loadoutData` and typed objects like
+    # `_crewLoadoutData`, `_pilotLoadoutData`, etc. Rival templates put most
+    # infantry gear on `_loadoutData`, so skipping it leaves rifles/uniforms empty.
+    pat = re.compile(r'(?P<obj>_(?:loadoutData|\w+LoadoutData))\s+set\s+(?P<bracket>\[)\s*"(?P<key>[^"]+)"\s*,')
     for m in pat.finditer(text):
         obj = m.group("obj")
         key = m.group("key")
         if obj not in LOADOUT_OBJECTS:
             continue
         raw = second_arg_from_outer_array(text, m.start("bracket"))
+        raw = resolve_value_references(raw, assignments, aliases)
         prefix = LOADOUT_OBJECTS[obj]
         if key in ITEM_KEY_TO_VAR and prefix == "":
             var = ITEM_KEY_TO_VAR[key]
@@ -538,10 +680,12 @@ def extract_loadout_values(old_text: str) -> dict[str, str]:
             continue
         else:
             var = "_" + prefix + suffix_for_key(key)
-        add_value(values, var, normalize_value(raw))
+        add_value(values, var, normalize_value(raw), aliases)
     return values
 
-def extract_private_arrays(old_text: str) -> dict[str, str]:
+
+def extract_private_arrays(old_text: str, aliases: dict[str, str] | None = None) -> dict[str, str]:
+    aliases = aliases or VARIABLE_ALIASES
     text = strip_comments_preserve_length(old_text)
     values = {}
     for name in ["_slItems", "_rItems", "_mItems", "_gItems", "_eeItems", "_latItems", "_atItems", "_aaItems", "_mgItems", "_mmItems", "_pItems", "_cItems", "_uItems"]:
@@ -549,22 +693,23 @@ def extract_private_arrays(old_text: str) -> dict[str, str]:
         if not m:
             continue
         raw = read_value_until_statement_end(text, m.end())
-        add_value(values, name, normalize_value(raw))
+        add_value(values, name, normalize_value(raw), aliases)
     return values
 
 
 
-def replace_condition_variable_aliases(block: str) -> str:
-    """Apply VARIABLE_ALIASES inside copied conditional SQF blocks."""
+def replace_condition_variable_aliases(block: str, aliases: dict[str, str] | None = None) -> str:
+    """Apply aliases inside copied conditional SQF blocks."""
+    aliases = aliases or VARIABLE_ALIASES
     # Longest names first prevents partial-ish replacements from doing weird things.
-    for old, new in sorted(VARIABLE_ALIASES.items(), key=lambda kv: len(kv[0]), reverse=True):
+    for old, new in sorted(aliases.items(), key=lambda kv: len(kv[0]), reverse=True):
         if old == new:
             continue
         block = re.sub(rf'(?<!\w){re.escape(old)}(?!\w)', new, block)
     return block
 
 
-def extract_condition_blocks(old_text: str) -> list[str]:
+def extract_condition_blocks(old_text: str, aliases: dict[str, str] | None = None) -> list[str]:
     """Extract DLC/mod conditional blocks from old templates.
 
     Currently this captures blocks like:
@@ -573,6 +718,7 @@ def extract_condition_blocks(old_text: str) -> list[str]:
 
     They are copied near the bottom of the MIX output, after the Conditional Gear marker.
     """
+    aliases = aliases or VARIABLE_ALIASES
     blocks: list[str] = []
     seen: set[str] = set()
     i = 0
@@ -621,7 +767,7 @@ def extract_condition_blocks(old_text: str) -> list[str]:
             end += 1
 
         block = old_text[condition_start:end].strip()
-        block = replace_condition_variable_aliases(block)
+        block = replace_condition_variable_aliases(block, aliases)
 
         if block and block not in seen:
             seen.add(block)
@@ -655,26 +801,30 @@ def insert_condition_blocks(output_text: str, condition_blocks: list[str]) -> st
     return output_text.rstrip() + "\n\n/////////////////////////////\n//    Conditional Gear     //\n/////////////////////////////\n\n" + block_text
 
 
-def extract_all_values(old_text: str) -> dict[str, str]:
+def extract_all_values(old_text: str, *, is_rival: bool = False) -> dict[str, str]:
     values = {}
-    private_assignments = extract_private_assignments(old_text)
+    aliases = RIVAL_VARIABLE_ALIASES if is_rival else VARIABLE_ALIASES
+    save_map = RIVAL_SAVE_MAP if is_rival else SAVE_MAP
+    private_assignments = extract_private_assignments(old_text, aliases)
 
     # First resolve saveToTemplate keys. This now converts e.g.
     # ["vehiclesBasic", _basic] into the actual array assigned to _basic.
-    values.update(extract_save_values(old_text, private_assignments))
+    values.update(extract_save_values(old_text, private_assignments, save_map=save_map, aliases=aliases))
 
     # Then loadout/hashmap values.
-    values.update(extract_loadout_values(old_text))
+    # Pass private assignments so `_loadoutData set ["key", _someArray]` is resolved too.
+    values.update(extract_loadout_values(old_text, aliases, private_assignments))
 
     # Finally item helper arrays used by loadouts.
-    values.update(extract_private_arrays(old_text))
+    values.update(extract_private_arrays(old_text, aliases))
     return values
 
 
-def convert_one(old_path: Path, template_text: str, *, report_missing: bool = False) -> str:
+def convert_one(old_path: Path, template_text: str, *, report_missing: bool = False, is_rival: bool = False) -> str:
     old_text = old_path.read_text(encoding="utf-8", errors="ignore")
-    values = extract_all_values(old_text)
-    condition_blocks = extract_condition_blocks(old_text)
+    aliases = RIVAL_VARIABLE_ALIASES if is_rival else VARIABLE_ALIASES
+    values = extract_all_values(old_text, is_rival=is_rival)
+    condition_blocks = extract_condition_blocks(old_text, aliases)
 
     # Optional: generate header faction name from old ["name", ...]
     name_match = re.search(r'\[\s*"name"\s*,\s*"([^"]+)"\s*\]\s*call _fnc_saveToTemplate', old_text)
@@ -701,7 +851,7 @@ def convert_one(old_path: Path, template_text: str, *, report_missing: bool = Fa
             print(f"[MISSING TEMPLATE VARIABLES] {old_path}")
             for var in missing:
                 print(f"  - {var}")
-            print("  Add these as lines like: _variable append []; in MIX_empty.sqf\n")
+            print("  Add these as lines like: _variable append []; in the selected empty/layout file\n")
 
     return out
 
@@ -709,29 +859,65 @@ def convert_one(old_path: Path, template_text: str, *, report_missing: bool = Fa
 def main() -> None:
     parser = argparse.ArgumentParser(description="Convert old Antistasi SQF templates to MIX append format.")
     parser.add_argument("old_files", nargs="+", help="Old .sqf files, wildcards allowed by your shell")
-    parser.add_argument("template", help="New-format MIX .sqf file used as layout")
+    parser.add_argument("template", help="Normal new-format MIX .sqf file used as layout")
     parser.add_argument("-o", "--output", required=True, help="Output file if one input, or output folder if multiple inputs")
+    parser.add_argument(
+        "--rival-template",
+        default=None,
+        help="Rival MIX .sqf layout/empty used when the input filename contains `_Riv_`. Defaults to MIX_Rivals_empty.sqf next to this script or in the current working directory.",
+    )
     args = parser.parse_args()
 
     old_files = [Path(p) for p in args.old_files]
     template_text = Path(args.template).read_text(encoding="utf-8", errors="ignore")
+
+    rival_template_path = Path(args.rival_template) if args.rival_template else None
+    if rival_template_path is None:
+        script_default = Path(__file__).with_name("MIX_Rivals_empty.sqf")
+        cwd_default = Path("MIX_Rivals_empty.sqf")
+        if script_default.exists():
+            rival_template_path = script_default
+        elif cwd_default.exists():
+            rival_template_path = cwd_default
+
+    rival_template_text = None
+    if rival_template_path is not None and rival_template_path.exists():
+        rival_template_text = rival_template_path.read_text(encoding="utf-8", errors="ignore")
+
     output = Path(args.output)
 
     if len(old_files) == 1 and output.suffix.lower() == ".sqf":
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(convert_one(old_files[0], template_text, report_missing=True), encoding="utf-8")
-        print(f"Wrote {output}")
+        old = old_files[0]
+        kind = template_kind_from_path(old)
+        if kind is None:
+            print(f"[SKIP TYPE] {old} does not contain `_AI_` or `_Riv_`; not converting.")
+            return
+        is_rival = kind == "rival"
+        selected_template_text = rival_template_text if is_rival and rival_template_text is not None else template_text
+        if is_rival and rival_template_text is None:
+            print(f"[WARN] {old.name} looks like a rival template but no rival template was found; using normal template.")
+        output.write_text(convert_one(old, selected_template_text, report_missing=True, is_rival=is_rival), encoding="utf-8")
+        print(f"Wrote {output}" + (" [rival template]" if is_rival else " [AI template]"))
     else:
         output.mkdir(parents=True, exist_ok=True)
         for old in old_files:
+            kind = template_kind_from_path(old)
+            if kind is None:
+                print(f"[SKIP TYPE] {old} does not contain `_AI_` or `_Riv_`; not converting.")
+                continue
             name = old.stem
             if name.startswith("AMF_AI_"):
                 name = name.replace("AMF_AI_", "MIX_AMF_", 1)
             elif not name.startswith("MIX_"):
                 name = "MIX_" + name
             dest = output / f"{name}.sqf"
-            dest.write_text(convert_one(old, template_text, report_missing=True), encoding="utf-8")
-            print(f"Wrote {dest}")
+            is_rival = kind == "rival"
+            selected_template_text = rival_template_text if is_rival and rival_template_text is not None else template_text
+            if is_rival and rival_template_text is None:
+                print(f"[WARN] {old.name} looks like a rival template but no rival template was found; using normal template.")
+            dest.write_text(convert_one(old, selected_template_text, report_missing=True, is_rival=is_rival), encoding="utf-8")
+            print(f"Wrote {dest}" + (" [rival template]" if is_rival else " [AI template]"))
 
 
 if __name__ == "__main__":

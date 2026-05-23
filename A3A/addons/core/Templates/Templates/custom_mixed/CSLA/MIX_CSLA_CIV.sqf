@@ -2,8 +2,8 @@
  * Converted from: CSLA_CIV.sqf
  */
 _basic append ["I_Quadbike_01_F"];
-_unarmedVehicles append [];
-_armedVehicles append [];
+_lightUnarmed append [];
+_lightArmed append [];
 _Trucks append [];
 _cargoTrucks append [];
 _ammoTrucks append [];
@@ -129,7 +129,7 @@ _cloakRifles append [];
 _cloakCarbines append [];
 _cloakSidearms append [];
 
-_uniforms append [];
+_uniforms append ["FIA_uniCitizen", "FIA_uniCitizen2", "FIA_uniCitizen3", "FIA_uniCitizen4", "FIA_uniDoctor", "FIA_uniForeman", "FIA_uniForeman2", "FIA_uniVillager", "FIA_uniVillager2", "FIA_uniVillager3", "FIA_uniVillager4", "FIA_uniWoodlander", "FIA_uniWoodlander2", "FIA_uniWoodlander3", "FIA_uniWoodlander4"];
 _SLuniforms append [];
 _ENGuniforms append [];
 _MGvests append [];
@@ -150,7 +150,7 @@ _ENGBackpacks append [];
 _EXPBackpacks append [];
 _SLBackpacks append [];
 _longRangeRadios append [];
-_helmets append [];
+_helmets append _civHats;
 _MEDhelmets append [];
 _SLhelmets append [];
 _SLhats append [];

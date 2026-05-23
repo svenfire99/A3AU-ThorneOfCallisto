@@ -2,8 +2,8 @@
  * Converted from: CUP_Civ_TKC.sqf
  */
 _basic append ["I_Quadbike_01_F"];
-_unarmedVehicles append [];
-_armedVehicles append [];
+_lightUnarmed append [];
+_lightArmed append [];
 _Trucks append [];
 _cargoTrucks append [];
 _ammoTrucks append [];
@@ -127,7 +127,20 @@ _cloakRifles append [];
 _cloakCarbines append [];
 _cloakSidearms append [];
 
-_uniforms append [];
+_uniforms append [
+    "CUP_O_TKI_Khet_Jeans_04",
+    "CUP_O_TKI_Khet_Jeans_02",
+    "CUP_O_TKI_Khet_Jeans_01",
+    "CUP_O_TKI_Khet_Jeans_03",
+    "CUP_O_TKI_Khet_Partug_04",
+    "CUP_O_TKI_Khet_Partug_02",
+    "CUP_O_TKI_Khet_Partug_01",
+    "CUP_O_TKI_Khet_Partug_07",
+    "CUP_O_TKI_Khet_Partug_08",
+    "CUP_O_TKI_Khet_Partug_05",
+    "CUP_O_TKI_Khet_Partug_06",
+    "CUP_O_TKI_Khet_Partug_03"
+];
 _SLuniforms append [];
 _ENGuniforms append [];
 _MGvests append [];
@@ -148,7 +161,7 @@ _ENGBackpacks append [];
 _EXPBackpacks append [];
 _SLBackpacks append [];
 _longRangeRadios append [];
-_helmets append [];
+_helmets append _civHats;
 _MEDhelmets append [];
 _SLhelmets append [];
 _SLhats append [];

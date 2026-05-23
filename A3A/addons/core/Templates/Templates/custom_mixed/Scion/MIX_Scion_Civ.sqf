@@ -2,8 +2,8 @@
  * Converted from: Scion_Civ.sqf
  */
 _basic append ["I_Quadbike_01_F"];
-_unarmedVehicles append [];
-_armedVehicles append [];
+_lightUnarmed append [];
+_lightArmed append [];
 _Trucks append [];
 _cargoTrucks append [];
 _ammoTrucks append [];
@@ -127,7 +127,10 @@ _cloakRifles append [];
 _cloakCarbines append [];
 _cloakSidearms append [];
 
-_uniforms append [];
+_uniforms append [
+    "SSV_Uniform_Android_Pilot",
+    "SSV_Uniform_Android_Military"
+];
 _SLuniforms append [];
 _ENGuniforms append [];
 _MGvests append [];

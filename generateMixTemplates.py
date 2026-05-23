@@ -14,12 +14,21 @@ Default paths:
   Layout/template:
     A3A/addons/core/Templates/Templates/custom_mixed/MIX_empty.sqf
 
+  Rival layout/template:
+    A3A/addons/core/Templates/Templates/custom_mixed/MIX_Rivals_empty.sqf
+
   Output:
     A3A/addons/core/Templates/Templates/custom_mixed/<FactionFolder>/MIX_*.sqf
 
 Special case:
   *_Vehicle_Attributes.sqf is NOT converted.
   It is copied as-is to custom_mixed/<FactionFolder>/.
+
+Template handling:
+  Only files with `_AI_` or `_Riv_` in the filename are processed.
+  Files with `_AI_` use MIX_empty.sqf.
+  Files with `_Riv_` use MIX_Rivals_empty.sqf.
+  Other faction types like `_Civ_` and `_Reb_` are skipped for now.
 """
 from __future__ import annotations
 
@@ -34,6 +43,7 @@ from pathlib import Path
 DEFAULT_TEMPLATES_ROOT = Path("A3A/addons/core/Templates/Templates")
 DEFAULT_CUSTOM_MIXED = DEFAULT_TEMPLATES_ROOT / "custom_mixed"
 DEFAULT_LAYOUT = DEFAULT_CUSTOM_MIXED / "MIX_empty.sqf"
+DEFAULT_RIVAL_LAYOUT = DEFAULT_CUSTOM_MIXED / "MIX_Rivals_empty.sqf"
 
 SKIP_FOLDERS = {
     "custom_mixed",
@@ -50,6 +60,8 @@ SKIP_FOLDERS = {
 SKIP_FILE_NAMES = {
     "templates.hpp",
     "MIX_empty.sqf",
+    "MIX_Rivals_empty.sqf",
+    "MIX_emptyRivals.sqf",
 }
 
 
@@ -72,6 +84,51 @@ def load_converter(repo_root: Path):
     raise FileNotFoundError(
         "Could not find converter. Put convertAntistasiTemplate.py in the repo root."
     )
+
+
+
+def is_rival_template(source_file: Path, converter=None) -> bool:
+    """Rival templates in Antistasi Ultimate have `_Riv_` in their filename."""
+    if converter is not None and hasattr(converter, "is_rival_template_path"):
+        return bool(converter.is_rival_template_path(source_file))
+    return "_Riv_" in source_file.name
+
+
+def is_ai_template(source_file: Path) -> bool:
+    """Normal army templates use `_AI_` in their filename."""
+    return "_AI_" in source_file.name
+
+
+def template_kind(source_file: Path, converter=None) -> str | None:
+    """Return `ai`, `rival`, or None.
+
+    The generator intentionally ignores other template types for now,
+    such as `_Civ_` and `_Reb_`, so they can be handled later with
+    their own empty/layout files.
+    """
+    if is_rival_template(source_file, converter):
+        return "rival"
+    if is_ai_template(source_file):
+        return "ai"
+    return None
+
+
+def extract_values_compatible(converter, source_text: str, *, is_rival: bool):
+    """Call old or new converter.extract_all_values without breaking backwards compatibility."""
+    if not hasattr(converter, "extract_all_values"):
+        return None
+    try:
+        return converter.extract_all_values(source_text, is_rival=is_rival)
+    except TypeError:
+        return converter.extract_all_values(source_text)
+
+
+def convert_one_compatible(converter, source_file: Path, layout_text: str, *, is_rival: bool) -> str:
+    """Call old or new converter.convert_one without breaking backwards compatibility."""
+    try:
+        return converter.convert_one(source_file, layout_text, is_rival=is_rival)
+    except TypeError:
+        return converter.convert_one(source_file, layout_text)
 
 
 def show_error_context(text: str, error_text: str, context_lines: int = 5):
@@ -145,10 +202,10 @@ def print_missing_vars(missing_by_file: dict[str, list[str]]) -> None:
         return
 
     print("\n\n" + "=" * 100)
-    print("MISSING VARIABLES IN MIX_empty.sqf")
+    print("MISSING VARIABLES IN SELECTED MIX LAYOUT")
     print("=" * 100)
-    print("These variables came from old templates, but do not exist as an append line in MIX_empty.sqf.")
-    print("Add them to MIX_empty.sqf if you want the converter to automatically populate this data.")
+    print("These variables came from old templates, but do not exist as an append line in the selected layout file.")
+    print("For normal templates this is usually MIX_empty.sqf; for `_Riv_` files this is MIX_Rivals_empty.sqf.")
     print("Example: _crewcarbines append [];")
     print("=" * 100)
 
@@ -168,7 +225,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Generate custom_mixed MIX templates from repo root.")
     parser.add_argument("--templates-root", default=str(DEFAULT_TEMPLATES_ROOT), help="Path to Templates folder.")
     parser.add_argument("--custom-mixed", default=str(DEFAULT_CUSTOM_MIXED), help="Output custom_mixed folder.")
-    parser.add_argument("--layout", default=str(DEFAULT_LAYOUT), help="MIX_empty.sqf layout file.")
+    parser.add_argument("--layout", default=str(DEFAULT_LAYOUT), help="Normal MIX_empty.sqf layout file.")
+    parser.add_argument("--rival-layout", "--rival-template", default=str(DEFAULT_RIVAL_LAYOUT), help="Rival MIX_Rivals_empty.sqf layout file used for files with `_Riv_` in the filename.")
     parser.add_argument("--overwrite", action="store_true", help="Overwrite existing output files.")
     parser.add_argument("--dry-run", action="store_true", help="Show what would happen without writing files.")
     args = parser.parse_args()
@@ -177,27 +235,48 @@ def main() -> int:
     templates_root = (repo_root / args.templates_root).resolve()
     custom_mixed = (repo_root / args.custom_mixed).resolve()
     layout_file = (repo_root / args.layout).resolve()
+    rival_layout_file = (repo_root / args.rival_layout).resolve()
 
     if not templates_root.exists():
         print(f"[ERROR] Templates root not found: {templates_root}")
         return 1
 
     if not layout_file.exists():
-        print(f"[ERROR] MIX_empty.sqf layout not found: {layout_file}")
+        print(f"[ERROR] normal MIX_empty.sqf layout not found: {layout_file}")
         return 1
 
     converter = load_converter(repo_root)
     layout_text = layout_file.read_text(encoding="utf-8", errors="replace")
 
+    rival_layout_text = None
+    if rival_layout_file.exists():
+        rival_layout_text = rival_layout_file.read_text(encoding="utf-8", errors="replace")
+    else:
+        print(f"[WARN] Rival layout not found: {rival_layout_file}")
+        print("[WARN] Files with `_Riv_` in the name will fall back to the normal layout.")
+
     failed_files: list[dict[str, object]] = []
     missing_by_file: dict[str, list[str]] = {}
 
-    created = skipped = copied = failed = 0
+    created = skipped = copied = failed = ai_templates = rivals = skipped_by_name = 0
 
     for faction_dir, source_file in iter_source_files(templates_root):
+        kind = template_kind(source_file, converter)
+        if kind is None:
+            print(f"[SKIP TYPE] {source_file.relative_to(repo_root)} does not contain `_AI_` or `_Riv_`")
+            skipped_by_name += 1
+            skipped += 1
+            continue
+
         faction_name = faction_dir.name
         output_dir = custom_mixed / faction_name
         source_text = source_file.read_text(encoding="utf-8", errors="replace")
+        is_rival = kind == "rival"
+        selected_layout_text = rival_layout_text if is_rival and rival_layout_text is not None else layout_text
+        if is_rival:
+            rivals += 1
+        else:
+            ai_templates += 1
 
         # IMPORTANT:
         # Vehicle_Attributes are not gear templates.
@@ -233,12 +312,16 @@ def main() -> int:
 
         try:
             if hasattr(converter, "extract_all_values") and hasattr(converter, "missing_template_vars"):
-                values = converter.extract_all_values(source_text)
-                missing = converter.missing_template_vars(values, layout_text)
-                if missing:
-                    missing_by_file[str(source_file.relative_to(repo_root))] = missing
+                values = extract_values_compatible(converter, source_text, is_rival=is_rival)
+                if values is not None:
+                    missing = converter.missing_template_vars(values, selected_layout_text)
+                    if missing:
+                        label = str(source_file.relative_to(repo_root))
+                        if is_rival:
+                            label += " [RIVAL -> MIX_Rivals_empty.sqf]"
+                        missing_by_file[label] = missing
 
-            converted_text = converter.convert_one(source_file, layout_text)
+            converted_text = convert_one_compatible(converter, source_file, selected_layout_text, is_rival=is_rival)
 
         except Exception as e:
             error_text = str(e)
@@ -272,7 +355,8 @@ def main() -> int:
             continue
 
         action = "[OVERWRITE]" if dest.exists() else "[CREATE]"
-        print(f"{action} {source_file.relative_to(repo_root)} -> {dest.relative_to(repo_root)}")
+        layout_label = " [rival layout]" if is_rival else " [AI layout]"
+        print(f"{action} {source_file.relative_to(repo_root)} -> {dest.relative_to(repo_root)}" + layout_label)
 
         if not args.dry_run:
             output_dir.mkdir(parents=True, exist_ok=True)
@@ -287,6 +371,9 @@ def main() -> int:
     print(f"Copied attributes : {copied}")
     print(f"Skipped           : {skipped}")
     print(f"Failed            : {failed}")
+    print(f"AI templates      : {ai_templates}")
+    print(f"Rival templates   : {rivals}")
+    print(f"Skipped by name   : {skipped_by_name}")
 
     print_missing_vars(missing_by_file)
     print_failed_files(failed_files)

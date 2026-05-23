@@ -2,8 +2,8 @@
  * Converted from: VN_CIV.sqf
  */
 _basic append ["I_Quadbike_01_F"];
-_unarmedVehicles append [];
-_armedVehicles append [];
+_lightUnarmed append [];
+_lightArmed append [];
 _Trucks append [];
 _cargoTrucks append [];
 _ammoTrucks append [];
@@ -127,7 +127,17 @@ _cloakRifles append [];
 _cloakCarbines append [];
 _cloakSidearms append [];
 
-_uniforms append [];
+_uniforms append [
+    "vn_o_uniform_vc_01_01",
+    "vn_o_uniform_vc_01_02",
+    "vn_o_uniform_vc_02_07",
+    "vn_o_uniform_vc_03_02",
+    "vn_o_uniform_vc_04_02",
+    "vn_o_uniform_vc_05_01",
+    "vn_o_uniform_vc_02_05",
+    "vn_o_uniform_vc_04_03",
+    "vn_o_uniform_vc_03_03"
+];
 _SLuniforms append [];
 _ENGuniforms append [];
 _MGvests append [];
@@ -148,7 +158,7 @@ _ENGBackpacks append [];
 _EXPBackpacks append [];
 _SLBackpacks append [];
 _longRangeRadios append [];
-_helmets append [];
+_helmets append _civHats;
 _MEDhelmets append [];
 _SLhelmets append [];
 _SLhats append [];

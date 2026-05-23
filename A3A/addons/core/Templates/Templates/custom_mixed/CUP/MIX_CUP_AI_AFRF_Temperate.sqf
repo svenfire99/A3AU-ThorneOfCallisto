@@ -2,8 +2,8 @@
  * Converted from: CUP_AI_AFRF_Temperate.sqf
  */
 _basic append ["O_Quadbike_01_F"];
-_unarmedVehicles append ["CUP_O_UAZ_Open_RU", "CUP_O_GAZ_Vodnik_Unarmed_RU"];
-_armedVehicles append ["CUP_O_UAZ_AGS30_RU", "CUP_O_UAZ_MG_RU", "CUP_O_UAZ_METIS_RU", "CUP_O_UAZ_SPG9_RU", "CUP_O_GAZ_Vodnik_BPPU_RU", "CUP_O_GAZ_Vodnik_KPVT_RU"];
+_lightUnarmed append ["CUP_O_UAZ_Open_RU", "CUP_O_GAZ_Vodnik_Unarmed_RU"];
+_lightArmed append ["CUP_O_UAZ_AGS30_RU", "CUP_O_UAZ_MG_RU", "CUP_O_UAZ_METIS_RU", "CUP_O_UAZ_SPG9_RU", "CUP_O_GAZ_Vodnik_BPPU_RU", "CUP_O_GAZ_Vodnik_KPVT_RU"];
 _Trucks append ["CUP_O_Kamaz_RU", "CUP_O_Ural_RU", "CUP_O_GAZ_Vodnik_Unarmed_RU"];
 _cargoTrucks append ["CUP_O_Kamaz_Open_RU", "CUP_O_Ural_Open_RU"];
 _ammoTrucks append ["CUP_O_Kamaz_Reammo_RU", "CUP_O_Ural_Reammo_RU"];
@@ -95,8 +95,12 @@ _sniperRifles append [];
 _lightATLaunchers append [];
 _lightHELaunchers append [];
 _ATLaunchers append [];
-_missleATLaunchers append [];
-_AALaunchers append [];
+_missleATLaunchers append [
+    ["CUP_launch_Metis", "", "", "", ["CUP_AT13_M"], [], ""]
+];
+_AALaunchers append [
+    ["CUP_launch_9K32Strela", "", "", "", [""], [], ""]
+];
 _sidearms append [];
 _GLsidearms append [];
 
@@ -105,7 +109,7 @@ _APMines append ["APERSMine_Range_Mag"];
 _lightExplosives append ["DemoCharge_Remote_Mag"];
 _heavyExplosives append ["SatchelCharge_Remote_Mag"];
 
-_antiInfantryGrenades append ["HandGrenade", "MiniGrenade"];
+_antiInfantryGrenades append ["CUP_HandGrenade_RGO"];
 _antiTankGrenades append [];
 _smokeGrenades append ["SmokeShell"];
 _signalsmokeGrenades append ["SmokeShellYellow", "SmokeShellRed", "SmokeShellPurple", "SmokeShellOrange", "SmokeShellGreen", "SmokeShellBlue"];
@@ -115,17 +119,17 @@ _watches append ["ItemWatch"];
 _compasses append ["ItemCompass"];
 _radios append ["ItemRadio"];
 _gpses append ["ItemGPS"];
-_NVGs append ["NVGoggles"];
+_NVGs append ["CUP_NVG_1PN138"];
 _binoculars append ["Binocular"];
 _rangefinders append ["Rangefinder"];
 
-_traitorUniforms append [];
-_traitorVests append [];
-_traitorHats append [];
+_traitorUniforms append ["CUP_U_O_RUS_Soldier_VKPO_VDV_EMR_rolled_up_gloves_pads"];
+_traitorVests append ["CUP_Vest_RUS_6B45_Sh117"];
+_traitorHats append ["CUP_H_PMC_Beanie_Khaki"];
 
-_officerUniforms append [];
-_officerVests append [];
-_officerHats append [];
+_officerUniforms append ["CUP_U_O_RUS_Soldier_VKPO_VDV_EMR_rolled_up_gloves_pads"];
+_officerVests append ["CUP_Vest_RUS_6B45_Sh117"];
+_officerHats append ["CUP_H_RUS_Beret_Spetsnaz"];
 
 _cloakUniforms append [];
 _cloakVests append [];
@@ -136,6 +140,7 @@ _cloakSidearms append [];
 _uniforms append [];
 _SLuniforms append [];
 _ENGuniforms append [];
+_MEDuniforms append [];
 _MGvests append [];
 _MEDvests append [];
 _SLvests append [];
@@ -157,7 +162,7 @@ _longRangeRadios append [];
 _helmets append [];
 _MEDhelmets append [];
 _SLhelmets append [];
-_SLhats append [];
+_SLhats append ["CUP_H_RUS_Beret_VDV"];
 _SNIhats append [];
 
 _slItems append ["Laserbatteries", "Laserbatteries", "Laserbatteries"];
@@ -181,8 +186,7 @@ if (A3A_hasACE) then {
 	_mmItems append [];
 };
 
-_glasses append [];
-_goggles append [];
+_facewear append [];
 
 ///////////////////////////////////////
 //    Special Forces Loadout Data    //
@@ -299,8 +303,7 @@ _sfSLhelmets append [];
 _sfSLhats append ["CUP_H_RUS_Beret_Spetsnaz"];
 _sfSNIhats append ["CUP_H_RUS_Balaclava_Ratnik_Headphones"];
 
-_sfglasses append [];
-_sfgoggles append [];
+_sffacewear append [];
 
 /////////////////////////////////
 //    Elite Loadout Data       //
@@ -409,8 +412,7 @@ _eliteSLhelmets append [];
 _eliteSLhats append ["H_Booniehat_oli"];
 _eliteSNIhats append [];
 
-_eliteglasses append [];
-_elitegoggles append [];
+_elitefacewear append [];
 
 /////////////////////////////////
 //    Military Loadout Data    //
@@ -528,8 +530,7 @@ _militarySLhelmets append [];
 _militarySLhats append [];
 _militarySNIhats append ["H_Booniehat_oli"];
 
-_militaryglasses append [];
-_militarygoggles append [];
+_militaryfacewear append [];
 
 ///////////////////////////////
 //    Police Loadout Data    //
@@ -642,9 +643,6 @@ _militiaSLhelmets append [];
 _militiaSLhats append [];
 _militiaSNIhats append ["H_Booniehat_oli"];
 
-
-_militiaglasses append [];
-_militiagoggles append [];
 _militiafacewear append [];
 
 //////////////////////////
